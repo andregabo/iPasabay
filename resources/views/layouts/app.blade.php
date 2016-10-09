@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Harambe') }}</title>
+
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="keywords" content="intense web design multipurpose template">
+    <meta name="date" content="Dec 26">
+    <link rel="icon" href="http://static.livedemo00.template-help.com/wt_58888_v6/images/favicon.ico" type="image/x-icon">
+    <!-- Stylesheets-->
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Montserrat:400,700%7CLato:300,300italic,400,700,900%7CYesteryear">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+
+    <!-- Styles -->
+    <link href="css/app.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('font-awesome/css/font-awesome.min.css') }}">
+    <!-- <link href="{{asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"> -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+    <!-- JavaScripts -->
+    <script type="text/javascript" src="{{asset('js/jquery-2.2.4.min.js') }}"></script>
+    <script type="text/javascript" src="{{asset('js/tether.min.js') }}"></script>
+    <script type="text/javascript" src="{{asset('js/bootstrap.min.js') }}"></script>
+    
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+         window.Laravel = <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+        ]); ?>
+    </script>
+</head>
+<body>
+
+<!-- RD Navbar Transparent-->
+        <div class="rd-navbar-wrap">
+          <nav data-md-device-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-static" class="rd-navbar rd-navbar-default rd-navbar-light" data-lg-auto-height="true" data-md-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-stick-up="true">
+            <div class="rd-navbar-inner">
+              <!-- RD Navbar Panel-->
+              <div class="rd-navbar-panel">
+                <!-- RD Navbar Toggle-->
+                <button data-rd-navbar-toggle=".rd-navbar, .rd-navbar-nav-wrap" class="rd-navbar-toggle"><span></span></button>
+                <!--Navbar Brand-->
+                <div class="rd-navbar-brand"><a href="{{url('home')}}"><img style='margin-top: -5px;margin-left: -15px;' width='138' height='31' src='images/intense/logo-dark.png' alt=''/></a></div>
+              </div>
+              <div class="rd-navbar-menu-wrap">
+                <div class="rd-navbar-nav-wrap">
+                  <div class="rd-navbar-mobile-scroll">
+                    <!--Navbar Brand Mobile-->
+                    <div class="rd-navbar-mobile-brand"><a href="index-2.html"><img style='margin-top: -5px;margin-left: -15px;' width='138' height='31' src='../../static.livedemo00.template-help.com/wt_58888_v6/images/intense/logo-dark.png' alt=''/></a></div>
+                    <div class="form-search-wrap">
+                      <!-- RD Search Form-->
+                      <form action="http://livedemo00.template-help.com/wt_58888_v6/search-results.html" method="GET" class="form-search rd-search">
+                        <div class="form-group">
+                          <label for="rd-navbar-form-search-widget" class="form-label form-search-label form-label-sm">Search</label>
+                          <input id="rd-navbar-form-search-widget" type="text" name="s" autocomplete="off" class="form-search-input input-sm form-control form-control-gray-lightest input-sm"/>
+                        </div>
+                        <button type="submit" class="form-search-submit"><span class="mdi mdi-magnify"></span></button>
+                      </form>
+                    </div>
+                    <!-- RD Navbar Nav-->
+                    <ul class="rd-navbar-nav">
+                      @if(Auth::user()->isAdmin)
+                      <li><a href="{{ url('/usermanagement') }}"><span>Manage Users</span></a>
+                      @endif
+                        </li>
+                        <li><a href="#"><span>{{ Auth::user()->firstName }}</span></a>
+                        <ul class="rd-navbar-dropdown">
+                          <li><a href="{{ url('/logout') }}" onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();"><span class="text-middle">Logout</span></a>
+                                                 <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                          </li>
+                          
+                        </ul>
+                      </li>
+                      
+                      
+       
+                
+              </div>
+            </div>
+          </nav>
+        </div>
+      <br>
+
+
+    @yield('content')
+
+    <!-- Scripts -->
+
+    <!-- Java script-->
+    <script src="js/core.min.js"></script>
+    <script src="js/script.js"></script>
+<script>
+     window.setTimeout(function(){
+    $(".flash-message").fadeTo(500,0).slideUp(500,function(){
+        $(this).remove();
+    });
+   },7000);
+   $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    });
+
+</script>
+</body>
+</html>

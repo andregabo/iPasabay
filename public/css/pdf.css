@@ -1,0 +1,59 @@
+.company{
+    letter-spacing: 1px;
+    color: #111942;
+    font-family:"Minionpro Bold", georgia, 'Times New Roman';
+    font-size: 3em;	
+}
+body{
+color: #333333;
+font-size: 12px;
+font-family: Gill Sans / Gill Sans MT, sans-serif;
+}
+.obafNumber{
+	font-size: 20px;
+	text-align: right;
+}
+.lineSep{
+	border-color: #ccc;
+}
+
+.transactionTable table{
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    font-size: 11px;
+}
+.transactionTable th,td{
+	border-bottom: 1px solid #ccc;
+}
+
+.transactionTable th{
+	height: 33px;
+}
+.transactionTable td{
+	height: 27px;
+	padding-left: 10px;
+}
+.transactionTable tr:nth-child(even) {
+    background-color: #f5f5f5;
+}
+.transactionTable th,td{
+	text-align: center;
+}
+.mainData{
+	float: left;
+	width: 25%;
+}
+.right{
+	float: left;
+}
+.list{
+	line-height: 145%;
+	padding: 10px 15px 10px 20px;
+}
+.footer{
+	padding: 10px 15px 10px 20px;
+}
+.foot-content{
+	
+	width: 100%;
+}

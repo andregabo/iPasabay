@@ -1,0 +1,32 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| This file is where you may define all of the routes that are handled
+| by your application. Just tell Laravel the URIs it should respond
+| to using a Closure or controller method. Build something great!
+|
+*/
+
+Route::get('/', function () {
+	if(Auth::guest())
+    return view('auth.login');   
+    else
+    return view('home');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+// Admin Middleware Group
+Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function() {
+Route::get('/usermanagement','UserMgtController@index');
+
+Route::put('/usermanagement/{userID}','UserMgtController@softDelete');
+});
+Route::get('unauthorized', function(){
+	return view('unauthorized');
+});
