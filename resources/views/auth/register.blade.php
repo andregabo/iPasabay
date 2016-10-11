@@ -91,6 +91,9 @@
                         
                         <button type="submit" class="btn btn-xs btn-icon btn-block btn-malibu offset-top-20">Sign Up <span class="icon mdi mdi-arrow-right-bold-circle-outline"></span></button>
                       </form>
+                      <div class="offset-top-30 text-sm-left text-dark text-extra-small">
+                        <div class="offset-top-0">Already have an account? <a href="{{url('/login')}}" class="text-picton-blue">Sign in here</a>.</div>
+                      </div>
                     </div>
                   </div>
                 </div>
