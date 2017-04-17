@@ -1,0 +1,13 @@
+{
+userID: <userid>,
+  points:{
+    route:{
+    lat: <lat>,
+    lng: <lng>
+    },
+    pickup:{
+    lat: <lat>,
+    lng: <lng>
+    }
+  }
+}

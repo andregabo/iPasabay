@@ -45,9 +45,12 @@
                   <div class="col-sm-5"></div>
                   <div class="col-sm-6">
                     <button type="button" class="btn btn-sm btn-success" id="setRouteConfirm">Route</button>
+                    <button type="button" class="btn btn-sm btn-info" id="setRouteSave">Save</button>
                     <a href="{{ url('/home') }}"><button type="button" class="btn btn-sm btn-warning">Cancel</button></a>
                   </div>
                 </div>
+
+                <div id="daniel"></div>
 
 
         </div>
@@ -190,6 +193,7 @@
   directionsDisplay.setPanel(document.getElementById('panel'));
 
 
+var generatedRoute;
 
       function getRoute(){
         iacademyMarker.setVisible(false);
@@ -198,12 +202,15 @@
         var request = {
           origin: markerMe.position,
           destination: iacademyMarker.position,
+          provideRouteAlternatives: true,
           travelMode: google.maps.DirectionsTravelMode.DRIVING //Change this to WALKING if needed
         };
 
         directionsService.route(request, function(response, status) {
           if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
+            generatedRoute = response.routes[0];
+            //console.log(google.maps.geometry.poly.containsLocation(iacademyMarker.position, generatedRoute));
           }
         });
       }
@@ -212,6 +219,21 @@
       document.getElementById("setRouteConfirm").addEventListener("click", function(event) {
 
         getRoute();
+
+      });
+
+      document.getElementById("setRouteSave").addEventListener("click", function(event) {
+
+        // FIXME: TO DO DB Operations
+
+        // alert(JSON.stringify(markerMe.position));
+        var id = 1;
+        var string;
+        string = "{\"userID\":"+id+"},{$set:{\"points.route\":"+JSON.stringify(markerMe.position)+"}}";
+
+        //alert(string);
+
+        $('#daniel').append(string);
 
       });
 
