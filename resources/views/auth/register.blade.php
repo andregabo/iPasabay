@@ -65,17 +65,17 @@
                       {{ csrf_field() }}
                         <div class="form-group">
                           <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"><span class="input-group-icon mdi mdi-barcode"></span></span>
-                            <input id="schoolID" placeholder="Your School ID" type="text" name="studentID" data-constraints="@Required" class="form-control">
+                            <input id="schoolID" placeholder="Your School ID" type="text" name="studentID" data-constraints="@Required" class="form-control" value="{{ old('studentID') }}">
                           </div>
                         </div>
                         <div class="form-group offset-top-20">
                           <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"><span class="input-group-icon mdi mdi-account"></span></span>
-                            <input id="firstName" placeholder="Your First Name" type="text" name="firstName" data-constraints="@Required" class="form-control">
+                            <input id="firstName" placeholder="Your First Name" type="text" name="firstName" data-constraints="@Required" class="form-control" value="{{ old('firstName') }}">
                           </div>
                         </div>
                         <div class="form-group offset-top-20">
                           <div class="input-group input-group-sm"><span class="input-group-addon input-group-addon-inverse"><span class="input-group-icon mdi mdi-account-outline"></span></span>
-                            <input id="lastName" placeholder="Your Last Name" type="text" name="lastName" data-constraints="@Required" class="form-control">
+                            <input id="lastName" placeholder="Your Last Name" type="text" name="lastName" data-constraints="@Required" class="form-control" value="{{ old('lastName') }}">
                           </div>
                         </div>
                         <div class="form-group offset-top-20">

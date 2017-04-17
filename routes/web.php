@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
 	if(Auth::guest())
-    return view('auth.login');   
+    return view('auth.login');
     else
     return view('home');
 });
@@ -29,4 +29,11 @@ Route::put('/usermanagement/{userID}','UserMgtController@softDelete');
 });
 Route::get('unauthorized', function(){
 	return view('unauthorized');
+});
+Route::get('messages', 'MessagesController@index');
+Route::get('/setpickup', function(){
+	return view('setpickup');
+});
+Route::get('/getroute', function(){
+	return view('autoroute');
 });

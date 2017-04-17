@@ -70,7 +70,7 @@
                     </div>
                     <div class="ibox-content">
 
-                    <table class="table table-striped table-bordered table-hover dataTables-example" id="usertable">
+                    <table class="table table-striped table-bordered table-hover" id="usertable">
                     <thead>
                     <tr>
                       <th>#</th>
@@ -142,10 +142,7 @@
         $("#lName").val(lastName);
         
         
-    });
- $('.dataTables-example').dataTable({
-                responsive: true
-            });   
+    }); 
 
 
 } );

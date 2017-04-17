@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<style>
+  #map {
+    height: 100%;
+  }
+
+  html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+</style>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+     </head>
+  <body>
+
+  <div id='map'></div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAM6qIb6FxMLJMQ2YeiOSvRD3afyUgKQeU&callback=initMap" async defer>
+</script>
+
+<script>
+
+function initMap() {
+  var myLatLng = {lat: 14.561350, lng: 121.019490};
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 17,
+    center: myLatLng
+  });
+ var markerLatLng;
+  var iacademyMarker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'iACADEMY',
+    draggable: false
+  });
+  var markerMe;
+ google.maps.event.addListener(map, 'click', function(event) {
+   placeMarker(event.latLng);
+   markerLatLng = event.latLng;
+});
+var marker;
+var circle;
+
+function placeMarker(location) {
+   // var marker = new google.maps.Marker({
+    //    position: location,
+     //   map: map,
+      //  draggable: true
+   // });
+    markerLatLng = location;
+
+    if ( markerMe ) {
+    markerMe.setPosition(location);
+  } else {
+    markerMe = new google.maps.Marker({
+      position: location,
+      map: map,
+      draggable : true
+    });
+
+  }
+}
+
+function placeCircle() {
+
+    if(circle)
+    {
+    circle.setCenter(markerMe.getPosition());
+    }
+    else
+    {
+   circle = new google.maps.Circle({
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#FF0000',
+            fillOpacity: 0.35,
+            map: map,
+            center: markerMe.getPosition(),
+            radius: 100
+            });
+     }
+}
+document.getElementById("setPickupConfirm").addEventListener("click", function(event) {
+   placeCircle();
+});
+
+
+
+}
+
+
+
+</script>
+     </body>
+</html>
