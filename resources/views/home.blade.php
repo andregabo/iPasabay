@@ -5,6 +5,11 @@
 <div class="row">
   <div class="col-xs-12">
     <p>Blank Page</p>
+    @if(isset($testmongo))
+      @foreach($testmongo as $items)
+      <p>{{$items->name}}</p>
+      @endforeach
+    @endif
   </div>
 </div>
 

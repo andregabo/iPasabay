@@ -17,11 +17,7 @@ namespace App\Http\Middleware;
     public function handle($request, Closure $next)
     {
         if(Auth::guest()){
-            return redirect('home');
-        }
-        else if(!Auth::user()->isAdmin)
-        {
-            return redirect('unauthorized');
+            return redirect('/');
         }
         else
         {

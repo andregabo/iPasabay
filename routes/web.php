@@ -15,7 +15,7 @@ Route::get('/', function () {
 	if(Auth::guest())
     return view('auth.login');
     else
-    return view('home');
+    return redirect()->action('HomeController@index');
 });
 
 Auth::routes();
@@ -23,17 +23,14 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 // Admin Middleware Group
 Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function() {
-Route::get('/usermanagement','UserMgtController@index');
 
-Route::put('/usermanagement/{userID}','UserMgtController@softDelete');
+	Route::get('messages', 'MessagesController@index');
+	Route::get('/setpickup', 'RoutesController@setPickupIndex');
+	Route::get('/getroute', 'RoutesController@setRouteIndex');
 });
+//end middleward group
+
 Route::get('unauthorized', function(){
 	return view('unauthorized');
 });
-Route::get('messages', 'MessagesController@index');
-Route::get('/setpickup', function(){
-	return view('setpickup');
-});
-Route::get('/getroute', function(){
-	return view('autoroute');
-});
+
