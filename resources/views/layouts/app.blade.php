@@ -274,7 +274,7 @@
           </a>
           <div class="dropdown-menu">
             <div class="profile-info">
-              <h4 class="username">Scott White</h4>
+              <h4 class="username">{{Auth::User()->firstName." ".Auth::User()->lastName}}</h4>
             </div>
             <ul class="action">
               <li>

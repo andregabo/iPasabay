@@ -58,7 +58,7 @@
     </div>
   </div>
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAM6qIb6FxMLJMQ2YeiOSvRD3afyUgKQeU&v=3.exp&libraries=places&callback=initMap" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAM6qIb6FxMLJMQ2YeiOSvRD3afyUgKQeU&v=3.exp&libraries=geometry,places&callback=initMap" async defer></script>
 
 
   <script>
@@ -209,7 +209,7 @@ var generatedRoute;
         directionsService.route(request, function(response, status) {
           if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
-            generatedRoute = response.routes[0];
+            generatedRoute = response.routes;
             //console.log(google.maps.geometry.poly.containsLocation(iacademyMarker.position, generatedRoute));
           }
         });
@@ -219,6 +219,9 @@ var generatedRoute;
       document.getElementById("setRouteConfirm").addEventListener("click", function(event) {
 
         getRoute();
+        var routePoly = new google.maps.Polyline({paths: generatedRoute});
+        var someBoolean = google.maps.geometry.poly.containsLocation(iacademyMarker.position, routePoly);
+        alert(someBoolean);
 
       });
 
