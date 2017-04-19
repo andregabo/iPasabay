@@ -23,6 +23,8 @@
   <link rel="stylesheet" type="text/css" href="./assets/css/theme/yellow.css">
   <link rel="stylesheet" type="text/css" href="./assets/css/theme/daniel-sky.css">
 
+  <link rel="stylesheet" type="text/css" href="{{asset('assets/css/croppie.css')}}">
+
     <!-- JavaScripts -->
 
     <!-- <script src="js/app.js"></script> -->
@@ -278,7 +280,7 @@
             </div>
             <ul class="action">
               <li>
-                <a href="#">
+                <a href="{{url('/profile')}}">
                   Profile
                 </a>
               </li>
@@ -329,6 +331,7 @@
 
   <script type="text/javascript" src="{{asset('assets/js/vendor.js')}}"></script>
   <script type="text/javascript" src="{{asset('assets/js/app.js')}}"></script>
+  <script type="text/javascript" src="{{asset('assets/js/croppie.js')}}"></script>
     <!-- Scripts -->
 
     <!-- Java script-->

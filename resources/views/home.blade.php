@@ -35,7 +35,7 @@ function myMap() {
   var mapCanvas = document.getElementById("map");
 
   var mapOptions = {
-    center: new google.maps.LatLng(14.5507277,121.0126932), 
+    center: new google.maps.LatLng(14.5507277,121.0126932),
 
     zoom: 10
   }
@@ -45,8 +45,8 @@ function myMap() {
                 draggable: true
             });
   google.maps.event.addListener(map, 'click', function(event){
-        var marker_position = event.latLng;   
-             
+        var marker_position = event.latLng;
+
        marker.setPosition(marker_position);
         })
 }
