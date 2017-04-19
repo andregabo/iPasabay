@@ -152,7 +152,7 @@
         </li>
         <li>
           <button type="button" class="navbar-toggle">
-            <img class="profile-img" src="./assets/images/profile.png">
+            <img class="profile-img" src="{{asset('uploads/profile')."/".Auth::User()->profile_image}}">
           </button>
         </li>
       </ul>
@@ -271,7 +271,7 @@
         </li>
         <li class="dropdown profile">
           <a href="/html/pages/profile.html" class="dropdown-toggle"  data-toggle="dropdown">
-            <img class="profile-img" src="./assets/images/profile.png">
+            <img class="profile-img" src="{{asset('uploads/profile')."/".Auth::User()->profile_image}}">
             <div class="title">Profile</div>
           </a>
           <div class="dropdown-menu">

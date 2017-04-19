@@ -13,8 +13,9 @@
             <h4 class="modal-title">User Details</h4>
           </div>
           <div class="modal-body">
-            <form id="formModify" action="" method="post"> <?php // FIXME: Do backend for this ?>
-
+            <form id="formModify" action="{{url('/profile/modify')}}" method="post"> <?php // FIXME: Do backend for this ?>
+              {{ csrf_field() }}
+              {{method_field('PATCH')}}
               <div class="form-group">
                   <div class="row">
                   <label class="col-md-3 control-label">Login:</label>
@@ -50,7 +51,7 @@
     <button type="button" class="btn btn-sm btn-warning" id="btnModal">User Details</button>
   </div>
 <div class="col-sm-6">
-    <form enctype="multipart/form-data" action="{{public_path()}}/scripts/imageUpload.php" method="post">
+    <form enctype="multipart/form-data" action="{{asset('scripts/imageUpload.php')}}" method="post">
             <div class="col-md-6"></div>
             <div id="image-preview">
               <label for="image-upload" id="image-label">Profile Image</label>

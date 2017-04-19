@@ -6,6 +6,7 @@
 	$uniqueID = uniqid();
 
 $filename = $_FILES['image']['name'];
+//save to server
     if($filename != ""){
 	 if(!file_exists("../uploads/profile/" .$uniqueID. $filename)){
  			 move_uploaded_file($_FILES["image"]["tmp_name"],"../uploads/profile/" .$uniqueID. $filename);
@@ -14,13 +15,15 @@ $filename = $_FILES['image']['name'];
 	 $filename = "" . $uniqueID. $filename;
     }
     else{
-        $filename = "";
+        $filename = "";//default profilepic
     }
 
-  $sql = "UPDATE `harambetadays`.`users` SET profile_image='".$filename."' WHERE studentID='".$id."'";
+  $sql = "UPDATE `harambetadays`.`users` SET profile_image='".$filename."' WHERE studentID='".$_POST['studentID']."'";
 
     echo $sql;
 
-    //$result = mysqli_query($dbcon,$sql);
+//do query
+    $result = mysqli_query($dbcon,$sql);
+    header('Location: ../profile');
 
 ?>

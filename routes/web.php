@@ -30,10 +30,9 @@ Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
 });
 //end middleward group
 
-Route::get('/profile', function(){
-	return view('profile');
-});
+Route::get('/profile', 'HomeController@ProfileIndex');
+
+Route::patch('/profile/modify/','HomeController@editProfile');
 
 Route::get('unauthorized', function(){
-	return view('unauthorized');
-});
+	return view('unauthorized');});
