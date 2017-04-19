@@ -36,5 +36,7 @@ Route::patch('/editprofile','HomeController@editProfile')->name('editprofile');
 
 Route::post('/storepoints', 'RoutesController@storePickUp');
 
+Route::post('/storepaths','RoutesController@storePath');
+
 Route::get('unauthorized', function(){
 	return view('unauthorized');});

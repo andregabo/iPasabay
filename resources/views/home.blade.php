@@ -11,12 +11,13 @@
                   @endif
                 @endforeach
    </div>
-    <p>Blank Page</p>
-    @if(isset($testmongo))
-      @foreach($testmongo as $items)
-      <p>{{$items->name}}</p>
-      @endforeach
-    @endif
+    <div class="card">
+    <div class="card-header">OI</div>
+    <div class="card-body">
+        HE        
+    </div>
+    </div>
+    
   </div>
 </div>
 

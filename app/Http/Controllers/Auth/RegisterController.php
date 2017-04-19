@@ -6,7 +6,7 @@ use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use App\Routes;
 class RegisterController extends Controller
 {
     /*
@@ -64,11 +64,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $newPickUp = new Routes;
+        $newPickUp->id = $data['studentID'];
+        $newPickUp->save();
+        
         return User::create([
             'studentID' => $data['studentID'],
             'firstName' => $data['firstName'],
             'lastName' => $data['lastName'],
             'password' => bcrypt($data['password']),
+            'profile_image' => '',
         ]);
     }
 }
