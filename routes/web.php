@@ -32,7 +32,7 @@ Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
 
 Route::get('/profile', 'HomeController@ProfileIndex');
 
-Route::patch('/profile/modify/','HomeController@editProfile');
+Route::patch('/editprofile','HomeController@editProfile')->name('editprofile');
 
 Route::get('unauthorized', function(){
 	return view('unauthorized');});

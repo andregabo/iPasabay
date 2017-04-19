@@ -13,9 +13,10 @@
             <h4 class="modal-title">User Details</h4>
           </div>
           <div class="modal-body">
-            <form id="formModify" action="{{url('/profile/modify')}}" method="post"> <?php // FIXME: Do backend for this ?>
-              {{ csrf_field() }}
+            <form id="formModify" action="{{route('editprofile')}}" method="post"><?php // FIXME: Do backend for this ?>
               {{method_field('PATCH')}}
+
+              {{ csrf_field() }}
               <div class="form-group">
                   <div class="row">
                   <label class="col-md-3 control-label">Login:</label>
@@ -36,12 +37,13 @@
               </div>
             </div>
               </div>
+          </form>
+
           </div>
-        </form>
           <div class="modal-footer">
             <!-- <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button> -->
             <button type="button" class="btn btn-sm btn-warning" id="btnModify">Modify</button>
-            <button type="button" class="btn btn-sm btn-success" form="formModify" value="submit">Save changes</button>
+            <button type="submit" class="btn btn-sm btn-success" form="formModify" value="submit">Save changes</button>
           </div>
         </div>
       </div>

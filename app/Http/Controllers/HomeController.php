@@ -32,12 +32,12 @@ class HomeController extends Controller
       return view('profile');
     }
     public function editProfile(Request $request){
-      $user = User::where('studentID',$request->input('studentID'))->get();
+      $user = User::where('studentID',$request->input('studentID'))->first();
       $user->studentID = $request->input('studentID');
       $user->firstName= $request->input('firstName');
       $user->lastName = $request->input('lastName');
       $user->save();
 
-      return redirect('profile');
+      return redirect('profile'); 
     }
 }
