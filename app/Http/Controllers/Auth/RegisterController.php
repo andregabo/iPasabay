@@ -55,7 +55,7 @@ class RegisterController extends Controller
         ]);
     }
 
-  
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -65,9 +65,9 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $newPickUp = new Routes;
-        $newPickUp->id = $data['studentID'];
+        $newPickUp->userID = $data['studentID'];
         $newPickUp->save();
-        
+
         return User::create([
             'studentID' => $data['studentID'],
             'firstName' => $data['firstName'],
