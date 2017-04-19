@@ -11,13 +11,7 @@
     <script type="text/javascript" src="{{asset('assets/js/chat.js')}}"></script>
     <script type="text/javascript">
 
-        // ask user for name with popup prompt
         var name = {{Auth::User()->studentID}};
-
-        // default name is 'Guest'
-    	if (!name || name === ' ') {
-    	   name = "Guest";
-    	}
 
     	// strip tags
     	name = name.replace(/(<([^>]+)>)/ig,"");
@@ -27,6 +21,21 @@
     	$(function() {
 
     		 chat.getState();
+
+        $('#sendButton').on('click', function(){
+
+             var maxLength = $(this).attr("maxlength");
+             var length = this.value.length;
+
+             // don't allow new content if length is maxed out
+             if (length >= maxLength) {
+                 event.preventDefault();
+             }else{
+               var text = $('#sendie').val();
+               chat.send(text, name);
+               $('#sendie').val("");
+             }
+          });
 
     		 // watch textarea for key presses
              $("#sendie").keydown(function(event) {
@@ -93,7 +102,7 @@
       <form id="send-message-area">
       <div class="message-box">
         <textarea id="sendie" maxlength = '100' placeholder="type something..." class="form-control"></textarea>
-        <button class="btn btn-default"><i class="fa fa-paper-plane" aria-hidden="true"></i><span>Send</span></button>
+        <button type="button" id="sendButton" class="btn btn-default"><i class="fa fa-paper-plane"></i><span>Send</span></button>
       </div>
     </form>
     </div>
