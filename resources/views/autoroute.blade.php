@@ -133,6 +133,8 @@
       });
 
     }
+  markerMe.setVisible(true);
+
     //getRoute();
   }
 
@@ -144,7 +146,7 @@
   // map.controls[google.maps.ControlPosition.TOP_CENTER].push(document.getElementById('searchLocation')); //to bind it in the map
   google.maps.event.addListener(searchBox, 'places_changed', function() {
     searchBox.set('map', null);
-
+    markerMe.setVisible(true);
 
     var places = searchBox.getPlaces();
 
@@ -202,7 +204,7 @@ var generatedRoute;
         var request = {
           origin: markerMe.position,
           destination: iacademyMarker.position,
-          provideRouteAlternatives: true,
+          provideRouteAlternatives: false,
           travelMode: google.maps.DirectionsTravelMode.DRIVING //Change this to WALKING if needed
         };
 
@@ -221,7 +223,7 @@ var generatedRoute;
         getRoute();
         var routePoly = new google.maps.Polyline({paths: generatedRoute});
         var someBoolean = google.maps.geometry.poly.containsLocation(iacademyMarker.position, routePoly);
-        alert(someBoolean);
+        //alert(someBoolean);
 
       });
 

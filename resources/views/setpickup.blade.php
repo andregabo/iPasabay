@@ -36,8 +36,22 @@
                 <div class="row">
                   <div class="col-sm-5"></div>
                   <div class="col-sm-6">
-                    <button type="button" class="btn btn-sm btn-success" id="setPickupConfirm">Confirm</button>
+                    <form action="{{url('storepoints')}}" method="post">
+                    {{csrf_field()}}
+                    <input type="hidden" id="plong" name="plong" value="">
+                    <input type="hidden" id="plat" name="plat" value="">
+                    <div class="col-sm-3">
+                    <select class="select2" name="prad" id="prad" value="100">
+                      <?php
+                      for($ctr = 100 ; $ctr <= 300; $ctr+=50){
+                        echo '<option value='.$ctr.'>'.$ctr.' Meters </option>';
+                      }
+                      ?>
+                    </select>
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-success" id="setPickupConfirm">Confirm</button>
                     <a href="{{ url('/home') }}"><button type="button" class="btn btn-sm btn-warning">Cancel</button></a>
+                    </form>
                   </div>
                 </div>
         </div>
@@ -72,7 +86,8 @@
      placeMarker(event.latLng);
      markerLatLng = event.latLng;
   });
-  var circle;
+  var circleMe;
+  var radius = 100;
 
   function placeMarker(location) {
      // var marker = new google.maps.Marker({
@@ -93,18 +108,19 @@
 
     }
     placeCircle();
-    markerMe.bindTo("position", circle, "center");
+    markerMe.bindTo("position", circleMe, "center");
   }
 
   function placeCircle() {
 
-      if(circle)
+      if(circleMe)
       {
-      circle.setCenter(markerMe.getPosition());
+      circleMe.setRadius(radius);
+      circleMe.setCenter(markerMe.getPosition());
       }
       else
       {
-     circle = new google.maps.Circle({
+     circleMe = new google.maps.Circle({
               strokeColor: '#FF0000',
               strokeOpacity: 0.8,
               strokeWeight: 2,
@@ -112,14 +128,15 @@
               fillOpacity: 0.35,
               map: map,
               center: markerMe.getPosition(),
-              radius: 100
+              radius: radius
               });
        }
   }
   document.getElementById("setPickupConfirm").addEventListener("click", function(event) {
      //placeCircle();
      // FIXME: Do DB insert for this
-     alert("Insert into db");
+     $('#plat').val(markerMe.position.lat);
+     $('#plong').val(markerMe.position.lng);
   });
 
 
@@ -168,13 +185,16 @@
 
   });
 
+  $('#prad').on('change', function(){
+    //alert($('#prad').val())
+    radius = parseInt($('#prad').val());
+    placeCircle();
+  });
+
 
 }//initMap
 
 // google.maps.event.addDomListener(window, 'load', initMap);
-
-
-
 
 
   </script>

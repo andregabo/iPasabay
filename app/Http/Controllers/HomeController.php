@@ -24,8 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $test = TestModel::all();
-        return view('home')->with('testmongo',$test);
+        // $test = TestModel::all();
+        return view('home');
     }
     public function ProfileIndex()
     {
