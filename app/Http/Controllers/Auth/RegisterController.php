@@ -48,7 +48,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'studentID' =>'required|max:9|unique:users',
+            'username' =>'required|max:9|unique:users',
             'firstName' => 'required|max:255',
             'lastName' => 'required|max:255',
             'password' => 'required|min:6|confirmed',
@@ -69,7 +69,7 @@ class RegisterController extends Controller
         $newPickUp->save();
 
         return User::create([
-            'studentID' => $data['studentID'],
+            'username' => $data['username'],
             'firstName' => $data['firstName'],
             'lastName' => $data['lastName'],
             'password' => bcrypt($data['password']),
