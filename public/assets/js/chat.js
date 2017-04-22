@@ -8,16 +8,18 @@ var instanse = false;
 var state;
 var mes;
 var file;
+var userName;
 
-function Chat () {
+function Chat (name) {
     this.update = updateChat;
     this.send = sendChat;
 	this.getStateChat = getStateOfChat;
+  userName = name;
 }
 
 //gets the state of the chat
 function getStateOfChat(room){
-  console.log("state:"+room);
+  //console.log("state:"+room);
 	if(!instanse){
 		 instanse = true;
 		 $.ajax({
@@ -42,7 +44,7 @@ function getStateOfChat(room){
 
 //Updates the chat
 function updateChat(){
-  console.log("update:"+room);
+  //console.log("update:"+room);
 	 if(!instanse){
 		 instanse = true;
 	     $.ajax({
@@ -58,7 +60,20 @@ function updateChat(){
 			   success: function(data){
 				   if(data.text){
 						for (var i = 0; i < data.text.length; i++) {
-                            $('#chat-area').append($("<li>"+ data.text[i] +"</li>"));
+
+              var htmlDummyDoc = $.parseXML(data.text[i]);
+              $htmlDummy = $(htmlDummyDoc);
+              $userID = $htmlDummy.find('sender');
+              $userMessage = $htmlDummy.find('body');
+              $timeStamp = $htmlDummy.find('time');
+              //console.log($userID.text());
+              //console.log($userMessage.text());
+                    if($userID.text() == userName){
+                            $('#chat-area').append($("<li class='right'><div class='message'>"+ $userMessage.text()+"</div><div class='info'><div class='datetime'>"+$timeStamp.text()+"</div></div></li>"));
+                    }
+                    else{
+                            $('#chat-area').append($("<li><div class='message'>"+ $userMessage.text()+"</div><div class='info'><div class='datetime'>"+$timeStamp.text()+"</div></div></li>"));
+                          }
                         }
 				   }
 				   document.getElementById('chat-area').scrollTop = document.getElementById('chat-area').scrollHeight;
@@ -75,7 +90,7 @@ function updateChat(){
 //send the message
 function sendChat(message, nickname, room)
 {
-  console.log("send:"+room);
+  //console.log("send:"+room);
     updateChat(room);
      $.ajax({
 		   type: "POST",

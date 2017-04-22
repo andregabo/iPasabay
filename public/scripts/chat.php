@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Asia/Manila');
 
     $function = $_POST['function'];
     $room = $_POST['chatroom'];
@@ -50,8 +51,8 @@
        			$message = preg_replace($reg_exUrl, '<a href="'.$url[0].'" target="_blank">'.$url[0].'</a>', $message);
 				}
 
-
-        	 fwrite(fopen('chatrooms/'.$room.'.txt', 'a'), "<span><strong>". $nickname . "</strong></span>: " . $message = str_replace("\n", " ", $message) . "\n");
+          $time = date("g.ia",time());
+        	 fwrite(fopen('chatrooms/'.$room.'.txt', 'a'), "<message><sender>". $nickname . "</sender><body>" . $message = str_replace("\n", " ", $message) ."</body><time>".$time."</time></message>"."\n");
 		 }
         	 break;
 

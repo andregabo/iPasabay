@@ -1,4 +1,24 @@
-<span><strong>201401130</strong></span>: Kumain ka na? 
-<span><strong>11138254</strong></span>: Di pa nga eh :( 
-<span><strong>11138254</strong></span>: Pwede bang kainin na lang kita? ;) 
-<span><strong>201401130</strong></span>: Umayos ka nga Ralph libog ka na naman e 
+<message><sender>201401130</sender><body>Ang ganda na ng chat na ginawa ko :) </body><time>3.02pm</time></message>
+<message><sender>11138254</sender><body>Yabang mo gago </body><time>3.03pm</time></message>
+<message><sender>201401130</sender><body>Aray ko bh3 </body><time>3.03pm</time></message>
+<message><sender>201401130</sender><body>Hi po </body><time>3.12pm</time></message>
+<message><sender>11138254</sender><body>Galit ako sayo </body><time>3.12pm</time></message>
+<message><sender>201401130</sender><body>huh&gt; </body><time>3.14pm</time></message>
+<message><sender>201401130</sender><body>huh? </body><time>3.14pm</time></message>
+<message><sender>201401130</sender><body>bakit? </body><time>3.14pm</time></message>
+<message><sender>201401130</sender><body>wew </body><time>3.14pm</time></message>
+<message><sender>201401130</sender><body>asd </body><time>3.14pm</time></message>
+<message><sender>201401130</sender><body>asd </body><time>3.14pm</time></message>
+<message><sender>201401130</sender><body>asd </body><time>3.14pm</time></message>
+<message><sender>201401130</sender><body>asd </body><time>3.14pm</time></message>
+<message><sender>201401130</sender><body>a s</body><time>3.14pm</time></message>
+<message><sender>201401130</sender><body>d as</body><time>3.14pm</time></message>
+<message><sender>201401130</sender><body>d </body><time>3.14pm</time></message>
+<message><sender>201401130</sender><body>asd </body><time>3.14pm</time></message>
+<message><sender>201401130</sender><body>asd </body><time>3.14pm</time></message>
+<message><sender>201401130</sender><body>as d</body><time>3.14pm</time></message>
+<message><sender>201401130</sender><body>asd </body><time>3.14pm</time></message>
+<message><sender>201401130</sender><body> as</body><time>3.14pm</time></message>
+<message><sender>11138254</sender><body>Hi Royce </body><time>7.04pm</time></message>
+<message><sender>201401130</sender><body>Hi Royce </body><time>7.05pm</time></message>
+<message><sender>201401130</sender><body>:) </body><time>7.05pm</time></message>
