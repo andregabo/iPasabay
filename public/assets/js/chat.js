@@ -33,6 +33,8 @@ function getStateOfChat(room){
 			   success: function(data){
 				   state = data.state;
 				   instanse = false;
+           state = 0;
+           updateChat();
 			   },
 			});
 	}
