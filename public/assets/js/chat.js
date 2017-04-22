@@ -12,11 +12,12 @@ var file;
 function Chat () {
     this.update = updateChat;
     this.send = sendChat;
-	this.getState = getStateOfChat;
+	this.getStateChat = getStateOfChat;
 }
 
 //gets the state of the chat
-function getStateOfChat(){
+function getStateOfChat(room){
+  console.log("state:"+room);
 	if(!instanse){
 		 instanse = true;
 		 $.ajax({
@@ -24,6 +25,7 @@ function getStateOfChat(){
 			   url: "../public/scripts/chat.php",
 			   data: {
 			   			'function': 'getState',
+              'chatroom': room,
 						'file': file
 						},
 			   dataType: "json",
@@ -38,6 +40,7 @@ function getStateOfChat(){
 
 //Updates the chat
 function updateChat(){
+  console.log("update:"+room);
 	 if(!instanse){
 		 instanse = true;
 	     $.ajax({
@@ -45,6 +48,7 @@ function updateChat(){
 			   url: "../public/scripts/chat.php",
 			   data: {
 			   			'function': 'update',
+              'chatroom': room,
 						'state': state,
 						'file': file
 						},
@@ -67,21 +71,23 @@ function updateChat(){
 }
 
 //send the message
-function sendChat(message, nickname)
+function sendChat(message, nickname, room)
 {
-    updateChat();
+  console.log("send:"+room);
+    updateChat(room);
      $.ajax({
 		   type: "POST",
 		   url: "../public/scripts/chat.php",
 		   data: {
 		   			'function': 'send',
+            'chatroom': room,
 					'message': message,
 					'nickname': nickname,
 					'file': file
 				 },
 		   dataType: "json",
 		   success: function(data){
-			   updateChat();
+			   updateChat(room);
 		   },
 		});
 }

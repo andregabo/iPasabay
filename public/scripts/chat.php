@@ -1,22 +1,23 @@
 <?php
 
     $function = $_POST['function'];
+    $room = $_POST['chatroom'];
 
     $log = array();
 
     switch($function) {
 
     	 case('getState'):
-        	 if(file_exists('chatrooms/chat.txt')){
-               $lines = file('chatrooms/chat.txt');
+        	 if(file_exists('chatrooms/'.$room.'.txt')){
+               $lines = file('chatrooms/'.$room.'.txt');
         	 }
              $log['state'] = count($lines);
         	 break;
 
     	 case('update'):
         	$state = $_POST['state'];
-        	if(file_exists('chatrooms/chat.txt')){
-        	   $lines = file('chatrooms/chat.txt');
+        	if(file_exists('chatrooms/'.$room.'.txt')){
+        	   $lines = file('chatrooms/'.$room.'.txt');
         	 }
         	 $count =  count($lines);
         	 if($state == $count){
@@ -50,7 +51,7 @@
 				}
 
 
-        	 fwrite(fopen('chatrooms/chat.txt', 'a'), "<span><strong>". $nickname . "</strong></span>: " . $message = str_replace("\n", " ", $message) . "\n");
+        	 fwrite(fopen('chatrooms/'.$room.'.txt', 'a'), "<span><strong>". $nickname . "</strong></span>: " . $message = str_replace("\n", " ", $message) . "\n");
 		 }
         	 break;
 

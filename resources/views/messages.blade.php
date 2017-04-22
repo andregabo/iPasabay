@@ -6,12 +6,18 @@
   <div class="col-xs-12">
     <p>Messages</p>
   </div>
-
+<input type="text" class="form-control" placeholder="Room" id="room" value="newchat" readonly>
   <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> -->
     <script type="text/javascript" src="{{asset('assets/js/chat.js')}}"></script>
     <script type="text/javascript">
 
         var name = {{Auth::User()->studentID}};
+        var room = $('#room').val();
+
+        $('#room').on('change', function(){
+          room = $(this).val();
+          console.log(room);
+        });
 
     	// strip tags
     	name = name.replace(/(<([^>]+)>)/ig,"");
@@ -20,7 +26,7 @@
         var chat =  new Chat();
     	$(function() {
 
-    		 chat.getState();
+    		 chat.getStateChat(room);
 
         $('#sendButton').on('click', function(){
 
@@ -32,7 +38,7 @@
                  event.preventDefault();
              }else{
                var text = $('#sendie').val();
-               chat.send(text, name);
+               chat.send(text, name, room);
                $('#sendie').val("");
              }
           });
@@ -66,7 +72,7 @@
                     // send
                     if (length <= maxLength + 1) {
 
-    			        chat.send(text, name);
+    			        chat.send(text, name, room);
     			        $(this).val("");
 
                     } else {
@@ -82,10 +88,10 @@
     	});
     </script>
 
-    <body onload="setInterval('chat.update()', 1000)">
+
 
 <!-- //////////////////////////////////////////////////////////////////////////////////////////// -->
-<div class="app-messaging-container">
+<div class="app-messaging-container" onload="setInterval('chat.update()', 1000)">
 <div class="app-messaging" id="collapseMessaging">
   <div class="messaging">
     <div class="heading">
@@ -109,6 +115,5 @@
   </div>
 </div>
 </div>
-</body>
 </div>
 @endsection
