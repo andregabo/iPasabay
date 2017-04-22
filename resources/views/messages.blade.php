@@ -89,9 +89,9 @@
     </script>
 
 
-
+<body onload="setInterval('chat.update()', 1000)">
 <!-- //////////////////////////////////////////////////////////////////////////////////////////// -->
-<div class="app-messaging-container" onload="setInterval('chat.update()', 1000)">
+<div class="app-messaging-container">
 <div class="app-messaging" id="collapseMessaging">
   <div class="messaging">
     <div class="heading">
@@ -115,5 +115,6 @@
   </div>
 </div>
 </div>
+</body>
 </div>
 @endsection
