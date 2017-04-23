@@ -49,7 +49,7 @@
                       ?>
                     </select>
                     </div>
-                    <button type="submit" class="btn btn-sm btn-success" id="setPickupConfirm">Confirm</button>
+                    <button type="submit" class="btn btn-sm btn-success" id="setPickupConfirm" disabled="true">Confirm</button>
                     <a href="{{ url('/home') }}"><button type="button" class="btn btn-sm btn-warning">Cancel</button></a>
                     </form>
                   </div>
@@ -98,6 +98,7 @@
        //   map: map,
         //  draggable: true
      // });
+     $('#setPickupConfirm').prop('disabled', false);
       markerLatLng = location;
 
       if ( markerMe ) {
@@ -149,6 +150,7 @@
   google.maps.event.addListener(searchBox, 'places_changed', function() {
     searchBox.set('map', null);
 
+$('#setPickupConfirm').prop('disabled', false);
 
     var places = searchBox.getPlaces();
 
@@ -168,7 +170,7 @@
         }
           //map.setCenter(place.geometry.location);
           placeCircle();
-          markerMe.bindTo("position", circle, "center");
+          markerMe.bindTo("position", circleMe, "center");
 
         markerMe.bindTo('map', searchBox, 'map');
         google.maps.event.addListener(markerMe, 'map_changed', function() {

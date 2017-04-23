@@ -44,8 +44,8 @@
                 <div class="row">
                   <div class="col-sm-5"></div>
                   <div class="col-sm-6">
-                    <button type="button" class="btn btn-sm btn-success" id="setRouteConfirm">Route</button>
-                    <button type="button" class="btn btn-sm btn-info" id="setRouteSave">Save</button>
+                    <button type="button" class="btn btn-sm btn-success" id="setRouteConfirm" disabled="true">Route</button>
+                    <button type="button" class="btn btn-sm btn-info" id="setRouteSave" disabled="true">Save</button>
                     <a href="{{ url('/home') }}"><button type="button" class="btn btn-sm btn-warning">Cancel</button></a>
                   </div>
                 </div>
@@ -66,6 +66,7 @@
 
 
   function initMap() {
+    var markerMe;
     // Try HTML5 geolocation.
 
     //infoWindow = new google.maps.InfoWindow;
@@ -116,13 +117,16 @@
       icon: "images/pubIcons/iacademylogo2.png",
       draggable: false
     });
-    var markerMe;
+
 
    google.maps.event.addListener(map, 'click', function(event) {
      placeMarker(event.latLng);
      markerLatLng = event.latLng;
   });
   function placeMarker(location) {
+
+$('#setRouteConfirm').prop('disabled', false);
+$('#setRouteSave').prop('disabled', false);
 
       markerLatLng = location;
 
@@ -149,8 +153,9 @@
   // map.controls[google.maps.ControlPosition.TOP_CENTER].push(document.getElementById('searchLocation')); //to bind it in the map
   google.maps.event.addListener(searchBox, 'places_changed', function() {
     searchBox.set('map', null);
-    markerMe.setVisible(true);
 
+$('#setRouteConfirm').prop('disabled', false);
+$('#setRouteConfirm').prop('disabled', false);
     var places = searchBox.getPlaces();
 
     var bounds = new google.maps.LatLngBounds();
@@ -159,6 +164,7 @@
       (function(place) {
         if(markerMe){
           markerMe.setPosition(place.geometry.location);
+          markerMe.setVisible(true);
         }
          else{
            map: map,
