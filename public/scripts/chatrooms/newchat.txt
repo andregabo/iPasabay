@@ -22,3 +22,5 @@
 <message><sender>11138254</sender><body>Hi Royce </body><time>7.04pm</time></message>
 <message><sender>201401130</sender><body>Hi Royce </body><time>7.05pm</time></message>
 <message><sender>201401130</sender><body>:) </body><time>7.05pm</time></message>
+<message><sender>201401038</sender><body>bat ka galit potek. </body><time>4.14pm</time></message>
+<message><sender>201401038</sender><body>wala naman akong ginawa sayo :( </body><time>4.14pm</time></message>

@@ -103,7 +103,9 @@
 
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 17,
-      center: myLatLng
+      center: myLatLng,
+      clickableIcons: false,
+      mapTypeControl: false
     });
     map.setOptions({streetViewControl: false});
    var markerLatLng;
@@ -111,6 +113,7 @@
       position: myLatLng,
       map: map,
       title: 'iACADEMY',
+      icon: "images/pubIcons/iacademylogo2.png",
       draggable: false
     });
     var markerMe;
