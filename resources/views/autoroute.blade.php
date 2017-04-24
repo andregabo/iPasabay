@@ -55,7 +55,7 @@
                   </div>
                 </div>
 
-                <div id="daniel"></div>
+
 
 
         </div>
