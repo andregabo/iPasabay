@@ -74,9 +74,9 @@ function updateChat(){
                     }
                     else{
                             $('#chat-area').append($("<li><div class='message'>"+ $userMessage.text()+"</div><div class='info'><div class='datetime'>"+$timeStamp.text()+"</div></div></li>"));
+                            audio.play();
                           }
                         }
-                        audio.play();
                         document.getElementById('chat-area').scrollTop = document.getElementById('chat-area').scrollHeight;
 				   }
 
