@@ -9,6 +9,7 @@ var state;
 var mes;
 var file;
 var userName;
+var audio = new Audio('../public/assets/music/knock.mp3');
 
 function Chat (name) {
     this.update = updateChat;
@@ -75,6 +76,7 @@ function updateChat(){
                             $('#chat-area').append($("<li><div class='message'>"+ $userMessage.text()+"</div><div class='info'><div class='datetime'>"+$timeStamp.text()+"</div></div></li>"));
                           }
                         }
+                        audio.play();
                         document.getElementById('chat-area').scrollTop = document.getElementById('chat-area').scrollHeight;
 				   }
 
