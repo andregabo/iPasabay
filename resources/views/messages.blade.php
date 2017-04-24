@@ -30,6 +30,18 @@
 
     		 chat.getStateChat(room);
 
+         $('#chatBack').click(function(e){
+           e.preventDefault();
+           $('#collapseMessaging').removeClass('collapsed');
+           $('#collapseMessaging').removeClass('in');
+         });
+
+         $('.chatIn').click(function(e){
+           e.preventDefault();
+           $('#collapseMessaging').addClass('collapsed');
+           $('#collapseMessaging').addClass('in');
+         });
+
         $('#sendButton').on('click', function(){
 
              var maxLength = $(this).attr("maxlength");
@@ -103,7 +115,7 @@
 $matches = [["ID" => "11138254", "NAME"=>"DLSU Ralph Bausas"],["ID" => "201401130", "NAME"=>"Ralph Bausas"]];
 foreach($matches as $key => $value){?>
             <li class="message">
-              <a data-toggle="collapse" href="#collapseMessaging" aria-expanded="false" aria-controls="collapseMessaging">
+              <a class="chatIn">
                 <div class="message">
                   <img class="profile" src="https://placehold.it/100x100">
                   <div class="content">
@@ -121,7 +133,7 @@ foreach($matches as $key => $value){?>
   <div class="messaging x-scroll-top" style="height: 80vh">
     <div class="heading">
       <div class="title">
-        <a class="btn-back" data-toggle="collapse" href="#collapseMessaging" aria-expanded="false" aria-controls="collapseMessaging">
+        <a id="chatBack" class="btn-back">
           <i class="fa fa-angle-left" aria-hidden="true"></i>
         </a>
         Ralph Bausas
