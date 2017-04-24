@@ -1,14 +1,1 @@
-<message><sender>201401130</sender><body>Ang ganda na ng chat na ginawa ko :) </body><time>3.02pm</time></message>
-<message><sender>11138254</sender><body>Yabang mo gago </body><time>3.03pm</time></message>
-<message><sender>201401130</sender><body>Aray ko bh3 </body><time>3.03pm</time></message>
-<message><sender>201401130</sender><body>Hi po </body><time>3.12pm</time></message>
-<message><sender>11138254</sender><body>Galit ako sayo </body><time>3.12pm</time></message>
-<message><sender>201401130</sender><body>huh&gt; </body><time>3.14pm</time></message>
-<message><sender>201401130</sender><body>huh? </body><time>3.14pm</time></message>
-<message><sender>201401130</sender><body>bakit? </body><time>3.14pm</time></message>
-<message><sender>11138254</sender><body>Hi Royce </body><time>7.04pm</time></message>
-<message><sender>201401130</sender><body>Hi Royce </body><time>7.05pm</time></message>
-<message><sender>201401130</sender><body>:) </body><time>7.05pm</time></message>
-<message><sender>201401038</sender><body>bat ka galit potek. </body><time>4.14pm</time></message>
-<message><sender>201401038</sender><body>wala naman akong ginawa sayo :( </body><time>4.14pm</time></message>
-<message><sender>201401130</sender><body>Di ka talaga mahal non - Ralph</body><time>9.55pm</time></message>
+<message><sender>201401130</sender><body>hey </body><time>Apr, 24 3.06 pm</time></message>

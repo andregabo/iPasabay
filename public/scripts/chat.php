@@ -51,7 +51,7 @@ date_default_timezone_set('Asia/Manila');
        			$message = preg_replace($reg_exUrl, '<a href="'.$url[0].'" target="_blank">'.$url[0].'</a>', $message);
 				}
 
-          $time = date("g.ia",time());
+          $time = date("M, d g.i a",time());
         	 fwrite(fopen('chatrooms/'.$room.'.txt', 'a'), "<message><sender>". $nickname . "</sender><body>" . $message = str_replace("\n", " ", $message) ."</body><time>".$time."</time></message>"."\n");
 		 }
         	 break;

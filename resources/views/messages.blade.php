@@ -4,10 +4,14 @@
 
 <div class="row">
   <div class="col-xs-12">
-<input type="text" class="form-control" placeholder="Room" id="room" value="newchat" readonly>
+<input type="hidden" class="form-control" placeholder="Room" id="room" value="11138254AND201401130" readonly>
   <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> -->
     <script type="text/javascript" src="{{asset('assets/js/chat.js')}}"></script>
     <script type="text/javascript">
+
+
+
+
 
         var name = {{Auth::User()->studentID}};
         var room = $('#room').val();
@@ -90,32 +94,39 @@
 <body onload="setInterval('chat.update()', 1000)">
 
 <div class="app-messaging-container">
-<div class="app-messaging" id="collapseMessaging">
+<div class="app-messaging collapse" id="collapseMessaging">
   <div class="chat-group">
-          <div class="heading">Contacts</div>
-          <ul class="group full-height">
-            <li class="section">Matches</li>
+  <div class="heading">Contacts</div>
+  <ul class="group full-height">
+    <li class="section">Matches</li>
+<?php
+$matches = [["ID" => "11138254", "NAME"=>"DLSU Ralph Bausas"],["ID" => "201401130", "NAME"=>"Ralph Bausas"]];
+foreach($matches as $key => $value){?>
             <li class="message">
               <a data-toggle="collapse" href="#collapseMessaging" aria-expanded="false" aria-controls="collapseMessaging">
                 <div class="message">
                   <img class="profile" src="https://placehold.it/100x100">
                   <div class="content">
-                    <div class="title">Ralph Bausas</div>
-                    <div class="description">201401130</div>
+                    <div class="title">{{$value["NAME"]}}</div>
+                    <div class="description">{{$value["ID"]}}</div>
                   </div>
                 </div>
               </a>
             </li>
-          </ul>
-        </div>
+    <?php
+  }?>
+</ul>
+</div>
 <!-- /////////////////////////// -->
-  <div class="messaging">
+  <div class="messaging x-scroll-top" style="height: 80vh">
     <div class="heading">
       <div class="title">
-
+        <a class="btn-back" data-toggle="collapse" href="#collapseMessaging" aria-expanded="false" aria-controls="collapseMessaging">
+          <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </a>
         Ralph Bausas
       </div>
-
+<div class="action"></div>
     </div>
     <ul class="chat" id="chat-area">
 
@@ -127,13 +138,14 @@
     <div class="footer">
       <form id="send-message-area">
       <div class="message-box">
-        <textarea id="sendie" maxlength = '100' placeholder="type something..." class="form-control"></textarea>
+        <textarea id="sendie" maxlength = '100' placeholder="Type something..." class="form-control"></textarea>
         <button type="button" id="sendButton" class="btn btn-default"><i class="fa fa-paper-plane"></i><span>Send</span></button>
       </div>
     </form>
     </div>
   </div>
 </div>
+
 </div>
 </div>
 </div>
