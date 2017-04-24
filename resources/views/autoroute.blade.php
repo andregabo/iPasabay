@@ -44,9 +44,14 @@
                 <div class="row">
                   <div class="col-sm-5"></div>
                   <div class="col-sm-6">
+                    <form action="{{url('storepaths')}}" method="post">
+                      {{csrf_field()}}
+                      <input type="hidden" id="plong" name="plong" value="">
+                      <input type="hidden" id="plat" name="plat" value="">
                     <button type="button" class="btn btn-sm btn-success" id="setRouteConfirm" disabled="true">Route</button>
-                    <button type="button" class="btn btn-sm btn-info" id="setRouteSave" disabled="true">Save</button>
+                    <button type="submit" class="btn btn-sm btn-info" id="setRouteSave" disabled="true">Save</button>
                     <a href="{{ url('/home') }}"><button type="button" class="btn btn-sm btn-warning">Cancel</button></a>
+                  </form>
                   </div>
                 </div>
 
@@ -155,7 +160,7 @@ $('#setRouteSave').prop('disabled', false);
     searchBox.set('map', null);
 
 $('#setRouteConfirm').prop('disabled', false);
-$('#setRouteConfirm').prop('disabled', false);
+$('#setRouteSave').prop('disabled', false);
     var places = searchBox.getPlaces();
 
     var bounds = new google.maps.LatLngBounds();
@@ -240,14 +245,9 @@ var generatedRoute;
 
         // FIXME: TO DO DB Operations
 
-        // alert(JSON.stringify(markerMe.position));
-        var id = 1;
-        var string;
-        string = "{\"userID\":"+id+"},{$set:{\"points.route\":"+JSON.stringify(markerMe.position)+"}}";
+        $('#plat').val(markerMe.position.lat);
+        $('#plong').val(markerMe.position.lng);
 
-        //alert(string);
-
-        $('#daniel').append(string);
 
       });
 

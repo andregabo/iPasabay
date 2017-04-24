@@ -19,8 +19,10 @@ class CreateUsersTable extends Migration
             $table->string('firstName');
             $table->string('lastName');
             $table->string('password');
+            $table->boolean('isDeleted')->default(null);
             $table->rememberToken();
             $table->timestamps();
+            $table->string('profile_image');
         });
     }
 
