@@ -70,10 +70,10 @@ function updateChat(){
               //console.log($userID.text());
               //console.log($userMessage.text());
                     if($userID.text() == userName){
-                            $('#chat-area').append($("<li class='right'><div class='message'>"+ $userMessage.text()+"</div><div class='info'><div class='datetime'>"+$timeStamp.text()+"</div></div></li>"));
+                            $('#chat-area').append($("<li class='right'><div class='message1'>"+ $userMessage.text()+"</div><div class='info'><div class='datetime'>"+$timeStamp.text()+"</div></div></li>"));
                     }
                     else{
-                            $('#chat-area').append($("<li><div class='message'>"+ $userMessage.text()+"</div><div class='info'><div class='datetime'>"+$timeStamp.text()+"</div></div></li>"));
+                            $('#chat-area').append($("<li><div class='message2'>"+ $userMessage.text()+"</div><div class='info'><div class='datetime'>"+$timeStamp.text()+"</div></div></li>"));
                             audio.play();
                           }
                         }

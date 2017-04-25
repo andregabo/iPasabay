@@ -165,7 +165,7 @@ body {
   25% {
     transform: translateX(30px) rotate(-90deg) scale(0.5); }
   50% {
-    
+
     transform: translateX(30px) translateY(30px) rotate(-179deg); }
   50.1% {
     transform: translateX(30px) translateY(30px) rotate(-180deg); }
@@ -3524,10 +3524,14 @@ ui-view > .app-messaging-container {
         padding: 0 20px;
         padding-right: 20%;
         margin-bottom: 10px; }
-        .app-messaging .messaging ul.chat > li .message {
-          background-color: #e7edee;
+        .app-messaging .messaging ul.chat > li .message1 {
+          background-color: #bff8ac;
           border-radius: 3px;
           padding: 15px; }
+        .app-messaging .messaging ul.chat > li .message2 {
+            background-color: #9fe4ef;
+            border-radius: 3px;
+            padding: 15px; }
         .app-messaging .messaging ul.chat > li .info {
           padding: 5px 0;
           font-size: 0.85em;
@@ -5676,7 +5680,7 @@ footer.app-footer {
     .btn-floating .toggle-content ul.actions {
       list-style: none;
       padding: 0;
-      margin: 0; 
+      margin: 0;
       background-color: #84C1FF;}
       .btn-floating .toggle-content ul.actions > li {
         padding: 0; }

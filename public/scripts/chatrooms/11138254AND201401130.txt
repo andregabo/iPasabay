@@ -16,3 +16,7 @@
 <message><sender>201401130</sender><body>jklasd </body><time>Apr, 24 9.14 pm</time></message>
 <message><sender>201401130</sender><body>a </body><time>Apr, 24 9.14 pm</time></message>
 <message><sender>201401130</sender><body>s </body><time>Apr, 24 9.14 pm</time></message>
+<message><sender>11138254</sender><body>kamusta/ </body><time>Apr, 25 11.57 am</time></message>
+<message><sender>201401130</sender><body>asd </body><time>Apr, 25 11.57 am</time></message>
+<message><sender>201401130</sender><body>chat </body><time>Apr, 25 11.58 am</time></message>
+<message><sender>201401130</sender><body>asd </body><time>Apr, 25 12.10 pm</time></message>
