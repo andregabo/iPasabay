@@ -1,7 +1,47 @@
 @extends('layouts.app')
 
 @section('content')
+<?php
 
+//dbcon the ancient php lord ways
+$dbcon = mysqli_connect("localhost", "root", "") or die("SERVER IS NOT AVAILABLE~".mysql_error());
+mysqli_select_db($dbcon,"harambetadays") or die ("no data".mysql_error());
+
+$selector = "SELECT * FROM `harambetadays`.`matches` WHERE ";
+$where = "user1 = '".Auth::User()->studentID."' OR user2='".Auth::User()->studentID."'";
+$sql = $selector.$where;
+//echo $sql;
+$result = mysqli_query($dbcon,$sql);
+$catcher = [];
+$matches = [];
+
+while($row = mysqli_fetch_assoc($result)){
+        $catcher[] = $row;
+        $temp = [];
+        $temp["roomId"] = $row['id'];
+        $temp["studentID"] = ($row['user1'] == Auth::User()->studentID ? $row['user2'] : $row['user1']);
+        $matches[] = $temp;
+    }
+
+foreach ($matches as $key => $value) {
+  $selector = "SELECT firstName, lastName, profile_image FROM `harambetadays`.`users` WHERE ";
+  $where = "studentID='".$value["studentID"]."'";
+  $sql = $selector.$where;
+  //echo $sql."<br>";
+  $result = mysqli_query($dbcon,$sql);
+
+  while($row = mysqli_fetch_assoc($result)){
+          $matches[$key]["firstName"] = $row["firstName"];
+          $matches[$key]["lastName"] = $row["lastName"];
+          $matches[$key]["profile_image"] = $row["profile_image"];
+      }
+
+}
+
+// echo '<pre>';
+// echo var_dump($matches);
+// echo '</pre>';
+?>
 <div class="row">
   <div class="col-xs-12">
 <input type="hidden" class="form-control" placeholder="Room" id="room" value="11138254AND201401130" readonly>
@@ -38,7 +78,7 @@
            //var $span = $('<li class="message"><a class="chatIn"><div class="message"><img class="profile" src="https://placehold.it/100x100"><div class="content"><div class="title">NAME</div><div class="description">ID</div></div></div></a></li><div class="endMatches"></div>');
            //$('.endMatches').replaceWith($span);
 
-           //$('#group full-height').append('<li class="message"><a class="chatIn"><div class="message"><img class="profile" src="https://placehold.it/100x100"><div class="content"><div class="title">NAME</div><div class="description">ID</div></div></div></a></li>');
+           //$('#messageLeftPanel').append('<li class="message"><a class="chatIn"><div class="message"><img class="profile" src="https://placehold.it/100x100"><div class="content"><div class="title">NAME</div><div class="description">ID</div></div></div></a></li>');
          });
 
          $('.chatIn').on('click', function(e){
@@ -46,6 +86,8 @@
            $('#collapseMessaging').addClass('collapsed');
            $('#collapseMessaging').addClass('in');
 
+           $('#namePlace').text($(this).find('.title').text());
+           alert($(this).find('.description').text());
          });
 
         $('#sendButton').on('click', function(){
@@ -115,18 +157,18 @@
 <div class="app-messaging collapse" id="collapseMessaging">
   <div class="chat-group">
   <div class="heading">Contacts</div>
-  <ul class="group full-height">
+  <ul class="group full-height" id="messageLeftPanel">
     <li class="section">Matches</li>
 <?php
-$matches = [["ID" => "11138254", "NAME"=>"DLSU Ralph Bausas"],["ID" => "201401130", "NAME"=>"Ralph Bausas"]];
+// $matches = [["ID" => "11138254", "NAME"=>"DLSU Ralph Bausas"],["ID" => "201401130", "NAME"=>"Ralph Bausas"]];
 foreach($matches as $key => $value){?>
             <li class="message">
               <a class="chatIn">
                 <div class="message">
                   <img class="profile" src="https://placehold.it/100x100">
                   <div class="content">
-                    <div class="title">{{$value["NAME"]}}</div>
-                    <div class="description">{{$value["ID"]}}</div>
+                    <div class="title">{{$value["firstName"]." ".$value["lastName"]}}</div>
+                    <div class="description">{{$value["studentID"]}}</div>
                   </div>
                 </div>
               </a>
@@ -134,7 +176,7 @@ foreach($matches as $key => $value){?>
 
     <?php
   }?>
-  <div class="endMatches"></div>
+
 </ul>
 </div>
 <!-- /////////////////////////// -->
@@ -144,7 +186,7 @@ foreach($matches as $key => $value){?>
         <a id="chatBack" class="btn-back">
           <i class="fa fa-angle-left" aria-hidden="true"></i>
         </a>
-        Ralph Bausas
+        <div id="namePlace"></div>
       </div>
 <div class="action"></div>
     </div>
