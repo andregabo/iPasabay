@@ -201,7 +201,9 @@ foreach($matches as $key => $value){?>
     <ul class="chat" id="chat-area">
 
 
-
+                <li class="line">
+                  <div class="title">Chat Here</div>
+                </li>
 
 
     </ul>

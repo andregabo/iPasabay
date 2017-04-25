@@ -5,3 +5,5 @@
 <message><sender>11138254</sender><body>Labyu </body><time>Apr, 25 11.50 pm</time></message>
 <message><sender>201401130</sender><body>asd </body><time>Apr, 25 11.56 pm</time></message>
 <message><sender>11138254</sender><body>asdff </body><time>Apr, 25 11.57 pm</time></message>
+<message><sender>11138254</sender><body>Hello po </body><time>Apr, 26 12.04 am</time></message>
+<message><sender>11138254</sender><body>Nice :) </body><time>Apr, 26 12.04 am</time></message>
