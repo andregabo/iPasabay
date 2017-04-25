@@ -54,32 +54,32 @@ foreach ($matches as $key => $value) {
 
 
         var name = {{Auth::User()->studentID}};
-        var room = $('#room').val();
+        var room;
 
-        $('#room').on('change', function(){
-          room = $(this).val();
-          console.log(room);
-        });
+        // $('#room').on('change', function(){
+        //   room = $(this).val();
+        //   console.log(room);
+        // });
 
     	// strip tags
     	name = name.replace(/(<([^>]+)>)/ig,"");
 
-    	// kick off chat
-        var chat =  new Chat(""+name);
+    	// declare chat
+        var chat;
+
     	$(function() {
 
-    		 chat.getStateChat(room);
+
 
          $('#chatBack').click(function(e){
            e.preventDefault();
            $('#collapseMessaging').removeClass('collapsed');
            $('#collapseMessaging').removeClass('in');
 
-           //var $span = $('<li class="message"><a class="chatIn"><div class="message"><img class="profile" src="https://placehold.it/100x100"><div class="content"><div class="title">NAME</div><div class="description">ID</div></div></div></a></li><div class="endMatches"></div>');
-           //$('.endMatches').replaceWith($span);
 
-           //$('#messageLeftPanel').append('<li class="message"><a class="chatIn"><div class="message"><img class="profile" src="https://placehold.it/100x100"><div class="content"><div class="title">NAME</div><div class="description">ID</div></div></div></a></li>');
          });
+
+         $('.chatIn').css('cursor', 'pointer');
 
          $('.chatIn').on('click', function(e){
            e.preventDefault();
@@ -87,8 +87,17 @@ foreach ($matches as $key => $value) {
            $('#collapseMessaging').addClass('in');
 
            $('#namePlace').text($(this).find('.title').text());
-           alert($(this).find('.description').text());
+           //alert($(this).find('.description').text());
+           $("#room").val($(this).find('.roomNo').val());
+           room = $('#room').val();
+           $('#chat-area').empty();
+           chat =  new Chat(""+name, ""+room);
+           chat.getStateChat(room);
+
+           setInterval('chat.update()', 1000);
          });
+
+
 
         $('#sendButton').on('click', function(){
 
@@ -151,8 +160,6 @@ foreach ($matches as $key => $value) {
     </script>
 
 
-<body onload="setInterval('chat.update()', 1000)">
-
 <div class="app-messaging-container">
 <div class="app-messaging collapse" id="collapseMessaging">
   <div class="chat-group">
@@ -169,6 +176,7 @@ foreach($matches as $key => $value){?>
                   <div class="content">
                     <div class="title">{{$value["firstName"]." ".$value["lastName"]}}</div>
                     <div class="description">{{$value["studentID"]}}</div>
+                    <input type="hidden" class="roomNo" value="{{$value['roomId']}}"></input>
                   </div>
                 </div>
               </a>
@@ -211,5 +219,4 @@ foreach($matches as $key => $value){?>
 </div>
 </div>
 </div>
-</body>
 @endsection

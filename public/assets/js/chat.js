@@ -9,13 +9,16 @@ var state;
 var mes;
 var file;
 var userName;
+var room;
 var audio = new Audio('../public/assets/music/knock.mp3');
 
-function Chat (name) {
+function Chat (name, proom) {
     this.update = updateChat;
     this.send = sendChat;
 	this.getStateChat = getStateOfChat;
   userName = name;
+  room = proom;
+  console.log(room);
 }
 
 //gets the state of the chat
