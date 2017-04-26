@@ -7,6 +7,30 @@
     min-height: 450px;
   }
 </style>
+<!-- @foreach($routes as $route)
+{{$route}}<br>
+@endforeach -->
+<?php
+  $routesarray = [];
+  foreach ($routes as $index => $route) {
+    $temp = [];
+    $temp['userID'] = $route->userID;
+    $temp['lat'] = $route->pickup['lat'];
+    $temp['lng'] = $route->pickup['lng'];
+    // $routesarray[]['userID'] = $route->userID;
+    // $routesarray[]['lng'] = $route->pickup['lng'];
+    // $routesarray[]['lat'] = $route->pickup['lat'];
+
+    $routesarray[] = $temp;
+
+  }
+
+// echo '<pre>';
+// echo var_dump($routesarray);
+// echo '</pre>';
+$routesCount = count($routesarray,0);
+?>
+
 
 
 <div class="row">
@@ -63,7 +87,7 @@
       </div>
     </div>
   </div>
-
+  <script src="{{asset('assets/js/RouteBoxer.js')}}" async defer></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAM6qIb6FxMLJMQ2YeiOSvRD3afyUgKQeU&v=3.exp&libraries=geometry,places&callback=initMap" async defer></script>
 
 
@@ -78,6 +102,10 @@
     //infoWindow = new google.maps.InfoWindow;
     var myPosition;
     var markerPosition;
+    var boxpolys = null;
+    var gmarkers = [];
+
+
     // if (navigator.geolocation) {
     //   navigator.geolocation.getCurrentPosition(function(position) {
     //     var pos = {
@@ -104,6 +132,43 @@
     //   // Browser doesn't support Geolocation
     //   handleLocationError(false, infoWindow, map.getCenter());
     // }
+
+    // var locations = [
+    //     ['1', 14.704645183865715, 120.99117636680603],
+    //     ['2', 14.562566921840498, 121.01711869239807],
+    //     ['201401037', 14.555158171027532, 121.03444576287984],
+    //     ['4', 27.036116, -81.717045],
+    //     ['5', 34.104058, -117.444583],
+    //     ['6', 44.790790, -121.443607] ];
+
+        var locations = [
+          //            userID    , lat               , lng
+          <?php
+          // echo "['201401037', 14.555158171027532, 121.03444576287984]";
+          foreach ($routesarray as $key => $value) {
+            if($key == ($routesCount-1)){
+            echo "['".$value['userID']."', ".$value['lat'].", ".$value['lng']."]";
+            }
+            else{
+              echo "['".$value['userID']."', ".$value['lat'].", ".$value['lng']."],";
+            }
+          }
+          ?>
+        ];
+
+
+        var marker, i;
+
+    for (i = 0; i < locations.length; i++) {
+        var marker = new google.maps.Marker({
+            // map: map,
+            title: locations[i][0],
+            position: new google.maps.LatLng(locations[i][1], locations[i][2])
+            //visible: false,  //true for all, but hidden
+            // icon: 'img/the_icon.png'
+        });
+        gmarkers.push(marker);
+    }
 
     var myLatLng = {lat: 14.561350, lng: 121.019490};
 
@@ -203,18 +268,44 @@ $('#setRouteSave').prop('disabled', false);
 
 
   var directionsService = new google.maps.DirectionsService();
-  var directionsDisplay = new google.maps.DirectionsRenderer();
+  var directionsDisplay = new google.maps.DirectionsRenderer({
+      suppressMarkers: true
+    });
 
 
   directionsDisplay.setMap(map);
   directionsDisplay.setPanel(document.getElementById('panel'));
+  routeBoxer = new RouteBoxer();
 
 
 var generatedRoute;
 
+function drawBoxes(boxes) {
+boxpolys = new Array(boxes.length);
+for (var i = 0; i < boxes.length; i++) {
+boxpolys[i] = new google.maps.Rectangle({
+bounds: boxes[i],
+fillOpacity: 0,
+strokeOpacity: 1.0,
+strokeColor: '#000000',
+strokeWeight: 1,
+visible: true,
+map: map
+});
+for (var j=0; j< gmarkers.length; j++) {
+    if (boxes[i].contains(gmarkers[j].getPosition()))
+        gmarkers[j].setMap(map);
+}
+}
+}
+
+
+
       function getRoute(){
-        iacademyMarker.setVisible(false);
-        markerMe.setVisible(false);
+        clearBoxes();
+        distance = /* parseFloat(document.getElementById("distance").value) */ 0.100 * 1.609344;
+        //iacademyMarker.setVisible(false);
+        //markerMe.setVisible(false);
         //markerPosition.setVisible(false);
         var request = {
           origin: markerMe.position,
@@ -227,10 +318,27 @@ var generatedRoute;
           if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
             generatedRoute = response.routes;
+
+            var path = response.routes[0].overview_path;
+
+            //gets boxes around route
+            var boxes = routeBoxer.box(path, distance);
+
+            //draw boxes on the map
+            drawBoxes(boxes);
             //console.log(google.maps.geometry.poly.containsLocation(iacademyMarker.position, generatedRoute));
           }
         });
       }
+
+      function clearBoxes() {
+  if (boxpolys != null) {
+    for (var i = 0; i < boxpolys.length; i++) {
+      boxpolys[i].setMap(null);
+    }
+  }
+  boxpolys = null;
+}
 
 
       document.getElementById("setRouteConfirm").addEventListener("click", function(event) {

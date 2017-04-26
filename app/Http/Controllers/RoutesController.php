@@ -11,7 +11,11 @@ use Session;
 class RoutesController extends Controller
 {
     public function setRouteIndex(){
-		return view('autoroute');
+      $routes =Routes::where('pickup','exists',true)->project(['_id'=>0])->get(['userID','pickup']);
+
+
+
+		return view('autoroute')->with('routes',$routes);
     }
     public function setPickupIndex(){
     	return view('setpickup');
