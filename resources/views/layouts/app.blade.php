@@ -337,11 +337,7 @@
     <!-- Java script-->
     <script src="js/script.js"></script>
 <script>
-     window.setTimeout(function(){
-    $(".flash-message").fadeTo(500,0).slideUp(500,function(){
-        $(this).remove();
-    });
-   },7000);
+     
    $(function () {
       $('[data-toggle="tooltip"]').tooltip()
     });

@@ -11,6 +11,7 @@
 
 <div class="row">
     <div class="col-md-12">
+      <div id="message-area"></div>
       <div class="card">
         <div class="card-header">
           <div class="card-title">Map</div>
@@ -44,7 +45,7 @@
                 <div class="row">
                   <div class="col-sm-5"></div>
                   <div class="col-sm-6">
-                    <form action="{{url('storepaths')}}" method="post">
+                    <form id="formRoute" action="{{url('storepaths')}}" method="post">
                       {{csrf_field()}}
                       <input type="hidden" id="plong" name="plong" value="">
                       <input type="hidden" id="plat" name="plat" value="">
@@ -249,6 +250,24 @@ var generatedRoute;
         $('#plong').val(markerMe.position.lng);
 
 
+      });
+
+      $('#formRoute').on('submit', function(e){
+        e.preventDefault();
+
+        $.ajax({
+               type: "POST",
+               url: "{{url('storepaths')}}",
+               data: $("#formRoute").serialize()
+
+           });
+
+           $('#message-area').append('<div class="flash-message"><strong><p class="alert alert-info">Path has been successfully saved!<a href="#" class="close" data-dismiss="alert" aria-label="close"></a></p></strong></div>');
+           window.setTimeout(function(){
+          $(".flash-message").fadeTo(500,0).slideUp(500,function(){
+              $(this).remove();
+          });
+         },7000);
       });
 
 }//initMap

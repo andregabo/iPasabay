@@ -24,7 +24,7 @@ class RoutesController extends Controller
 		$testdb->save();
 		Session::flash('alert-info',"Pickup Point has been successfully saved!");
 
-		return redirect('home');
+		// return redirect('home');
     }
 
     public function storePath(Request $request){
@@ -34,6 +34,6 @@ class RoutesController extends Controller
     	$testdb->save();
     	Session::flash('alert-info',"Path has been successfully saved!");
 
-    	return redirect('home');
+    	// return redirect('home');
     }
 }
