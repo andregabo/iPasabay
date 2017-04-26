@@ -38,5 +38,7 @@ Route::post('/storepoints', 'RoutesController@storePickUp');
 
 Route::post('/storepaths','RoutesController@storePath');
 
+Route::post('/storematch','MatchesController@store');
+
 Route::get('unauthorized', function(){
 	return view('unauthorized');});

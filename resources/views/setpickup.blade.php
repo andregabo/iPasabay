@@ -102,7 +102,7 @@
      $('#setPickupConfirm').prop('disabled', false);
       markerLatLng = location;
 
-      if ( markerMe ) {
+      if ( markerMe) {
       markerMe.setPosition(location);
     } else {
       markerMe = new google.maps.Marker({
@@ -112,8 +112,8 @@
       });
 
     }
-    placeCircle();
-    markerMe.bindTo("position", circleMe, "center");
+    //placeCircle();
+    //markerMe.bindTo("position", circleMe, "center");
   }
 
   function placeCircle() {
@@ -140,6 +140,9 @@
   document.getElementById("setPickupConfirm").addEventListener("click", function(event) {
      //placeCircle();
      // FIXME: Do DB insert for this
+     //alert($('#plat').val());
+     //alert($('#plong').val());
+
      $('#plat').val(markerMe.position.lat);
      $('#plong').val(markerMe.position.lng);
   });
@@ -159,7 +162,9 @@ $('#setPickupConfirm').prop('disabled', false);
     var i, place;
     for (i = 0; place = places[i]; i++) {
       (function(place) {
-        if(markerMe){
+
+        placeMarker(place.geometry.location);
+        /*if(markerMe){
           markerMe.setPosition(place.geometry.location);
         }
          else{
@@ -168,12 +173,12 @@ $('#setPickupConfirm').prop('disabled', false);
            draggable : true,
           position: place.geometry.location
           });
-        }
+        }*/
           //map.setCenter(place.geometry.location);
-          placeCircle();
-          markerMe.bindTo("position", circleMe, "center");
-
-        markerMe.bindTo('map', searchBox, 'map');
+          //placeCircle();
+          //markerMe.bindTo("position", circleMe, "center");
+          //alert(markerMe.position);
+        //markerMe.bindTo('map', searchBox, 'map');
         google.maps.event.addListener(markerMe, 'map_changed', function() {
           if (!this.getMap()) {
             this.unbindAll();
@@ -194,7 +199,7 @@ $('#setPickupConfirm').prop('disabled', false);
   $('#prad').on('change', function(){
     //alert($('#prad').val())
     radius = parseInt($('#prad').val());
-    placeCircle();
+    //placeCircle();
   });
 
   $('#formPickup').on('submit', function(e){

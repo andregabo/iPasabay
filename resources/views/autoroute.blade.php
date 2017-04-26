@@ -80,7 +80,11 @@ $routesCount = count($routesarray,0);
                   </div>
                 </div>
 
-
+                <form id="formMatches" action="{{url('storematch')}}" method="post">
+                  {{csrf_field()}}
+                  <input type="hidden" id="matchDriver" name="driver" value="">
+                  <input type="hidden" id="matchSabayer" name="sabayer" value="">
+                </form>
 
 
         </div>
@@ -104,6 +108,7 @@ $routesCount = count($routesarray,0);
     var markerPosition;
     var boxpolys = null;
     var gmarkers = [];
+    var submitMarkers = [];
 
 
     // if (navigator.geolocation) {
@@ -233,7 +238,9 @@ $('#setRouteSave').prop('disabled', false);
     var i, place;
     for (i = 0; place = places[i]; i++) {
       (function(place) {
-        if(markerMe){
+
+        placeMarker(place.geometry.location);
+        /*if(markerMe){
           markerMe.setPosition(place.geometry.location);
           markerMe.setVisible(true);
         }
@@ -243,10 +250,10 @@ $('#setRouteSave').prop('disabled', false);
            draggable : true,
           position: place.geometry.location
           });
-        }
+        }*/
           //map.setCenter(place.geometry.location);
 
-        markerMe.bindTo('map', searchBox, 'map');
+        //markerMe.bindTo('map', searchBox, 'map');
         google.maps.event.addListener(markerMe, 'map_changed', function() {
           if (!this.getMap()) {
             this.unbindAll();
@@ -294,12 +301,38 @@ map: map
 });
 for (var j=0; j< gmarkers.length; j++) {
     if (boxes[i].contains(gmarkers[j].getPosition()))
+    {
         gmarkers[j].setMap(map);
-}
-}
+        submitMarkers.push([gmarkers[j].getTitle(), gmarkers[j].getPosition().lat(), gmarkers[j].getPosition().lng()]);
+      }
 }
 
+}
 
+//alert(submitMarkers.toString());
+}
+
+      function matchMe(){
+        for(var i=0; i < submitMarkers.length; i++ )
+        {
+
+          //alert(submitMarkers[i][0] + " " + submitMarkers[i][1] + " " + submitMarkers[i][2] );
+          $('#matchDriver').val({{Auth::User()->studentID}});
+          $('#matchSabayer').val(submitMarkers[i][0]);
+
+          $('#formMatches').on('submit', function(e){
+            e.preventDefault();
+
+            $.ajax({
+                   type: "POST",
+                   url: "{{url('storematch')}}",
+                   data: $("#formMatches").serialize()
+
+               });
+             });
+             $('#formMatches').submit();
+        }
+      }
 
       function getRoute(){
         clearBoxes();
@@ -326,6 +359,8 @@ for (var j=0; j< gmarkers.length; j++) {
 
             //draw boxes on the map
             drawBoxes(boxes);
+
+
             //console.log(google.maps.geometry.poly.containsLocation(iacademyMarker.position, generatedRoute));
           }
         });
@@ -357,6 +392,7 @@ for (var j=0; j< gmarkers.length; j++) {
         $('#plat').val(markerMe.position.lat);
         $('#plong').val(markerMe.position.lng);
 
+        matchMe();
 
       });
 
