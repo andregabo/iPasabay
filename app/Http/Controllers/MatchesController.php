@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Matches;
-use Illuminate\Support\Facades\Storage;
-
+use File;
+use DB;
 class MatchesController extends Controller
 {
     public function store(Request $request){
@@ -30,13 +30,13 @@ class MatchesController extends Controller
           $newMatch->user1 = $request->input('driver');
           $newMatch->user2 = $request->input('sabayer');
           $newMatch->save();
+          // $latestMatch = Matches::find(DB::table('matches')->max('id'));
+          $latestMatch = Matches::where([
+            ['user1',$request->input('driver')],
+            ['user2',$request->input('sabayer')]
+            ])->first();
+          File::put('scripts/chatrooms/'.$latestMatch->id.'.txt','');
         }
-        // Session::flash('alert-danger',"Matches Saved!");
-        $latestMatch = Matches::find(DB::table('matches')->max('id'));
-        // Storage::put(.$latestMatch->id.".txt",'');
-
-      
-
 
     }
 }

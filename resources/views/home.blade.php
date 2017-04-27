@@ -14,7 +14,6 @@
     <div class="card">
     <div class="card-header">OI</div>
     <div class="card-body">
-        HE        
     </div>
     </div>
     
