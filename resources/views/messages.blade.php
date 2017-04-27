@@ -172,7 +172,7 @@ foreach($matches as $key => $value){?>
             <li class="message">
               <a class="chatIn">
                 <div class="message">
-                  <img class="profile" src="https://placehold.it/100x100">
+                  <img class="profile" src="{{asset('uploads/profile').'/'.$value['profile_image']}}">
                   <div class="content">
                     <div class="title">{{$value["firstName"]." ".$value["lastName"]}}</div>
                     <div class="description">{{$value["studentID"]}}</div>
