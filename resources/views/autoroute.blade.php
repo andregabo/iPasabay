@@ -276,6 +276,9 @@ $('#setRouteSave').prop('disabled', false);
 
   var directionsService = new google.maps.DirectionsService();
   var directionsDisplay = new google.maps.DirectionsRenderer({
+    polylineOptions: {
+                    strokeColor: "#9676bb"
+                },
       suppressMarkers: true
     });
 
@@ -302,7 +305,7 @@ map: map
 for (var j=0; j< gmarkers.length; j++) {
     if (boxes[i].contains(gmarkers[j].getPosition()))
     {
-        gmarkers[j].setMap(map);
+        //gmarkers[j].setMap(map);
         submitMarkers.push([gmarkers[j].getTitle(), gmarkers[j].getPosition().lat(), gmarkers[j].getPosition().lng()]);
       }
 }
@@ -336,6 +339,7 @@ for (var j=0; j< gmarkers.length; j++) {
 
       function getRoute(){
         clearBoxes();
+        submitMarkers = [];
         distance = /* parseFloat(document.getElementById("distance").value) */ 0.100 * 1.609344;
         //iacademyMarker.setVisible(false);
         //markerMe.setVisible(false);
@@ -364,6 +368,8 @@ for (var j=0; j< gmarkers.length; j++) {
             //console.log(google.maps.geometry.poly.containsLocation(iacademyMarker.position, generatedRoute));
           }
         });
+
+
       }
 
       function clearBoxes() {
@@ -380,7 +386,8 @@ for (var j=0; j< gmarkers.length; j++) {
 
         getRoute();
         var routePoly = new google.maps.Polyline({paths: generatedRoute});
-        var someBoolean = google.maps.geometry.poly.containsLocation(iacademyMarker.position, routePoly);
+        console.log({paths: generatedRoute});
+        //var someBoolean = google.maps.geometry.poly.containsLocation(iacademyMarker.position, routePoly);
         //alert(someBoolean);
 
       });
