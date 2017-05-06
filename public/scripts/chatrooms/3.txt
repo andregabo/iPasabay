@@ -1,0 +1,3 @@
+<message><sender>201401130</sender><body>Hey </body><time>Apr, 29 9.25 am</time></message>
+<message><sender>201401130</sender><body>ASL </body><time>Apr, 29 9.25 am</time></message>
+<message><sender>201401130</sender><body>sdfghjk </body><time>Apr, 29 9.25 am</time></message>

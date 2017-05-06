@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Harambe') }}</title>
+    <title>{{ config('app.name', '') }}</title>
 
 
     <!-- <link href="{{asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"> -->
@@ -46,14 +46,14 @@
 
 <aside class="app-sidebar" id="sidebar">
   <div class="sidebar-header">
-    <a class="sidebar-brand" href="#"><span class="highlight">Flat v3</span> Admin</a>
+    <a class="sidebar-brand" href="#"><span class="highlight">i</span>Pasabay</a>
     <button type="button" class="sidebar-toggle">
       <i class="fa fa-times"></i>
     </button>
   </div>
   <div class="sidebar-menu">
     <ul class="sidebar-nav">
-      <li class="active">
+      <li id="dashboard" class="active">
         <a href="{{url('/home')}}">
           <div class="icon">
             <i class="fa fa-tasks" aria-hidden="true"></i>
@@ -61,7 +61,7 @@
           <div class="title">Dashboard</div>
         </a>
       </li>
-      <li class="">
+      <li id="messages" class="">
         <a href="{{url('/messages')}}">
           <div class="icon">
             <i class="fa fa-comments" aria-hidden="true"></i>
@@ -69,52 +69,8 @@
           <div class="title">Messaging</div>
         </a>
       </li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          <div class="icon">
-            <i class="fa fa-cube" aria-hidden="true"></i>
-          </div>
-          <div class="title">UI Kits</div>
-        </a>
-        <div class="dropdown-menu">
-          <ul>
-            <li class="section"><i class="fa fa-file-o" aria-hidden="true"></i> UI Kits</li>
-            <li><a href="./uikits/customize.html">Customize</a></li>
-            <li><a href="./uikits/components.html">Components</a></li>
-            <li><a href="./uikits/card.html">Card</a></li>
-            <li><a href="./uikits/form.html">Form</a></li>
-            <li><a href="./uikits/table.html">Table</a></li>
-            <li><a href="./uikits/icons.html">Icons</a></li>
-            <li class="line"></li>
-            <li class="section"><i class="fa fa-file-o" aria-hidden="true"></i> Advanced Components</li>
-            <li><a href="./uikits/pricing-table.html">Pricing Table</a></li>
-            <!-- <li><a href="./uikits/timeline.html">Timeline</a></li> -->
-            <li><a href="./uikits/chart.html">Chart</a></li>
-          </ul>
-        </div>
-      </li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          <div class="icon">
-            <i class="fa fa-file-o" aria-hidden="true"></i>
-          </div>
-          <div class="title">Pages</div>
-        </a>
-        <div class="dropdown-menu">
-          <ul>
-            <li class="section"><i class="fa fa-file-o" aria-hidden="true"></i> Admin</li>
-            <li><a href="./pages/form.html">Form</a></li>
-            <li><a href="./pages/profile.html">Profile</a></li>
-            <li><a href="./pages/search.html">Search</a></li>
-            <li class="line"></li>
-            <li class="section"><i class="fa fa-file-o" aria-hidden="true"></i> Landing</li>
-            <!-- <li><a href="./pages/landing.html">Landing</a></li> -->
-            <li><a href="./pages/login.html">Login</a></li>
-            <li><a href="./pages/register.html">Register</a></li>
-            <!-- <li><a href="./pages/404.html">404</a></li> -->
-          </ul>
-        </div>
-      </li>
+
+
     </ul>
   </div>
   <div class="sidebar-footer">
@@ -148,7 +104,7 @@
           </button>
         </li>
         <li class="logo">
-          <a class="navbar-brand" href="#"><span class="highlight">Flat v3</span> Admin</a>
+          <a class="navbar-brand" href="#"><span class="highlight">i</span>Pasabay</a>
         </li>
         <li>
           <button type="button" class="navbar-toggle">
@@ -156,88 +112,44 @@
           </button>
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-left">
-        <li class="navbar-title">Dashboard</li>
-        <li class="navbar-search hidden-sm">
-          <input id="search" type="text" placeholder="Search..">
-          <button class="btn-search"><i class="fa fa-search"></i></button>
-        </li>
-      </ul>
+
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown notification">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <div class="icon"><i class="fa fa-shopping-basket" aria-hidden="true"></i></div>
-            <div class="title">New Orders</div>
-            <div class="count">0</div>
+        <li class="dropdown profile">
+          <a href="/html/pages/profile.html" class="dropdown-toggle"  data-toggle="dropdown">
+            <img class="profile-img" src="{{asset('uploads/profile')."/".Auth::User()->profile_image}}">
+            <div class="title">Profile</div>
           </a>
           <div class="dropdown-menu">
-            <ul>
-              <li class="dropdown-header">Ordering</li>
-              <li class="dropdown-empty">No New Ordered</li>
-              <li class="dropdown-footer">
-                <a href="#">View All <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="dropdown notification warning">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <div class="icon"><i class="fa fa-comments" aria-hidden="true"></i></div>
-            <div class="title">Unread Messages</div>
-            <div class="count">99</div>
-          </a>
-          <div class="dropdown-menu">
-            <ul>
-              <li class="dropdown-header">Message</li>
+            <div class="profile-info">
+              <h4 class="username">{{Auth::User()->firstName." ".Auth::User()->lastName}}</h4>
+            </div>
+            <ul class="action">
               <li>
-                <a href="#">
-                  <span class="badge badge-warning pull-right">10</span>
-                  <div class="message">
-                    <img class="profile" src="https://placehold.it/100x100">
-                    <div class="content">
-                      <div class="title">"Payment Confirmation.."</div>
-                      <div class="description">Alan Anderson</div>
-                    </div>
-                  </div>
+                <a href="{{url('/profile')}}">
+                  Profile
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <span class="badge badge-warning pull-right">5</span>
-                  <div class="message">
-                    <img class="profile" src="https://placehold.it/100x100">
-                    <div class="content">
-                      <div class="title">"Hello World"</div>
-                      <div class="description">Marco  Harmon</div>
-                    </div>
-                  </div>
+                  <span class="badge badge-danger pull-right">5</span>
+                  My Inbox
                 </a>
               </li>
               <li>
                 <a href="#">
-                  <span class="badge badge-warning pull-right">2</span>
-                  <div class="message">
-                    <img class="profile" src="https://placehold.it/100x100">
-                    <div class="content">
-                      <div class="title">"Order Confirmation.."</div>
-                      <div class="description">Brenda Lawson</div>
-                    </div>
-                  </div>
+                  Setting
                 </a>
               </li>
-              <li class="dropdown-footer">
-                <a href="#">View All <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-              </li>
+
             </ul>
           </div>
         </li>
         <li class="dropdown notification danger">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <div class="icon"><i class="fa fa-bell" aria-hidden="true"></i></div>
-            <div class="title">System Notifications</div>
-            <div class="count">10</div>
-          </a>
-          <div class="dropdown-menu">
+            <div class="title">Notifications</div>
+            <div class="count">8</div>
+          </a><div class="dropdown-menu">
             <ul>
               <li class="dropdown-header">Notification</li>
               <li>
@@ -269,42 +181,25 @@
             </ul>
           </div>
         </li>
-        <li class="dropdown profile">
-          <a href="/html/pages/profile.html" class="dropdown-toggle"  data-toggle="dropdown">
-            <img class="profile-img" src="{{asset('uploads/profile')."/".Auth::User()->profile_image}}">
-            <div class="title">Profile</div>
+
+        <li class="dropdown notification warning">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" href="{{ url('/logout') }}" onclick="event.preventDefault();
+                   document.getElementById('logout-form').submit();">
+            <div class="icon"><i class="fa fa-sign-out" aria-hidden="true"></i></div>
+            <div class="title">Logout</div>
           </a>
-          <div class="dropdown-menu">
-            <div class="profile-info">
-              <h4 class="username">{{Auth::User()->firstName." ".Auth::User()->lastName}}</h4>
+          <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+              {{ csrf_field() }}
+            </form>
+
+            <div class="dropdown-menu">
+              <ul>
+                <li class="dropdown-header">Logout</li>
+              </ul>
             </div>
-            <ul class="action">
-              <li>
-                <a href="{{url('/profile')}}">
-                  Profile
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span class="badge badge-danger pull-right">5</span>
-                  My Inbox
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Setting
-                </a>
-              </li>
-              <li>
-                <a href="{{ url('/logout') }}" onclick="event.preventDefault();
-                         document.getElementById('logout-form').submit();"><span class="text-middle">Logout</span></a>
-                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                {{ csrf_field() }}
-                </form>
-              </li>
-            </ul>
-          </div>
         </li>
+
+
       </ul>
     </div>
   </div>
@@ -337,7 +232,7 @@
     <!-- Java script-->
     <script src="js/script.js"></script>
 <script>
-     
+
    $(function () {
       $('[data-toggle="tooltip"]').tooltip()
     });

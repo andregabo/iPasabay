@@ -158,6 +158,10 @@ foreach ($matches as $key => $value) {
 
     	});
     </script>
+    <script>
+    $('#messages').addClass('active');
+    $('#dashboard').removeClass('active');
+    </script>
 
 
 <div class="app-messaging-container">
