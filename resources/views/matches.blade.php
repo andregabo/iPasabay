@@ -76,15 +76,62 @@ foreach ($matches as $key => $value) {
       <p>You were matched as {{$value["role"]}}</p>
     <button type="button" class="btn btn-success"><i class="fa fa-thumbs-up"></i></button>
     <button type="button" class="btn btn-danger"><i class="fa fa-thumbs-down"></i></button>
+    <button type="button" class="btn btn-warning report" data-toggle="modal" data-target="#modalReport">Report User</button>
     </div>
                   </div>
                 </div>
       </div>
   </div>
+  <div class="modal fade" id="modalReport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Report User</h4>
+          </div>
+          <div class="modal-body">
+            <form method="post" action="#" id="reportForm">
+            <div class="row">
+            <input type="hidden" class="form-control" name="userID" id="modalUserID">
+            <input type="hidden" class="form-control" name="userName" id="modalUserName">
+            <textarea style="resize:none" name="reportContent" rows="5" class="form-control"></textarea>
+          </form>
+          </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-sm btn-success" id="btnSubmitReport">Submit Report</button>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
 <?php
 }
 ?>
 </div>
+<script>
+$(function() {
+  $('.report').on('click', function(){
+  var userName = $(this).closest(".media-content").closest(".media-body").find(".title").text();
+  var userID = $(this).closest(".media-content").closest(".media-body").find(".timeing").text();
 
+  $('#modalUserName').val(userName);
+  $('#modalUserID').val(userID);
+  });
+
+  $('#btnSubmitReport').on('click', function(){
+    $('#reportForm').submit();
+  });
+
+  $('#reportForm').on('submit', function(e){
+    e.preventDefault();
+    // $.ajax({
+    //        type: "POST",
+    //        url: "{{}}",//FIXME Backend here
+    //        data: $("#reportForm").serialize()
+    //    });
+  });
+});
+</script>
 @endsection
