@@ -1,3 +1,16 @@
+<?php
+//dbcon the ancient php lord ways
+$dbcon = mysqli_connect("localhost", "root", "") or die("SERVER IS NOT AVAILABLE~".mysql_error());
+mysqli_select_db($dbcon,"harambetadays") or die ("no data".mysql_error());
+
+$selector = "SELECT COUNT(id) FROM `harambetadays`.`matches` WHERE ";
+$where = "user1 = '".Auth::User()->studentID."' OR user2='".Auth::User()->studentID."'";
+$sql = $selector.$where;
+//echo $sql;
+$result = mysqli_query($dbcon,$sql);
+$countMatches = $result->fetch_assoc()['COUNT(id)'];
+//echo $countMatches;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +59,7 @@
 
 <aside class="app-sidebar" id="sidebar">
   <div class="sidebar-header">
-    <a class="sidebar-brand" href="#"><span class="highlight">i</span>Pasabay</a>
+    <a class="sidebar-brand" href="#"><span class="highlight">Flat v3</span> Admin</a>
     <button type="button" class="sidebar-toggle">
       <i class="fa fa-times"></i>
     </button>
@@ -104,7 +117,7 @@
           </button>
         </li>
         <li class="logo">
-          <a class="navbar-brand" href="#"><span class="highlight">i</span>Pasabay</a>
+          <a class="navbar-brand" href="#"><span class="highlight">i</span> Pasabay</a>
         </li>
         <li>
           <button type="button" class="navbar-toggle">
@@ -130,9 +143,9 @@
                 </a>
               </li>
               <li>
-                <a href="#">
-                  <span class="badge badge-danger pull-right">5</span>
-                  My Inbox
+                <a href="{{ url('/matches') }}">
+                  <span class="badge badge-info pull-right">{{$countMatches}}</span>
+                  My Matches
                 </a>
               </li>
               <li>

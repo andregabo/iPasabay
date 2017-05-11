@@ -1807,6 +1807,8 @@ body {
       body .app-container .app-heading .profile-img {
         width: 80px;
         height: 80px;
+        min-height: 80px;
+        min-width: 80px;
         border-radius: 50%;
         margin-right: 30px; }
       body .app-container .app-heading .app-title {

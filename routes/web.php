@@ -40,5 +40,8 @@ Route::post('/storepaths','RoutesController@storePath');
 
 Route::post('/storematch','MatchesController@store');
 
+Route::get('/matches',function(){
+	return view('matches');
+});
 Route::get('unauthorized', function(){
 	return view('unauthorized');});
