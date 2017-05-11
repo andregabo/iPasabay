@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     /*
@@ -39,5 +40,13 @@ class LoginController extends Controller
        public function username()
     {
         return 'studentID';
+    }
+    
+    public function authenticate()
+    {
+        if (Auth::attempt(['email' => $email, 'password' => $password, 'isDeleted'=> null])) {
+            // Authentication passed...
+            return redirect()->intended('home');
+        }
     }
 }
