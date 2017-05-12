@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Http\Request;
+use Session;
 class LoginController extends Controller
 {
     /*
@@ -39,6 +40,20 @@ class LoginController extends Controller
        public function username()
     {
         return 'studentID';
+    }
+    protected function sendLoginResponse(Request $request)
+    {
+        if (auth()->user()->isDeleted==1) {
+            auth()->logout();
+            Session::flash('alert-danger',"This account has been disabled. See Registar for info.");
+            return redirect('/');
+        }
+        $request->session()->regenerate();
+
+        $this->clearLoginAttempts($request);
+
+        return $this->authenticated($request, $this->guard()->user())
+                ?: redirect()->intended($this->redirectPath());
     }
     
 }

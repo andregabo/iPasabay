@@ -33,7 +33,15 @@
             <div class="shell">
               <div class="range">
                 <div class="section-110 section-cover range range-xs-center range-xs-middle">
+
                   <div class="cell-xs-8 cell-sm-6 cell-md-4">
+                    <div class="flash-message">
+                  @foreach(['danger','warning','success','info'] as $message)
+                   @if (Session::has('alert-'. $message))
+                    <strong><p class="alert alert-{{$message}}">{{Session::get('alert-'.$message)}} <a href="#" class="close" data-dismiss="alert" aria-label="close"></a></p></strong>
+                    @endif
+                  @endforeach
+                </div>
                     @if (count($errors) > 0)    
                         <div class="alert alert-danger">
                             <ul>
