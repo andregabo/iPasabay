@@ -94,6 +94,15 @@ foreach ($matches as $key => $value) {
             <div class="row">
             <input type="hidden" class="form-control" name="userID" id="modalUserID">
             <input type="hidden" class="form-control" name="userName" id="modalUserName">
+            <div class="row">
+            <div class="col-sm-12">
+            <select class="select2" name="reportCategory" value="--Category--">
+              <option value="Verbal Abuse">Verbal Abuse</option>
+              <option value="Verbal Abuse">Verbal Abuse</option>
+              <option value="Verbal Abuse">Verbal Abuse</option>
+            </select>
+            </div>
+          </div>
             <textarea style="resize:none" name="reportContent" rows="5" class="form-control" id="modalTextArea"></textarea>
           </form>
           </div>
