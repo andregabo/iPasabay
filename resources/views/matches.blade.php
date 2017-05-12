@@ -94,7 +94,7 @@ foreach ($matches as $key => $value) {
             <div class="row">
             <input type="hidden" class="form-control" name="userID" id="modalUserID">
             <input type="hidden" class="form-control" name="userName" id="modalUserName">
-            <textarea style="resize:none" name="reportContent" rows="5" class="form-control"></textarea>
+            <textarea style="resize:none" name="reportContent" rows="5" class="form-control" id="modalTextArea"></textarea>
           </form>
           </div>
           </div>
@@ -118,6 +118,7 @@ $(function() {
 
   $('#modalUserName').val(userName);
   $('#modalUserID').val(userID);
+  $('#modalTextArea').val("");
   });
 
   $('#btnSubmitReport').on('click', function(){

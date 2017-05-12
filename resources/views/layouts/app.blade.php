@@ -59,7 +59,7 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
 
 <aside class="app-sidebar" id="sidebar">
   <div class="sidebar-header">
-    <a class="sidebar-brand" href="#"><span class="highlight">Flat v3</span> Admin</a>
+    <a class="sidebar-brand" href="#"><span class="highlight">i</span>Pasabay</a>
     <button type="button" class="sidebar-toggle">
       <i class="fa fa-times"></i>
     </button>
