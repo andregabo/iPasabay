@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Session;
+use Auth;
+
 class LoginController extends Controller
 {
     /*
@@ -43,11 +45,12 @@ class LoginController extends Controller
     }
     protected function sendLoginResponse(Request $request)
     {
+        if(!Auth::guest()){
         if (auth()->user()->isDeleted==1) {
             auth()->logout();
             Session::flash('alert-danger',"This account has been disabled. See Registar for info.");
             return redirect('/');
-        }
+        }}
         $request->session()->regenerate();
 
         $this->clearLoginAttempts($request);

@@ -20,28 +20,26 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->middleware('auth');
 // Admin Middleware Group
-Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function() {
 
-	Route::get('messages', 'MessagesController@index');
-	Route::get('/setpickup', 'RoutesController@setPickupIndex');
-	Route::get('/getroute', 'RoutesController@setRouteIndex');
-});
+	Route::get('messages', 'MessagesController@index')->middleware('auth');
+	Route::get('/setpickup', 'RoutesController@setPickupIndex')->middleware('auth');
+	Route::get('/getroute', 'RoutesController@setRouteIndex')->middleware('auth');
 //end middleward group
 
-Route::get('/profile', 'HomeController@ProfileIndex');
+Route::get('/profile', 'HomeController@ProfileIndex')->middleware('auth');
 
-Route::patch('/editprofile','HomeController@editProfile')->name('editprofile');
+Route::patch('/editprofile','HomeController@editProfile')->name('editprofile')->middleware('auth');
 
-Route::post('/storepoints', 'RoutesController@storePickUp');
+Route::post('/storepoints', 'RoutesController@storePickUp')->middleware('auth');
 
-Route::post('/storepaths','RoutesController@storePath');
+Route::post('/storepaths','RoutesController@storePath')->middleware('auth');
 
-Route::post('/storematch','MatchesController@store');
+Route::post('/storematch','MatchesController@store')->middleware('auth');
 
 Route::get('/matches',function(){
 	return view('matches');
-});
+})->middleware('auth');
 Route::get('unauthorized', function(){
 	return view('unauthorized');});
