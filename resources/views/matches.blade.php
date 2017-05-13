@@ -46,6 +46,7 @@ foreach ($matches as $key => $value) {
 ?>
 
 <div class="row">
+  <div id="message-area"></div>
 <?php foreach($matches as $key => $value){?>
     <div class="col-lg-4">
       <div class="card card-mini">
@@ -110,7 +111,7 @@ foreach ($matches as $key => $value) {
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-sm btn-success" id="btnSubmitReport" form="reportForm">Submit Report</button>
+            <button type="button" class="btn btn-sm btn-success" data-dismiss="modal" id="btnSubmitReport">Submit Report</button>
           </div>
         </div>
       </div>
@@ -135,15 +136,22 @@ $(function() {
     $('#reportForm').submit();
   });
 
-  // $('#reportForm').on('submit', function(e){
+  $('#reportForm').on('submit', function(e){
 
-  //   e.preventDefault();
-  //   $.ajax({
-  //          type: "POST",
-  //          url: "{{url('submitreport')}}",//FIXME Backend here
-  //          data: $("#reportForm").serialize()
-  //      });
-  // });
+    e.preventDefault();
+    $.ajax({
+           type: "POST",
+           url: "{{url('submitreport')}}",//FIXME Backend here
+           data: $("#reportForm").serialize()
+       });
+
+       $('#message-area').append('<div class="flash-message alert-sucess"><strong><p class="alert alert-info">Report successfully submitted. Thank you for helping the community be a better place!<a href="#" class="close" data-dismiss="alert" aria-label="close"></a></p></strong></div>');
+       window.setTimeout(function(){
+      $(".flash-message").fadeTo(500,0).slideUp(500,function(){
+          $(this).remove();
+      });
+     },7000);
+  });
 });
 </script>
 @endsection

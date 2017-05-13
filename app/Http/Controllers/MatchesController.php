@@ -28,7 +28,7 @@ class MatchesController extends Controller
                   ['user1',$request->input('sabayer')],
                   ['user2',$request->input('driver')]
                 ])->count();
-        
+
                 if($matchCheck==0){
                   $newMatch = new Matches;
                   $newMatch->user1 = $request->input('driver');
@@ -53,7 +53,7 @@ class MatchesController extends Controller
         $newReport->violatorID = $request->input('userID');
         $newReport->violatorName=$request->input('userName');
         $newReport->save();
-        Session::flash('alert-success',"Report successfully submitted. Thank you for helping the community be a better place!");
+        //Session::flash('alert-success',"Report successfully submitted. Thank you for helping the community be a better place!");
 
     }
 }
