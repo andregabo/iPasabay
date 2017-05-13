@@ -277,7 +277,9 @@ $('#setRouteSave').prop('disabled', false);
   var directionsService = new google.maps.DirectionsService();
   var directionsDisplay = new google.maps.DirectionsRenderer({
     polylineOptions: {
-                    strokeColor: "#9676bb"
+                    strokeColor: "#9676bb",
+                    strokeWeight: 6,
+                    strokeOpacity: 0.6
                 },
       suppressMarkers: true
     });

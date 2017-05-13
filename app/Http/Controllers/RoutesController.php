@@ -18,7 +18,9 @@ class RoutesController extends Controller
 		return view('autoroute')->with('routes',$routes);
     }
     public function setPickupIndex(){
-    	return view('setpickup');
+      $routes =Routes::where('path','exists',true)->project(['_id'=>0])->get(['userID','path']);
+
+    	return view('setpickup')->with('routes',$routes);
     }
     public function storePickUp(Request $request){
     	//$name= Auth::user()->studentID;

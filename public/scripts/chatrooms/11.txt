@@ -1,0 +1,6 @@
+<message><sender>201401188</sender><body>Oy </body><time>May, 08 9.10 pm</time></message>
+<message><sender>201401188</sender><body>San Ka </body><time>May, 08 9.11 pm</time></message>
+<message><sender>201401037</sender><body>medjo late lang </body><time>May, 08 9.11 pm</time></message>
+<message><sender>201401188</sender><body>wala? </body><time>May, 08 9.11 pm</time></message>
+<message><sender>201401188</sender><body>san na </body><time>May, 08 9.11 pm</time></message>
+<message><sender>201401188</sender><body>pota </body><time>May, 08 9.11 pm</time></message>

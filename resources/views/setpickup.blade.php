@@ -8,6 +8,27 @@
   }
 </style>
 
+<?php
+  $routesarray = [];
+  foreach ($routes as $index => $route) {
+    $temp = [];
+    $temp['userID'] = $route->userID;
+    $temp['lat'] = $route->path['lat'];
+    $temp['lng'] = $route->path['lng'];
+    // $routesarray[]['userID'] = $route->userID;
+    // $routesarray[]['lng'] = $route->pickup['lng'];
+    // $routesarray[]['lat'] = $route->pickup['lat'];
+
+    $routesarray[] = $temp;
+
+  }
+
+// echo '<pre>';
+// echo var_dump($routesarray);
+// echo '</pre>';
+$routesCount = count($routesarray,0);
+?>
+
 
 <div class="row">
     <div class="col-md-12">
@@ -42,13 +63,13 @@
                     <input type="hidden" id="plong" name="plong" value="">
                     <input type="hidden" id="plat" name="plat" value="">
                     <div class="col-sm-3">
-                    <select class="select2" name="prad" id="prad" value="100">
+                    <!-- <select class="select2" name="prad" id="prad" value="100">
                       <?php
                       for($ctr = 100 ; $ctr <= 300; $ctr+=50){
                         echo '<option value='.$ctr.'>'.$ctr.' Meters </option>';
                       }
                       ?>
-                    </select>
+                    </select> -->
                     </div>
                     <button type="submit" class="btn btn-sm btn-success" id="setPickupConfirm" disabled="true">Confirm</button>
                     <a href="{{ url('/home') }}"><button type="button" class="btn btn-sm btn-warning">Cancel</button></a>
@@ -59,15 +80,121 @@
       </div>
     </div>
   </div>
+  <script src="{{asset('assets/js/RouteBoxer.js')}}" async defer></script>
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAM6qIb6FxMLJMQ2YeiOSvRD3afyUgKQeU&v=3.exp&libraries=places&callback=initMap" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAM6qIb6FxMLJMQ2YeiOSvRD3afyUgKQeU&v=3.exp&libraries=geometry,places&callback=initMap" async defer></script>
 
 
   <script>
 
   function initMap() {
     var myLatLng = {lat: 14.561350, lng: 121.019490};
+    var routeBoxer;
 
+    //FIXME: turn hardcoded values into variable from dataabase
+     //[["201401110" , 14.567135903897958, 121.04583978652954 ], ["201401112" , 14.567135903897958, 121.04583978652954 ]];
+ var routeMarkers = [
+    <?php
+    // echo "['201401037', 14.555158171027532, 121.03444576287984]";
+    foreach ($routesarray as $key => $value) {
+      if($key == ($routesCount-1)){
+      echo "['".$value['userID']."', ".$value['lat'].", ".$value['lng']."]";
+      }
+      else{
+        echo "['".$value['userID']."', ".$value['lat'].", ".$value['lng']."],";
+      }
+    }
+    ?>
+  ];
+
+    var submitMarkers = [];
+    var boxpolys = null;
+    var distance;
+
+    var directionsService = new google.maps.DirectionsService();
+    var directionsDisplay = new google.maps.DirectionsRenderer({
+      polylineOptions: {
+                      strokeColor: "#9676bb",
+                      strokeWeight: 0
+                  },
+        suppressMarkers: true
+      });
+
+
+	directionsDisplay.setMap(map);
+    //directionsDisplay.setPanel(document.getElementById('panel'));
+    routeBoxer = new RouteBoxer();
+
+function getRoute(location, index)
+  {
+    clearBoxes();
+    submitMarkers = [];
+    distance = /* parseFloat(document.getElementById("distance").value) */ 0.100 * 1.609344;
+    //iacademyMarker.setVisible(false);
+    //markerMe.setVisible(false);
+    //markerPosition.setVisible(false);
+    var request = {
+      origin: location,
+      destination: iacademyMarker.position,
+      provideRouteAlternatives: false,
+      travelMode: google.maps.DirectionsTravelMode.DRIVING
+    };
+
+    directionsService.route(request, function(response, status) {
+      if (status == google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(response);
+        //generatedRoute = response.routes;
+
+        var path = response.routes[0].overview_path;
+
+        //gets boxes around route
+        var boxes = routeBoxer.box(path, distance);
+
+        //draw boxes on the map
+        drawBoxes(boxes, index);
+
+
+        //console.log(google.maps.geometry.poly.containsLocation(iacademyMarker.position, generatedRoute));
+      }
+    });
+  }
+
+
+function drawBoxes(boxes, index) {
+    boxpolys = new Array(boxes.length);
+    for (var i = 0; i < boxes.length; i++) {
+      boxpolys[i] = new google.maps.Rectangle({
+      bounds: boxes[i],
+      fillOpacity: 0,
+      strokeOpacity: 1.0,
+      strokeColor: '#000000',
+      strokeWeight: 1,
+      visible: true,
+      map: map
+      });
+      if (boxes[i].contains(markerMe.getPosition()))
+      {
+          //gmarkers[j].setMap(map);
+          submitMarkers.push(routeMarkers[index][0]);
+          alert(routeMarkers[index][0]);
+        }
+
+
+      }
+
+  clearBoxes();
+
+  //alert(submitMarkers.toString());
+  }
+
+function clearBoxes() {
+    if (boxpolys != null) {
+      for (var i = 0; i < boxpolys.length; i++) {
+        boxpolys[i].setMap(null);
+      }
+    }
+      boxpolys = null;
+      }
 
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 17,
@@ -142,6 +269,12 @@
      // FIXME: Do DB insert for this
      //alert($('#plat').val());
      //alert($('#plong').val());
+     for(i = 0; i < routeMarkers.length; i++)
+     {
+       getRoute(new google.maps.LatLng(routeMarkers[i][1], routeMarkers[i][2]), i);
+     }
+
+     //FIXME:
 
      $('#plat').val(markerMe.position.lat);
      $('#plong').val(markerMe.position.lng);
