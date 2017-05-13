@@ -62,20 +62,33 @@ $routesCount = count($routesarray,0);
                     {{csrf_field()}}
                     <input type="hidden" id="plong" name="plong" value="">
                     <input type="hidden" id="plat" name="plat" value="">
-                    <div class="col-sm-3">
-                    <!-- <select class="select2" name="prad" id="prad" value="100">
+                    <!-- <div class="col-sm-3">
+                    <select class="select2" name="prad" id="prad" value="100">
                       <?php
-                      for($ctr = 100 ; $ctr <= 300; $ctr+=50){
-                        echo '<option value='.$ctr.'>'.$ctr.' Meters </option>';
-                      }
+                      //for($ctr = 100 ; $ctr <= 300; $ctr+=50){
+                        //echo '<option value='.$ctr.'>'.$ctr.' Meters </option>';
+                      //}
                       ?>
-                    </select> -->
-                    </div>
+                    </select>
+                    </div> -->
+                    <button type="submit" class="btn btn-sm btn-info" id="setPickupSave" disabled="true">Save</button>
                     <button type="submit" class="btn btn-sm btn-success" id="setPickupConfirm" disabled="true">Confirm</button>
+
+
+
                     <a href="{{ url('/home') }}"><button type="button" class="btn btn-sm btn-warning">Cancel</button></a>
                     </form>
+
+
                   </div>
                 </div>
+
+
+                <form id="formMatches" action="{{url('storematch')}}" method="post">
+                  {{csrf_field()}}
+                  <input type="hidden" id="matchDriver" name="driver" value="">
+                  <input type="hidden" id="matchSabayer" name="sabayer" value="">
+                </form>
         </div>
       </div>
     </div>
@@ -115,7 +128,7 @@ $routesCount = count($routesarray,0);
     var directionsDisplay = new google.maps.DirectionsRenderer({
       polylineOptions: {
                       strokeColor: "#9676bb",
-                      strokeWeight: 0
+                      strokeWeight: 1
                   },
         suppressMarkers: true
       });
@@ -125,10 +138,35 @@ $routesCount = count($routesarray,0);
     //directionsDisplay.setPanel(document.getElementById('panel'));
     routeBoxer = new RouteBoxer();
 
+
+    function matchMe(){
+
+      for(var i=0; i < submitMarkers.length; i++ )
+      {
+        alert(submitMarkers[i]);
+        //alert(submitMarkers[i][0] + " " + submitMarkers[i][1] + " " + submitMarkers[i][2] );
+        $('#matchDriver').val(submitMarkers[i]);
+        $('#matchSabayer').val({{Auth::User()->studentID}});
+
+
+        $('#formMatches').on('submit', function(e){
+          e.preventDefault();
+
+          $.ajax({
+                 type: "POST",
+                 url: "{{url('storematch')}}",
+                 data: $("#formMatches").serialize()
+
+             });
+           });
+           $('#formMatches').submit();
+      }
+    }
+
+
 function getRoute(location, index)
   {
     clearBoxes();
-    submitMarkers = [];
     distance = /* parseFloat(document.getElementById("distance").value) */ 0.100 * 1.609344;
     //iacademyMarker.setVisible(false);
     //markerMe.setVisible(false);
@@ -176,12 +214,10 @@ function drawBoxes(boxes, index) {
       {
           //gmarkers[j].setMap(map);
           submitMarkers.push(routeMarkers[index][0]);
-          alert(routeMarkers[index][0]);
         }
 
 
       }
-
   clearBoxes();
 
   //alert(submitMarkers.toString());
@@ -227,6 +263,7 @@ function clearBoxes() {
         //  draggable: true
      // });
      $('#setPickupConfirm').prop('disabled', false);
+     $('#setPickupSave').prop('disabled', true);
       markerLatLng = location;
 
       if ( markerMe) {
@@ -268,16 +305,26 @@ function clearBoxes() {
      //placeCircle();
      // FIXME: Do DB insert for this
      //alert($('#plat').val());
+     submitMarkers = [];
+
      //alert($('#plong').val());
      for(i = 0; i < routeMarkers.length; i++)
      {
        getRoute(new google.maps.LatLng(routeMarkers[i][1], routeMarkers[i][2]), i);
      }
 
-     //FIXME:
+     $('#setPickupSave').prop('disabled', false);
+     $('#setPickupConfirm').prop('disabled', true);
 
-     $('#plat').val(markerMe.position.lat);
-     $('#plong').val(markerMe.position.lng);
+  });
+
+  document.getElementById("setPickupSave").addEventListener("click", function(event) {
+
+    $('#plat').val(markerMe.position.lat);
+    $('#plong').val(markerMe.position.lng);
+
+    matchMe();
+
   });
 
 
