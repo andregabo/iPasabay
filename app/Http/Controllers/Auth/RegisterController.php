@@ -74,6 +74,7 @@ class RegisterController extends Controller
             'lastName' => $data['lastName'],
             'password' => bcrypt($data['password']),
             'profile_image' => '',
+            'isDeleted'=>1,
         ]);
     }
 }

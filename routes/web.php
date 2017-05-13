@@ -41,5 +41,8 @@ Route::post('/storematch','MatchesController@store')->middleware('auth');
 Route::get('/matches',function(){
 	return view('matches');
 })->middleware('auth');
+
+Route::post('submitreport', 'MatchesController@submitreport');
+
 Route::get('unauthorized', function(){
 	return view('unauthorized');});

@@ -90,16 +90,17 @@ foreach ($matches as $key => $value) {
             <h4 class="modal-title">Report User</h4>
           </div>
           <div class="modal-body">
-            <form method="post" action="#" id="reportForm">
+            <form method="post" action="{{url('submitreport')}}" id="reportForm">
+                                {{csrf_field()}}
             <div class="row">
             <input type="hidden" class="form-control" name="userID" id="modalUserID">
             <input type="hidden" class="form-control" name="userName" id="modalUserName">
             <div class="row">
             <div class="col-sm-12">
-            <select class="select2" name="reportCategory" value="--Category--">
-              <option value="Verbal Abuse">Verbal Abuse</option>
-              <option value="Verbal Abuse">Verbal Abuse</option>
-              <option value="Verbal Abuse">Verbal Abuse</option>
+            <select class="" name="reportCategory">
+              <option value="Verbal Abuse" selected>Verbal Abuse</option>
+              <option value="Spiritual Abuse">Spiritual Abuse</option>
+              <option value="Psychological Abuse">Psychological Abuse</option>
             </select>
             </div>
           </div>
@@ -109,7 +110,7 @@ foreach ($matches as $key => $value) {
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-sm btn-success" id="btnSubmitReport">Submit Report</button>
+            <button type="submit" class="btn btn-sm btn-success" id="btnSubmitReport" form="reportForm">Submit Report</button>
           </div>
         </div>
       </div>
@@ -134,14 +135,15 @@ $(function() {
     $('#reportForm').submit();
   });
 
-  $('#reportForm').on('submit', function(e){
-    e.preventDefault();
-    // $.ajax({
-    //        type: "POST",
-    //        url: "{{}}",//FIXME Backend here
-    //        data: $("#reportForm").serialize()
-    //    });
-  });
+  // $('#reportForm').on('submit', function(e){
+
+  //   e.preventDefault();
+  //   $.ajax({
+  //          type: "POST",
+  //          url: "{{url('submitreport')}}",//FIXME Backend here
+  //          data: $("#reportForm").serialize()
+  //      });
+  // });
 });
 </script>
 @endsection

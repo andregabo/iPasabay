@@ -8,6 +8,9 @@ use App\Http\Requests;
 use App\Matches;
 use File;
 use DB;
+use App\Reports;
+use Auth;
+use Session;
 class MatchesController extends Controller
 {
     public function store(Request $request){
@@ -39,6 +42,18 @@ class MatchesController extends Controller
                   File::put('scripts/chatrooms/'.$latestMatch->id.'.txt','');
                 }
           }
+
+    }
+    public function submitreport(Request $request){
+        $newReport =  new Reports;
+        $newReport->submittedByName = Auth::user()->firstName." ".Auth::user()->lastName;
+        $newReport->submittedByID = Auth::user()->studentID;
+        $newReport->content = $request->input('reportContent');
+        $newReport->category = $request->input('reportCategory');
+        $newReport->violatorID = $request->input('userID');
+        $newReport->violatorName=$request->input('userName');
+        $newReport->save();
+        Session::flash('alert-success',"Report successfully submitted. Thank you for helping the community be a better place!");
 
     }
 }

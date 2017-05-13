@@ -1,2 +1,1 @@
-<message><sender>201401130</sender><body>Hey </body><time>Apr, 27 10.19 pm</time></message>
-<message><sender>11138254</sender><body>hh </body><time>Apr, 27 10.20 pm</time></message>
+<message><sender>123456</sender><body>gago di ikaw </body><time>May, 13 10.58 pm</time></message>
