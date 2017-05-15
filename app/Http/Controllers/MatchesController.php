@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Matches;
+use App\User;
 use File;
 use DB;
 use App\Reports;
@@ -55,5 +56,16 @@ class MatchesController extends Controller
         $newReport->save();
         //Session::flash('alert-success',"Report successfully submitted. Thank you for helping the community be a better place!");
 
+    }
+
+    public function thumbRating(Request $request){
+      $user = User::where('studentID',$request->input('userID'))->first();
+      if($request->input('rating') == "UP"){
+        $user->thumbs_up = $user->thumbs_up + 1;
+      }
+      else if($request->input('rating') == "DOWN"){
+        $user->thumbs_down = $user->thumbs_down + 1;
+      }
+      $user->save();
     }
 }

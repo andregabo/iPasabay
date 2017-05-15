@@ -44,5 +44,7 @@ Route::get('/matches',function(){
 
 Route::post('submitreport', 'MatchesController@submitreport');
 
+Route::post('updown', 'MatchesController@thumbRating');
+
 Route::get('unauthorized', function(){
 	return view('unauthorized');});
