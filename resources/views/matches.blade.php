@@ -222,6 +222,7 @@ foreach ($matchess as $key => $value) {
           <div class="row">
           <div class="col-sm-12">
           <select class="" name="reportCategory">
+            <option value="Positive Report" selected>Positive Report</option>
             <option value="Verbal Abuse" selected>Verbal Abuse</option>
             <option value="Tardiness">Tardiness</option>
             <option value="Unclean Vehicle">Unclean Vehicle</option>
