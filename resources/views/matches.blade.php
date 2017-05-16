@@ -21,6 +21,22 @@ while($row = mysqli_fetch_assoc($result)){
         $temp["roomId"] = $row['id'];
         $temp["studentID"] = ($row['user1'] == Auth::User()->studentID ? $row['user2'] : $row['user1']);
         $temp["role"] = ($row['user1'] == Auth::User()->studentID ? "Driver" : "Passenger");
+
+        if($temp["role"] == "Driver"){
+          if($row['isRatedUser2'] == 1){
+            $temp["rated"] = true;
+          }
+          else{
+            $temp["rated"] = false;
+          }
+        }else if($temp["role"] == "Passenger"){
+          if($row['isRatedUser1'] == 1){
+          $temp["rated"] = true;
+        }
+        else{
+          $temp["rated"] = false;
+          }
+        }
         //$temp["icon"] = ($row['user1'] == Auth::User()->studentID ? '<i class="fa fa-car"></i>' : '<i class="fa fa-male"></i>');
         $matches[] = $temp;
     }
@@ -59,6 +75,22 @@ while($row = mysqli_fetch_assoc($result)){
         $temp["roomId"] = $row['id'];
         $temp["studentID"] = ($row['user1'] == Auth::User()->studentID ? $row['user2'] : $row['user1']);
         $temp["role"] = ($row['user1'] == Auth::User()->studentID ? "Driver" : "Passenger");
+
+        if($temp["role"] == "Driver"){
+          if($row['isRatedUser2'] == 1){
+            $temp["rated"] = true;
+          }
+          else{
+            $temp["rated"] = false;
+          }
+        }else if($temp["role"] == "Passenger"){
+          if($row['isRatedUser1'] == 1){
+          $temp["rated"] = true;
+        }
+        else{
+          $temp["rated"] = false;
+          }
+        }
         //$temp["icon"] = ($row['user1'] == Auth::User()->studentID ? '<i class="fa fa-car"></i>' : '<i class="fa fa-male"></i>');
         $matchess[] = $temp;
     }
@@ -113,8 +145,13 @@ foreach ($matchess as $key => $value) {
     <div class="media-content">
       <p>You were matched as {{$value["role"]}}</p>
       <input type="hidden" class="room-container" value="{{$value['roomId']}}">
+    @if($value['rated'] == 0)
     <button type="button" class="btn btn-success btn-up"><i class="fa fa-thumbs-up"></i></button>
     <button type="button" class="btn btn-danger btn-down"><i class="fa fa-thumbs-down"></i></button>
+    @else
+    <button type="button" class="btn btn-success btn-up" disabled><i class="fa fa-thumbs-up"></i></button>
+    <button type="button" class="btn btn-danger btn-down" disabled><i class="fa fa-thumbs-down"></i></button>
+    @endif
     <button type="button" class="btn btn-warning report" data-toggle="modal" data-target="#modalReport">Report User</button>
     <button type="button" class="btn btn-info delete-match"><i class="fa fa-trash"></i></button>
     </div>
@@ -286,6 +323,8 @@ $(function() {
   });
 
   $('.btn-up').on('click', function(){
+    $(this).closest('.media-content').find('.btn-down').prop('disabled',true);
+    $(this).prop('disabled',true);
     var userName = $(this).closest(".media-content").closest(".media-body").find(".title").text();
     var userID = $(this).closest(".media-content").closest(".media-body").find(".timeing").text();
     // alert(userName + userID);
@@ -306,6 +345,8 @@ $(function() {
   });
 
   $('.btn-down').on('click', function(){
+    $(this).closest('.media-content').find('.btn-up').prop('disabled',true);
+    $(this).prop('disabled',true);
     var userName = $(this).closest(".media-content").closest(".media-body").find(".title").text();
     var userID = $(this).closest(".media-content").closest(".media-body").find(".timeing").text();
     //alert(userName + userID);
