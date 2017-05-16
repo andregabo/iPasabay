@@ -56,7 +56,6 @@ class MatchesController extends Controller
                   $existingMatch->save();
                 }
           }
-
     }
     public function submitreport(Request $request){
         $newReport =  new Reports;
