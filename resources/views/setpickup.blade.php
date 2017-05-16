@@ -143,7 +143,7 @@ $routesCount = count($routesarray,0);
 
       for(var i=0; i < submitMarkers.length; i++ )
       {
-        alert(submitMarkers[i]);
+        //alert(submitMarkers[i]);
         //alert(submitMarkers[i][0] + " " + submitMarkers[i][1] + " " + submitMarkers[i][2] );
         $('#matchDriver').val(submitMarkers[i]);
         $('#matchSabayer').val({{Auth::User()->studentID}});
@@ -324,6 +324,7 @@ function clearBoxes() {
     $('#plong').val(markerMe.position.lng);
 
     matchMe();
+    $('#setPickupSave').prop('disabled', true);
 
   });
 
