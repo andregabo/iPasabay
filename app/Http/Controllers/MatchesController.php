@@ -79,4 +79,9 @@ class MatchesController extends Controller
       }
       $user->save();
     }
+
+    public function deleteMatch(Request $request){
+      $goodbye = Matches::where('id',$request->input('id'))->first();
+      $goodbye->delete();
+    }
 }

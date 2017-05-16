@@ -46,5 +46,7 @@ Route::post('submitreport', 'MatchesController@submitreport');
 
 Route::post('updown', 'MatchesController@thumbRating');
 
+Route::delete('removematch', 'MatchesController@deleteMatch');
+
 Route::get('unauthorized', function(){
 	return view('unauthorized');});
