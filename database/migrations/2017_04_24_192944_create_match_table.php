@@ -18,6 +18,7 @@ class CreateMatchTable extends Migration
             $table->string('user1');
             $table->string('user2');
             $table->timestamps();
+            $table->boolean('matched_again')->default(0);
         });
     }
 

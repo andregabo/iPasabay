@@ -17,7 +17,7 @@ class CreateReportsTable extends Migration
             $table->increments('id');
             $table->string('submittedByName');
             $table->string('submittedByID');
-            $table->string('content');
+            $table->string('content',1001);
             $table->string('category');
             $table->string('violatorID');
             $table->string('violatorName');

@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->string('profile_image');
+            $table->integer('thumbs_up',11)->default(0);
+            $table->integer('thumbs_down',11)->default(0);
         });
     }
 
