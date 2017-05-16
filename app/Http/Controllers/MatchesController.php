@@ -42,6 +42,19 @@ class MatchesController extends Controller
                     ])->first();
                   File::put('scripts/chatrooms/'.$latestMatch->id.'.txt','');
                 }
+                else
+                {
+                  $existingMatch = Matches::where([
+                  ['user1',$request->input('driver')],
+                  ['user2',$request->input('sabayer')]
+                  ])->orWhere([
+                    ['user1',$request->input('sabayer')],
+                    ['user2',$request->input('driver')]
+                  ])->first();
+
+                  $existingMatch->matched_again = 1;
+                  $existingMatch->save();
+                }
           }
 
     }
@@ -55,7 +68,6 @@ class MatchesController extends Controller
         $newReport->violatorName=$request->input('userName');
         $newReport->save();
         //Session::flash('alert-success',"Report successfully submitted. Thank you for helping the community be a better place!");
-
     }
 
     public function thumbRating(Request $request){
