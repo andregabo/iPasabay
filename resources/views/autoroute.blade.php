@@ -199,10 +199,13 @@ $routesCount = count($routesarray,0);
      placeMarker(event.latLng);
      markerLatLng = event.latLng;
   });
+
+
+
   function placeMarker(location) {
 
 $('#setRouteConfirm').prop('disabled', false);
-$('#setRouteSave').prop('disabled', false);
+$('#setRouteSave').prop('disabled', true);
 
       markerLatLng = location;
 
@@ -392,6 +395,10 @@ for (var j=0; j< gmarkers.length; j++) {
         //var someBoolean = google.maps.geometry.poly.containsLocation(iacademyMarker.position, routePoly);
         //alert(someBoolean);
 
+        $('#setRouteSave').prop('disabled', false);
+        $('#setRouteConfirm').prop('disabled', true);
+
+
       });
 
       document.getElementById("setRouteSave").addEventListener("click", function(event) {
@@ -402,6 +409,8 @@ for (var j=0; j< gmarkers.length; j++) {
         $('#plong').val(markerMe.position.lng);
 
         matchMe();
+
+        $('#setRouteSave').prop('disabled', true);
 
       });
 
