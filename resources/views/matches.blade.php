@@ -75,9 +75,11 @@ foreach ($matches as $key => $value) {
     </div>
     <div class="media-content">
       <p>You were matched as {{$value["role"]}}</p>
+      <input type="hidden" class="room-container" value="{{$value['roomId']}}">
     <button type="button" class="btn btn-success btn-up"><i class="fa fa-thumbs-up"></i></button>
     <button type="button" class="btn btn-danger btn-down"><i class="fa fa-thumbs-down"></i></button>
     <button type="button" class="btn btn-warning report" data-toggle="modal" data-target="#modalReport">Report User</button>
+    <button type="button" class="btn btn-info delete-match"><i class="fa fa-trash"></i></button>
     </div>
                   </div>
                 </div>
@@ -100,8 +102,8 @@ foreach ($matches as $key => $value) {
             <div class="col-sm-12">
             <select class="" name="reportCategory">
               <option value="Verbal Abuse" selected>Verbal Abuse</option>
-              <option value="Spiritual Abuse">Spiritual Abuse</option>
-              <option value="Psychological Abuse">Psychological Abuse</option>
+              <option value="Tardiness">Tardiness</option>
+              <option value="Unclean Vehicle">Unclean Vehicle</option>
             </select>
             </div>
           </div>
@@ -127,8 +129,29 @@ foreach ($matches as $key => $value) {
   <input type="hidden" id="thumbUserID" name="userID">
   <input type="hidden" id="thumbRating" name="rating">
 </form>
+
+<form id="deleteMatchForm" method="post" action="{{url('removematch')}}">
+   {{csrf_field()}}
+   {{method_field('DELETE')}}
+  <input type="hidden" id="matchID" name="id">
+</form>
 <script>
 $(function() {
+  $('.delete-match').on('click', function(){
+    $('#matchID').val($(this).closest(".media-content").closest(".media-body").find('.room-container').val());
+    $.ajax({
+      type: "POST",
+      url: "{{url('removematch')}}",
+      data: $('#deleteMatchForm').serialize()
+    });
+    $('#message-area').append('<div class="flash-message alert-sucess"><strong><p class="alert alert-success">Match Successfully Removed<a href="#" class="close" data-dismiss="alert" aria-label="close"></a></p></strong></div>');
+    window.setTimeout(function(){
+   $(".flash-message").fadeTo(500,0).slideUp(500,function(){
+       $(this).remove();
+   });
+  },7000);
+  });
+
   $('.report').on('click', function(){
   var userName = $(this).closest(".media-content").closest(".media-body").find(".title").text();
   var userID = $(this).closest(".media-content").closest(".media-body").find(".timeing").text();
