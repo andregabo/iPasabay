@@ -42,11 +42,13 @@ Route::get('/matches',function(){
 	return view('matches');
 })->middleware('auth');
 
-Route::post('submitreport', 'MatchesController@submitreport');
+Route::post('submitreport', 'MatchesController@submitreport')->middleware('auth');
 
-Route::post('updown', 'MatchesController@thumbRating');
+Route::post('updown', 'MatchesController@thumbRating')->middleware('auth');
 
-Route::delete('removematch', 'MatchesController@deleteMatch');
+Route::put('removematch', 'MatchesController@deleteMatch')->middleware('auth');
+
+Route::put('revivematch', 'MatchesController@reviveMatch')->middleware('auth');	
 
 Route::get('unauthorized', function(){
 	return view('unauthorized');});

@@ -21,9 +21,10 @@ class CreateMatchTable extends Migration
             $table->boolean('matched_again')->default(0);
             $table->boolean('isRatedUser1')->default(0);
             $table->boolean('isRatedUser2')->default(0);
+            $table->boolean('isDeleted')->default(0);
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *
