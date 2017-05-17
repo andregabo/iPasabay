@@ -1,1 +1,0 @@
-<message><sender>123456</sender><body>gago di ikaw </body><time>May, 13 10.58 pm</time></message>

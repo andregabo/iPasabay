@@ -227,9 +227,9 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
   <div class="toggle-content">
     <ul class="actions">
       <li><a href="{{ url('/setpickup') }}">Set Pickup</a></li>
-      <li><a href="{{ url('/getroute') }}">Auto Route (In development)</a></li>
-      <li><a href="#">Issues</a></li>
-      <li><a href="#">About</a></li>
+      <li><a href="{{ url('/getroute') }}">Auto Route</a></li>
+      <li><a href="{{ url('/messages')}}">Messaging</a></li>
+      <li><a href="{{ url('/matches')}}">Matches</a></li>
     </ul>
   </div>
 </div>

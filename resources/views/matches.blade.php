@@ -109,7 +109,11 @@ foreach ($matchess as $key => $value) {
       }
 
 }
-
+$trueKaBa = false;
+  if($matches == null && $matchess == null)
+  {
+    $trueKaBa = true;
+  }
 
 // echo '<pre>';
 // echo var_dump($matchess);
@@ -119,6 +123,11 @@ foreach ($matchess as $key => $value) {
 
 <div class="row">
   <div id="message-area"></div>
+  @if($trueKaBa)
+    <h1 class="well"><center>No Matches Available</center></h1>
+  @endif
+
+
   @foreach($matches as $value)
     <div class="col-lg-4">
       <div class="card card-mini">

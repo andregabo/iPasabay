@@ -71,8 +71,9 @@ $routesCount = count($routesarray,0);
                       ?>
                     </select>
                     </div> -->
-                    <button type="submit" class="btn btn-sm btn-info" id="setPickupSave" disabled="true">Save</button>
-                    <button type="submit" class="btn btn-sm btn-success" id="setPickupConfirm" disabled="true">Confirm</button>
+
+                    <button type="button" class="btn btn-sm btn-info" id="setPickupSave" disabled="true">Save</button>
+                    <button type="button" class="btn btn-sm btn-success" id="setPickupConfirm" disabled="true">Confirm</button>
 
 
 
@@ -85,6 +86,7 @@ $routesCount = count($routesarray,0);
 
 
                 <form id="formMatches" action="{{url('storematch')}}" method="post">
+
                   {{csrf_field()}}
                   <input type="hidden" id="matchDriver" name="driver" value="">
                   <input type="hidden" id="matchSabayer" name="sabayer" value="">
@@ -149,19 +151,31 @@ $routesCount = count($routesarray,0);
         $('#matchSabayer').val({{Auth::User()->studentID}});
 
 
-        $('#formMatches').on('submit', function(e){
-          e.preventDefault();
 
-          $.ajax({
-                 type: "POST",
-                 url: "{{url('storematch')}}",
-                 data: $("#formMatches").serialize()
+        $('#formMatches').submit();
 
-             });
-           });
-           $('#formMatches').submit();
       }
+
+      $('#message-area').append('<div class="flash-message"><strong><p class="alert alert-info">Pickup Point has been successfully saved!<a href="#" class="close" data-dismiss="alert" aria-label="close"></a></p></strong></div>');
+      window.setTimeout(function(){
+     $(".flash-message").fadeTo(500,0).slideUp(500,function(){
+         $(this).remove();
+     });
+    },7000);
+
+
     }
+
+    $('#formMatches').on('submit', function(e){
+      e.preventDefault();
+
+      $.ajax({
+             type: "POST",
+             url: "{{url('storematch')}}",
+             data: $("#formMatches").serialize()
+
+         });
+       });
 
 
 function getRoute(location, index)
@@ -280,31 +294,35 @@ function clearBoxes() {
     //markerMe.bindTo("position", circleMe, "center");
   }
 
-  function placeCircle() {
-
-      if(circleMe)
-      {
-      circleMe.setRadius(radius);
-      circleMe.setCenter(markerMe.getPosition());
-      }
-      else
-      {
-     circleMe = new google.maps.Circle({
-              strokeColor: '#FF0000',
-              strokeOpacity: 0.8,
-              strokeWeight: 2,
-              fillColor: '#FF0000',
-              fillOpacity: 0.35,
-              map: map,
-              center: markerMe.getPosition(),
-              radius: radius
-              });
-       }
-  }
+  // function placeCircle() {
+  //
+  //     if(circleMe)
+  //     {
+  //     circleMe.setRadius(radius);
+  //     circleMe.setCenter(markerMe.getPosition());
+  //     }
+  //     else
+  //     {
+  //    circleMe = new google.maps.Circle({
+  //             strokeColor: '#FF0000',
+  //             strokeOpacity: 0.8,
+  //             strokeWeight: 2,
+  //             fillColor: '#FF0000',
+  //             fillOpacity: 0.35,
+  //             map: map,
+  //             center: markerMe.getPosition(),
+  //             radius: radius
+  //             });
+  //      }
+  // }
   document.getElementById("setPickupConfirm").addEventListener("click", function(event) {
      //placeCircle();
      // FIXME: Do DB insert for this
      //alert($('#plat').val());
+
+         $('#plat').val(markerMe.position.lat);
+         $('#plong').val(markerMe.position.lng);
+
      submitMarkers = [];
 
      //alert($('#plong').val());
@@ -315,16 +333,16 @@ function clearBoxes() {
 
      $('#setPickupSave').prop('disabled', false);
      $('#setPickupConfirm').prop('disabled', true);
+     $('#formPickup').submit();
 
   });
 
   document.getElementById("setPickupSave").addEventListener("click", function(event) {
 
-    $('#plat').val(markerMe.position.lat);
-    $('#plong').val(markerMe.position.lng);
 
     matchMe();
     $('#setPickupSave').prop('disabled', true);
+    //$('#formMatches').submit();
 
   });
 
@@ -393,12 +411,7 @@ $('#setPickupConfirm').prop('disabled', false);
 
        });
 
-       $('#message-area').append('<div class="flash-message"><strong><p class="alert alert-info">Pickup Point has been successfully saved!<a href="#" class="close" data-dismiss="alert" aria-label="close"></a></p></strong></div>');
-       window.setTimeout(function(){
-      $(".flash-message").fadeTo(500,0).slideUp(500,function(){
-          $(this).remove();
-      });
-     },7000);
+
   });
 
 }//initMap

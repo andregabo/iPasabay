@@ -1,5 +1,3 @@
-<message><sender>201401130</sender><body>Hey </body><time>Apr, 29 9.25 am</time></message>
-<message><sender>201401130</sender><body>ASL </body><time>Apr, 29 9.25 am</time></message>
-<message><sender>201401130</sender><body>sdfghjk </body><time>Apr, 29 9.25 am</time></message>
-<message><sender>201401130</sender><body>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut</body><time>May, 15 6.22 pm</time></message>
-<message><sender>201401130</sender><body>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut</body><time>May, 15 6.23 pm</time></message>
+<message><sender>201401037</sender><body>hi baby i love youi </body><time>May, 17 6.40 pm</time></message>
+<message><sender>201401069</sender><body>friends lang tayo </body><time>May, 17 6.41 pm</time></message>
+<message><sender>201401037</sender><body>puta </body><time>May, 17 6.41 pm</time></message>
