@@ -233,6 +233,19 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
     </ul>
   </div>
 </div>
+<div class="row">
+  <div class="col-xs-12">
+  <div class="flash-message">
+                @foreach(['danger','warning','success','info'] as $message)
+                 @if (Session::has('alert-'. $message))
+                  <strong><p class="alert alert-{{$message}}">{{Session::get('alert-'.$message)}} <a href="#" class="close" data-dismiss="alert" aria-label="close"></a></p></strong>
+                  @endif
+                @endforeach
+   </div>
+
+    
+  </div>
+</div>
     @yield('content')
     </div>
     </div>

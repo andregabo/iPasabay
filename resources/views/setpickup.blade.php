@@ -72,8 +72,8 @@ $routesCount = count($routesarray,0);
                     </select>
                     </div> -->
 
-                    <button type="button" class="btn btn-sm btn-info" id="setPickupSave" disabled="true">Save</button>
-                    <button type="button" class="btn btn-sm btn-success" id="setPickupConfirm" disabled="true">Confirm</button>
+                    <button type="button" class="btn btn-sm btn-info" style="display: none;" id="setPickupSave" disabled="true">Save</button>
+                    <button type="button" class="btn btn-sm btn-info" id="setPickupConfirm" disabled="true">Save</button>
 
 
 
@@ -334,6 +334,7 @@ function clearBoxes() {
      $('#setPickupSave').prop('disabled', false);
      $('#setPickupConfirm').prop('disabled', true);
      $('#formPickup').submit();
+     $('#setPickupSave').click();
 
   });
 
