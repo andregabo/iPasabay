@@ -52,17 +52,19 @@
 <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="step1-pickup">
       <div class = "row">
-        <div class="col-lg-3">
-        <div style="float: right"><img src="{{asset('/uploads/instructions/1.png')}}"></div>
-        </div>
+        <div class="col-lg-1"></div>
         <div class="col-lg-3">
         <b>Step 1</b> : Click the quick access car to open the menu.
         </div>
-        <div class="col-lg-3"></div>
+        <div class="col-lg-3">
+        <div style="float: left"><img src="{{asset('/uploads/instructions/1.png')}}"></div>
+        </div>
+
+
       </div>
       <hr>
       <div class = "row">
-        <div class="col-lg-3"></div>
+        <div class="col-lg-1"></div>
         <div class="col-lg-3">
         <b>Step 2</b> : Click "SET PICKUP".
         </div>
@@ -81,12 +83,14 @@
     </div>
     <div role="tabpanel" class="tab-pane" id="step2-pickup">
       <div class = "row">
-        <div class="col-lg-5">
-        <div style="float: right;"><img src="{{asset('/uploads/instructions/3a.png')}}"></div>
-        </div>
+        <div class="col-lg-1"></div>
         <div class="col-lg-3">
         <b>Step 3</b> : Search for your general location (Subject to availability).
         </div>
+        <div class="col-lg-5">
+        <div style="float: left;"><img src="{{asset('/uploads/instructions/3a.png')}}"></div>
+        </div>
+
         <!-- <div class="col-lg-3"></div> -->
       </div>
       <hr>
@@ -101,12 +105,14 @@
       </div>
       <hr>
       <div class = "row">
-        <div class="col-lg-3">
-        <div style="float: right;"><img src="{{asset('/uploads/instructions/3d.png')}}"></div>
-        </div>
+        <div class="col-lg-1"></div>
         <div class="col-lg-3">
         <b>Step 5</b> : Click "Save" to store your pick up and you're done.
         </div>
+        <div class="col-lg-3">
+        <div style="float: left;"><img src="{{asset('/uploads/instructions/3d.png')}}"></div>
+        </div>
+
         <!-- <div class="col-lg-3"></div> -->
       </div>
       <hr>
@@ -120,13 +126,24 @@
     </div>
     <div role="tabpanel" class="tab-pane" id="step3-pickup">
       <div class = "row">
-        <div class="col-lg-6">
-        <div style="float: right"><img src="{{asset('/uploads/instructions/4.jpg')}}"></div>
-        </div>
+        <div class="col-lg-1"></div>
         <div class="col-lg-3">
         <b>Step 6</b> : Check here to see your matches.
         </div>
-        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+        <div style="float: left"><img src="{{asset('/uploads/instructions/4.jpg')}}"></div>
+        </div>
+
+      </div>
+      <hr>
+      <div class = "row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-3">
+        <b>Step 7</b> : Here you can see your matched users.
+        </div>
+        <div class="col-lg-6">
+        <div style="float: left"><img src="{{asset('/uploads/instructions/5.png')}}"></div>
+        </div>
       </div>
       <hr>
       <div class="row">
@@ -138,6 +155,25 @@
       </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="step4-pickup">
+      <div class = "row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-3">
+        <b>Step 8</b> : Click "MESSAGING".
+        </div>
+        <div class="col-lg-6">
+        <div style="float: left"><img src="{{asset('/uploads/instructions/6.png')}}"></div>
+        </div>
+      </div>
+      <hr>
+      <div class = "row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-3">
+        <b>Step 9</b> : Choose a user to message. <br>(You may only message users you have been matched with)
+        </div>
+        <div class="col-lg-6">
+        <div style="float: right"><img src="{{asset('/uploads/instructions/7.png')}}"></div>
+        </div>
+      </div>
       <hr>
       <div class="row">
       <div class="col-lg-3"></div>
