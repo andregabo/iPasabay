@@ -7,10 +7,10 @@
 
 <div class="card-body">
   <div class="section">
-        <div class="section-title">Setting your pick up</div>
+        <div class="section-title" id="top-instructions-pickup">Setting your pick up</div>
         <div class="section-body">
           <div class="step">
-<ul class="nav nav-tabs nav-justified" role="tablist" id="top-instructions-pickup">
+<ul class="nav nav-tabs nav-justified" role="tablist">
     <li role="step" class="active" id="step1-li-pickup">
         <a href="#step1-pickup" id="step1-tab-pickup" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">
             <div class="icon fa fa-car"></div>
