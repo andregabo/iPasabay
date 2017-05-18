@@ -232,7 +232,7 @@ $trueKaBa = false;
           <div class="col-sm-12">
           <select class="" name="reportCategory">
             <option value="Positive Report" selected>Positive Report</option>
-            <option value="Verbal Abuse" selected>Verbal Abuse</option>
+            <option value="Verbal Abuse">Verbal Abuse</option>
             <option value="Tardiness">Tardiness</option>
             <option value="Unclean Vehicle">Unclean Vehicle</option>
           </select>
