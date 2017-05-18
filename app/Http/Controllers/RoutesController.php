@@ -28,7 +28,7 @@ class RoutesController extends Controller
 		//$testdb->userID = Auth::user()->studentID;
 		$testdb->pickup= ['lng'=>$request->input('plong'), 'lat'=>$request->input('plat'),'radius'=>$request->input('prad')];
 		$testdb->save();
-		Session::flash('alert-info',"Pickup Point has been successfully saved!");
+		//Session::flash('alert-info',"Pickup Point has been successfully saved!");
 
 		// return redirect('home');
     }
@@ -38,7 +38,7 @@ class RoutesController extends Controller
     	$testdb = Routes::where('userID', Auth::user()->studentID)->first();
     	$testdb->path=['lng'=>$request->input('plong'), 'lat'=>$request->input('plat')];
     	$testdb->save();
-    	Session::flash('alert-info',"Path has been successfully saved!");
+    	//Session::flash('alert-info',"Path has been successfully saved!");
 
     	// return redirect('home');
     }
