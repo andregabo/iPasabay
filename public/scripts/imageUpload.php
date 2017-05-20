@@ -15,7 +15,7 @@ $filename = $_FILES['image']['name'];
 	 $filename = "" . $uniqueID. $filename;
     }
     else{
-        $filename = "";//default profilepic
+        $filename = "default.png";//default profilepic
     }
 
   $sql = "UPDATE `harambetadays`.`users` SET profile_image='".$filename."' WHERE studentID='".$_POST['studentID']."'";

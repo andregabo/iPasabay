@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\TestModel;
 use App\User;
+use App\Routes;
 use File;
 use App\Matches;
 use DB;
+use Auth;
 class HomeController extends Controller
 {
     /**
@@ -40,6 +42,33 @@ class HomeController extends Controller
       $user->lastName = $request->input('lastName');
       $user->save();
 
-      return redirect('profile'); 
+      return redirect('profile');
+    }
+
+    public function details(){
+      $id = Auth::User()->studentID;
+      $path = NULL;
+      $routes = NULL;
+    	$usersSql = User::where('studentID',$id)->first();//all info of user in sql
+      	$routes =Routes::where('pickup','exists',true)->where('userID',$id)->project(['_id'=>0])->first(['userID','pickup']);
+        if($routes != NULL){
+        $plong = $routes->pickup["lng"];
+      	$plat = $routes->pickup["lat"];
+      }else{
+        $plong = 'none';
+        $plat = 'none';
+      }
+        $path = Routes::where('path','exists',true)->where('userID',$id)->project(['_id'=>0])->first(['userID','path']);
+        if($path != NULL){
+        $rlong = $path->path["lng"];
+        $rlat = $path->path["lat"];
+        }
+        else{
+          $rlong = 'none';
+          $rlat = 'none';
+        }
+      //reports
+    	return view('profile')->with('user',$usersSql)->with('plong',$plong)->with('plat',$plat)->with('rlong',$rlong)->with('rlat',$rlat);
+
     }
 }

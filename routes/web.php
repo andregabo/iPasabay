@@ -28,7 +28,7 @@ Route::get('/home', 'HomeController@index')->middleware('auth');
 	Route::get('/getroute', 'RoutesController@setRouteIndex')->middleware('auth');
 //end middleward group
 
-Route::get('/profile', 'HomeController@ProfileIndex')->middleware('auth');
+Route::get('/profile', 'HomeController@details')->middleware('auth');
 
 Route::patch('/editprofile','HomeController@editProfile')->name('editprofile')->middleware('auth');
 
@@ -48,7 +48,7 @@ Route::post('updown', 'MatchesController@thumbRating')->middleware('auth');
 
 Route::put('removematch', 'MatchesController@deleteMatch')->middleware('auth');
 
-Route::put('revivematch', 'MatchesController@reviveMatch')->middleware('auth');	
+Route::put('revivematch', 'MatchesController@reviveMatch')->middleware('auth');
 
 Route::get('unauthorized', function(){
 	return view('unauthorized');});
