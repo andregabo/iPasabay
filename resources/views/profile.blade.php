@@ -101,7 +101,7 @@
 						<div class="col-md-6">
 							<ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#pickup" aria-controls="home" role="tab" data-toggle="tab">Pick Up Points</a></li>
-        <li role="presentation"><a href="#route" aria-controls="profile" role="tab" data-toggle="tab">Route</a></li>
+        <li role="presentation"><a id="routeTabClick" href="#route" aria-controls="profile" role="tab" data-toggle="tab">Route</a></li>
     				</ul>
 
 						<div class="tab-content">
@@ -258,7 +258,29 @@ $('#routeMap').append('<p>No Route Available</p>')
 		});
 			}
 
+      document.getElementById("routeTabClick").addEventListener("click", function(event) {
+      					getRoute();
 
+      					google.maps.event.trigger(routeMap, 'resize');
+      					routeMap.setCenter(myMarker.getPosition());
+
+      					//google.maps.event.trigger(routeMap, 'resize');
+      			});
+
+      			google.maps.event.addListener(routeMap, 'idle', function() {
+          google.maps.event.trigger(routeMap, 'resize');
+      		routeMap.fitBounds(directionsDisplay.getDirections().routes[0].bounds);
+
+
+      });
+
+      google.maps.event.addListener(map, 'idle', function() {
+    google.maps.event.trigger(map, 'resize');
+    map.panTo(pickup);
+    map.setZoom(17);
+
+
+});
 
 }//initmap
 
