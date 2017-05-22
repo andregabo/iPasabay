@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Routes;
 use Auth;
 use Session;
+use Matches;
 class RoutesController extends Controller
 {
     public function setRouteIndex(){
@@ -23,6 +24,7 @@ class RoutesController extends Controller
     	return view('setpickup')->with('routes',$routes);
     }
     public function storePickUp(Request $request){
+      //Matches::where('user2', Auth::user()->studentID)->delete();
     	//$name= Auth::user()->studentID;
     	$testdb = Routes::where('userID', Auth::user()->studentID)->first();
 		//$testdb->userID = Auth::user()->studentID;
@@ -34,6 +36,7 @@ class RoutesController extends Controller
     }
 
     public function storePath(Request $request){
+      //Matches::where('user1', Auth::user()->studentID)->delete();
     	//$name= Auth::user()->studentID;
     	$testdb = Routes::where('userID', Auth::user()->studentID)->first();
     	$testdb->path=['lng'=>$request->input('plong'), 'lat'=>$request->input('plat')];

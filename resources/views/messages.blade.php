@@ -8,7 +8,7 @@ $dbcon = mysqli_connect("localhost", "root", "") or die("SERVER IS NOT AVAILABLE
 mysqli_select_db($dbcon,"harambetadays") or die ("no data".mysql_error());
 
 $selector = "SELECT * FROM `harambetadays`.`matches` WHERE ";
-$where = "user1 = '".Auth::User()->studentID."' OR user2='".Auth::User()->studentID."'";
+$where = "(user1 = '".Auth::User()->studentID."' OR user2='".Auth::User()->studentID."') AND isDeleted = 0";
 $sql = $selector.$where;
 //echo $sql;
 $result = mysqli_query($dbcon,$sql);

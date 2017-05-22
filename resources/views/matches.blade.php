@@ -21,6 +21,7 @@ while($row = mysqli_fetch_assoc($result)){
         $temp["roomId"] = $row['id'];
         $temp["studentID"] = ($row['user1'] == Auth::User()->studentID ? $row['user2'] : $row['user1']);
         $temp["role"] = ($row['user1'] == Auth::User()->studentID ? "Driver" : "Passenger");
+        $temp["isBoth"] = ($row['matched_again'] == 1 ? true : false);
 
         if($temp["role"] == "Driver"){
           if($row['isRatedUser2'] == 1){
@@ -42,7 +43,7 @@ while($row = mysqli_fetch_assoc($result)){
     }
 
 foreach ($matches as $key => $value) {
-  $selector = "SELECT firstName, lastName, profile_image FROM `harambetadays`.`users` WHERE ";
+  $selector = "SELECT firstName, lastName, profile_image, thumbs_up, thumbs_down FROM `harambetadays`.`users` WHERE ";
   $where = "studentID='".$value["studentID"]."'";
   $sql = $selector.$where;
   //echo $sql."<br>";
@@ -52,6 +53,8 @@ foreach ($matches as $key => $value) {
           $matches[$key]["firstName"] = $row["firstName"];
           $matches[$key]["lastName"] = $row["lastName"];
           $matches[$key]["profile_image"] = $row["profile_image"];
+          $matches[$key]['thumbsUp'] = $row['thumbs_up'];
+          $matches[$key]['thumbsDown'] = $row['thumbs_down'];
       }
 
 }
@@ -75,6 +78,7 @@ while($row = mysqli_fetch_assoc($result)){
         $temp["roomId"] = $row['id'];
         $temp["studentID"] = ($row['user1'] == Auth::User()->studentID ? $row['user2'] : $row['user1']);
         $temp["role"] = ($row['user1'] == Auth::User()->studentID ? "Driver" : "Passenger");
+        $temp["isBoth"] = ($row['matched_again'] == 1 ? true : false);
 
         if($temp["role"] == "Driver"){
           if($row['isRatedUser2'] == 1){
@@ -96,7 +100,7 @@ while($row = mysqli_fetch_assoc($result)){
     }
 
 foreach ($matchess as $key => $value) {
-  $selector = "SELECT firstName, lastName, profile_image FROM `harambetadays`.`users` WHERE ";
+  $selector = "SELECT firstName, lastName, profile_image, thumbs_up, thumbs_down FROM `harambetadays`.`users` WHERE ";
   $where = "studentID='".$value["studentID"]."'";
   $sql = $selector.$where;
   //echo $sql."<br>";
@@ -106,6 +110,8 @@ foreach ($matchess as $key => $value) {
           $matchess[$key]["firstName"] = $row["firstName"];
           $matchess[$key]["lastName"] = $row["lastName"];
           $matchess[$key]["profile_image"] = $row["profile_image"];
+          $matchess[$key]['thumbsUp'] = $row['thumbs_up'];
+          $matchess[$key]['thumbsDown'] = $row['thumbs_down'];
       }
 
 }
@@ -131,12 +137,17 @@ $trueKaBa = false;
   @foreach($matches as $value)
     <div class="col-lg-4">
       <div class="card card-mini">
+        @if($value['isBoth'])
+        <div class="card-header" style="background-color: #9676bb; color: #fff;">
+        <h5><i class="fa fa-car fa-lg"></i> <i class="fa fa-male"></i>  Driver &amp Passenger</h5>
+        @else
         @if($value["role"] == "Passenger")
         <div class="card-header" style="background-color: #39c3da; color: #fff;">
-        <h5><i class="fa fa-car"></i> Driver</h5>
+        <h5><i class="fa fa-car fa-lg"></i> Driver</h5>
         @else
         <div class="card-header" style="background-color: #095077; color: #fff;">
         <h5><i class="fa fa-male"></i> Passenger</h5>
+        @endif
         @endif
                   </div>
                   <div class="card-body">
@@ -153,6 +164,14 @@ $trueKaBa = false;
     </div>
     <div class="media-content">
       <p>You were matched as {{$value["role"]}}</p>
+      @if(($value['thumbsUp'] + $value['thumbsDown']) > 0)
+      <div class="progress">
+							<div class="progress-bar progress-bar-success" role="progressbar" style="width: {{($value['thumbsUp']/($value['thumbsUp']+$value['thumbsDown']))*100}}%"><i class="fa fa-thumbs-up"></i> ({{$value['thumbsUp']}})</div>
+							<div class="progress-bar progress-bar-danger" role="progressbar" style="width: {{($value['thumbsDown']/($value['thumbsUp']+$value['thumbsDown']))*100}}%"><i class="fa fa-thumbs-down"></i> ({{$value['thumbsDown']}})</div>
+							</div>
+              @else
+        			<p>No Data Available.</p>
+        			@endif
       <input type="hidden" class="room-container" value="{{$value['roomId']}}">
     @if($value['rated'] == 0)
     <button type="button" class="btn btn-success btn-up"><i class="fa fa-thumbs-up"></i></button>
@@ -198,6 +217,14 @@ $trueKaBa = false;
   </div>
   <div class="media-content">
     <p>You were matched as {{$value["role"]}}</p>
+    @if(($value['thumbsUp'] + $value['thumbsDown']) > 0)
+    <div class="progress">
+            <div class="progress-bar progress-bar-success" role="progressbar" style="width: {{($value['thumbsUp']/($value['thumbsUp']+$value['thumbsDown']))*100}}%"><i class="fa fa-thumbs-up"></i> ({{$value['thumbsUp']}})</div>
+            <div class="progress-bar progress-bar-danger" role="progressbar" style="width: {{($value['thumbsDown']/($value['thumbsUp']+$value['thumbsDown']))*100}}%"><i class="fa fa-thumbs-down"></i> ({{$value['thumbsDown']}})</div>
+            </div>
+            @else
+            <p>No Data Available.</p>
+            @endif
     <input type="hidden" class="room-container" value="{{$value['roomId']}}">
   <button type="button" class="btn btn-warning revive-match"><i class="fa fa-heart"></i></button>
   </div>
