@@ -412,6 +412,13 @@ for (var j=0; j< gmarkers.length; j++) {
 
         $('#setRouteSave').prop('disabled', true);
 
+        $('#message-area').append('<div class="flash-message"><strong><p class="alert alert-info">Path has been successfully saved!<a href="#" class="close" data-dismiss="alert" aria-label="close"></a></p></strong></div>');
+        window.setTimeout(function(){
+       $(".flash-message").fadeTo(500,0).slideUp(500,function(){
+           $(this).remove();
+       });
+      },7000);
+
       });
 
       $('#formRoute').on('submit', function(e){
@@ -424,12 +431,7 @@ for (var j=0; j< gmarkers.length; j++) {
 
            });
 
-           $('#message-area').append('<div class="flash-message"><strong><p class="alert alert-info">Path has been successfully saved!<a href="#" class="close" data-dismiss="alert" aria-label="close"></a></p></strong></div>');
-           window.setTimeout(function(){
-          $(".flash-message").fadeTo(500,0).slideUp(500,function(){
-              $(this).remove();
-          });
-         },7000);
+
       });
 
 }//initMap

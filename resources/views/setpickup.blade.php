@@ -277,7 +277,7 @@ function clearBoxes() {
         //  draggable: true
      // });
      $('#setPickupConfirm').prop('disabled', false);
-     $('#setPickupSave').prop('disabled', true);
+     $('#setPickupSave').prop('disabled', false);
       markerLatLng = location;
 
       if ( markerMe) {

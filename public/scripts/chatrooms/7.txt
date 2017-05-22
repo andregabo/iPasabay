@@ -1,7 +1,0 @@
-<message><sender>201401037</sender><body>wat </body><time>Apr, 27 11.29 pm</time></message>
-<message><sender>201401038</sender><body>wassap </body><time>Apr, 27 11.29 pm</time></message>
-<message><sender>201401038</sender><body>heyy ooo </body><time>Apr, 27 11.32 pm</time></message>
-<message><sender>201401038</sender><body>wassaaaap </body><time>Apr, 27 11.33 pm</time></message>
-<message><sender>201401037</sender><body>potek </body><time>Apr, 27 11.33 pm</time></message>
-<message><sender>201401037</sender><body>ingay </body><time>Apr, 27 11.34 pm</time></message>
-<message><sender>201401037</sender><body>ano ba </body><time>Apr, 27 11.34 pm</time></message>

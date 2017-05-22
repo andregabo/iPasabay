@@ -1,5 +1,0 @@
-<message><sender>201401038</sender><body>cres cres cres </body><time>May, 08 5.25 pm</time></message>
-<message><sender>201401038</sender><body>dasdadsasd </body><time>May, 08 5.25 pm</time></message>
-<message><sender>201401110</sender><body>ey ey ey </body><time>May, 08 5.25 pm</time></message>
-<message><sender>201401038</sender><body>asdasdkjasld;jalksjd </body><time>May, 08 5.25 pm</time></message>
-<message><sender>201401038</sender><body>da;lksdjlkasjdlkajslkdjasd </body><time>May, 08 5.27 pm</time></message>
