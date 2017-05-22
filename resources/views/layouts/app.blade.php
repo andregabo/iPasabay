@@ -148,16 +148,16 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
                   My Matches
                 </a>
               </li>
-              <li>
+              <!-- <li>
                 <a href="#">
                   Setting
                 </a>
-              </li>
+              </li> -->
 
             </ul>
           </div>
         </li>
-        <li class="dropdown notification danger">
+        <!-- <li class="dropdown notification danger">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <div class="icon"><i class="fa fa-bell" aria-hidden="true"></i></div>
             <div class="title">Notifications</div>
@@ -193,7 +193,7 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
               </li>
             </ul>
           </div>
-        </li>
+        </li> -->
 
         <li class="dropdown notification warning">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" href="{{ url('/logout') }}" onclick="event.preventDefault();
@@ -243,7 +243,7 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
                 @endforeach
    </div>
 
-    
+
   </div>
 </div>
     @yield('content')
