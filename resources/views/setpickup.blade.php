@@ -23,13 +23,12 @@
 
   }
 
+
 // echo '<pre>';
 // echo var_dump($routesarray);
 // echo '</pre>';
 $routesCount = count($routesarray,0);
 ?>
-
-
 <div class="row">
     <div class="col-md-12">
       <div id="message-area"></div>
@@ -103,6 +102,12 @@ $routesCount = count($routesarray,0);
   <script>
 
   function initMap() {
+
+    var defLatLng = null;
+    @if($myPickup != "[]")
+    defLatLng = new google.maps.LatLng({{$myPickup[0]->pickup['lat']}}, {{$myPickup[0]->pickup['lng']}});
+    @endif
+
     var myLatLng = {lat: 14.561350, lng: 121.019490};
     var routeBoxer;
 
@@ -248,13 +253,16 @@ function clearBoxes() {
     }
       boxpolys = null;
       }
-
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 17,
       center: myLatLng,
       clickableIcons: false,
       mapTypeControl: false
     });
+    if(defLatLng != null){
+      map.setCenter(defLatLng);
+      placeMarker(defLatLng);
+    }
     map.setOptions({streetViewControl: false});
    var markerLatLng;
     var iacademyMarker = new google.maps.Marker({
