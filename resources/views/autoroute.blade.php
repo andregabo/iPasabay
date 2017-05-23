@@ -73,8 +73,8 @@ $routesCount = count($routesarray,0);
                       {{csrf_field()}}
                       <input type="hidden" id="plong" name="plong" value="">
                       <input type="hidden" id="plat" name="plat" value="">
-                    <button type="button" class="btn btn-sm btn-success" id="setRouteConfirm" disabled="true">Route</button>
-                    <button type="button" class="btn btn-sm btn-info" id="setRouteSave" disabled="true">Save</button>
+                      <button type="button" class="btn btn-sm btn-success" id="setRouteSave" disabled="true">Match Me</button>
+                    <button type="button" class="btn btn-sm btn-info" id="setRouteConfirm" disabled="true">Save My Route</button>
                     <a href="{{ url('/home') }}"><button type="button" class="btn btn-sm btn-warning">Cancel</button></a>
                   </form>
                   </div>

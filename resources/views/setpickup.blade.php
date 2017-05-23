@@ -72,8 +72,8 @@ $routesCount = count($routesarray,0);
                     </select>
                     </div> -->
 
-                    <button type="button" class="btn btn-sm btn-info" style="display: none;" id="setPickupSave" disabled="true">Save</button>
-                    <button type="button" class="btn btn-sm btn-info" id="setPickupConfirm" disabled="true">Save</button>
+                    <button type="button" class="btn btn-sm btn-success" id="setPickupSave" disabled="true">Match Me!</button>
+                    <button type="button" class="btn btn-sm btn-info" id="setPickupConfirm" disabled="true">Save My Pickup</button>
 
 
 
@@ -142,7 +142,7 @@ $routesCount = count($routesarray,0);
 
 
     function matchMe(){
-
+    alert(submitMarkers.length);
       for(var i=0; i < submitMarkers.length; i++ )
       {
         //alert(submitMarkers[i]);
@@ -227,7 +227,10 @@ function drawBoxes(boxes, index) {
       if (boxes[i].contains(markerMe.getPosition()))
       {
           //gmarkers[j].setMap(map);
+
+
           submitMarkers.push(routeMarkers[index][0]);
+
         }
 
 
@@ -329,18 +332,24 @@ function clearBoxes() {
      for(i = 0; i < routeMarkers.length; i++)
      {
        getRoute(new google.maps.LatLng(routeMarkers[i][1], routeMarkers[i][2]), i);
+
      }
 
      $('#setPickupSave').prop('disabled', false);
      $('#setPickupConfirm').prop('disabled', true);
      $('#formPickup').submit();
-     $('#setPickupSave').click();
+/////
+    //   alert(submitMarkers.length);
+    //   matchMe();
+     //
+    //  $('#setPickupSave').click();
+
 
   });
 
   document.getElementById("setPickupSave").addEventListener("click", function(event) {
 
-
+    //alert("NACLICK");
     matchMe();
     $('#setPickupSave').prop('disabled', true);
     //$('#formMatches').submit();
