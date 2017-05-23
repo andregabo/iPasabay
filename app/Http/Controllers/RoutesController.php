@@ -13,10 +13,10 @@ class RoutesController extends Controller
 {
     public function setRouteIndex(){
       $routes =Routes::where('pickup','exists',true)->project(['_id'=>0])->get(['userID','pickup']);
+      $myPath = Routes::where('path','exists',true)->where('userID',Auth::User()->studentID)->project(['_id'=>0])->get(['userID','path']);
 
 
-
-		return view('autoroute')->with('routes',$routes);
+		return view('autoroute')->with('routes',$routes)->with('myPath', $myPath);
     }
     public function setPickupIndex(){
       $routes = Routes::where('path','exists',true)->project(['_id'=>0])->get(['userID','path']);

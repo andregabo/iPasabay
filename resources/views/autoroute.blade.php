@@ -103,6 +103,11 @@ $routesCount = count($routesarray,0);
     var markerMe;
     // Try HTML5 geolocation.
 
+    var defLatLng = null;
+    @if($myPath != "[]")
+    defLatLng = new google.maps.LatLng({{$myPath[0]->path['lat']}}, {{$myPath[0]->path['lng']}});
+    @endif
+
     //infoWindow = new google.maps.InfoWindow;
     var myPosition;
     var markerPosition;
@@ -415,8 +420,14 @@ for (var j=0; j< gmarkers.length; j++) {
         matchMe();
 
         $('#setRouteSave').prop('disabled', true);
-
-        $('#message-area').append('<div class="flash-message"><strong><p class="alert alert-info">Path has been successfully saved!<a href="#" class="close" data-dismiss="alert" aria-label="close"></a></p></strong></div>');
+        var word = "";
+        if(submitMarkers.length == 1){
+          word = "passenger";
+        }
+        else{
+          word = "passengers";
+        }
+        $('#message-area').append('<div class="flash-message"><strong><p class="alert alert-info">Success! Matched with '+ submitMarkers.length + ' ' + word + '<a href="#" class="close" data-dismiss="alert" aria-label="close"></a></p></strong></div>');
         window.setTimeout(function(){
        $(".flash-message").fadeTo(500,0).slideUp(500,function(){
            $(this).remove();
@@ -438,6 +449,14 @@ for (var j=0; j< gmarkers.length; j++) {
 
       });
 
+      if(defLatLng != null)
+      {
+        placeMarker(defLatLng);
+        getRoute();
+        $('#setRouteConfirm').prop('disabled', true);
+        $('#setRouteSave').prop('disabled', false);
+
+      }
 }//initMap
 
 // google.maps.event.addDomListener(window, 'load', initMap);
