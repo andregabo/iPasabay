@@ -74,7 +74,7 @@ $routesCount = count($routesarray,0);
                       <input type="hidden" id="plong" name="plong" value="">
                       <input type="hidden" id="plat" name="plat" value="">
                     <button type="button" class="btn btn-sm btn-success" id="setRouteConfirm" disabled="true">Route</button>
-                    <button type="submit" class="btn btn-sm btn-info" id="setRouteSave" disabled="true">Save</button>
+                    <button type="button" class="btn btn-sm btn-info" id="setRouteSave" disabled="true">Save</button>
                     <a href="{{ url('/home') }}"><button type="button" class="btn btn-sm btn-warning">Cancel</button></a>
                   </form>
                   </div>
@@ -388,6 +388,9 @@ for (var j=0; j< gmarkers.length; j++) {
 
 
       document.getElementById("setRouteConfirm").addEventListener("click", function(event) {
+        $('#plat').val(markerMe.position.lat);
+        $('#plong').val(markerMe.position.lng);
+
 
         getRoute();
         var routePoly = new google.maps.Polyline({paths: generatedRoute});
@@ -398,6 +401,8 @@ for (var j=0; j< gmarkers.length; j++) {
         $('#setRouteSave').prop('disabled', false);
         $('#setRouteConfirm').prop('disabled', true);
 
+        $('#formRoute').submit();
+
 
       });
 
@@ -405,8 +410,7 @@ for (var j=0; j< gmarkers.length; j++) {
 
         // FIXME: TO DO DB Operations
 
-        $('#plat').val(markerMe.position.lat);
-        $('#plong').val(markerMe.position.lng);
+
 
         matchMe();
 
