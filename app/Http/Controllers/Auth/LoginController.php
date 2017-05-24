@@ -48,7 +48,7 @@ class LoginController extends Controller
         if(!Auth::guest()){
         if (auth()->user()->isDeleted==1) {
             auth()->logout();
-            Session::flash('alert-danger',"This account has been disabled. See Registar for info.");
+            Session::flash('alert-info',"This account has been disabled. See OSAS for activation.");
             return redirect('/');
         }}
         $request->session()->regenerate();

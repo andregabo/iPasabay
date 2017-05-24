@@ -11,6 +11,10 @@ use Session;
 use App\Matches;
 class RoutesController extends Controller
 {
+  public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function setRouteIndex(){
       $routes =Routes::where('pickup','exists',true)->project(['_id'=>0])->get(['userID','pickup']);
       $myPath = Routes::where('path','exists',true)->where('userID',Auth::User()->studentID)->project(['_id'=>0])->get(['userID','path']);

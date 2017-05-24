@@ -25,6 +25,7 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
 
 
     <!-- <link href="{{asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"> -->
+          <link rel="icon" href="{{asset('/favicon.ico')}}" type="image/x-icon">
 
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendor.css')}}">
   <link rel="stylesheet" type="text/css" href="{{asset('assets/css/flat-admin.css')}}">
@@ -152,6 +153,9 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" href="{{ url('/logout') }}" onclick="event.preventDefault();
            document.getElementById('logout-form').submit();">Logout
   </a>
+   <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+              {{ csrf_field() }}
+            </form>
 </li>
             </ul>
           </div>

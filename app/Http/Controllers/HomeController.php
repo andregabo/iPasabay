@@ -10,6 +10,8 @@ use File;
 use App\Matches;
 use DB;
 use Auth;
+use Session;
+use Hash;
 class HomeController extends Controller
 {
     /**
@@ -69,6 +71,32 @@ class HomeController extends Controller
         }
       //reports
     	return view('profile')->with('user',$usersSql)->with('plong',$plong)->with('plat',$plat)->with('rlong',$rlong)->with('rlat',$rlat);
+    }
 
+    public function afterRegister(){
+      auth::logout();
+      Session::flash('alert-info',"This account is currently disabled for approval. See OSAS for activation.");
+
+      return redirect('/');
+    }
+
+    public function changePassword(Request $request){
+      $currentUser = User::where('studentID',Auth::user()->studentID)->first();
+        if(Hash::check($request->input('oldPassword'),$currentUser->password)){
+            if($request->input('newPassword')!=$request->input('confirmPassword')){
+            Session::flash('alert-danger',"Password and Password Confirm does not match");
+            return redirect('profile');
+            }else{
+                $currentUser->password = bcrypt($request->input('newPassword'));
+                $currentUser->save();
+                Session::flash('alert-success',"Please re-login with your new password");
+                Auth::logout();
+                return redirect('/');
+            }
+        }else{
+            Session::flash('alert-danger',"That is not your current password");
+            return redirect('profile');
+
+        }
     }
 }

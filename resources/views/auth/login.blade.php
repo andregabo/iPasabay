@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="keywords" content="intense web design multipurpose template">
     <meta name="date" content="Dec 26">
-    <link rel="icon" href="http://static.livedemo00.template-help.com/wt_58888_v6/images/favicon.ico" type="image/x-icon">
+          <link rel="icon" href="{{asset('/favicon.ico')}}" type="image/x-icon">
     <!-- Stylesheets-->
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Montserrat:400,700%7CLato:300,300italic,400,700,900%7CYesteryear">
     <link rel="stylesheet" href="css/style.css">
@@ -56,11 +56,15 @@
     $(".alert-danger").fadeTo(300,0).slideUp(100,function(){
         $(this).remove();
     });
-   },2500);
+   },3000);
    $(function () {
       $('[data-toggle="tooltip"]').tooltip()
     });
-
+   window.setTimeout(function(){
+    $(".flash-message").fadeTo(500,0).slideUp(500,function(){
+        $(this).remove();
+    });
+   },7000); 
 </script>
                     <div class="panel section-34 section-sm-41 inset-left-20 inset-right-20 inset-sm-left-20 inset-sm-right-20 inset-lg-left-30 inset-lg-right-30 bg-white shadow-drop-md">
                                 <!-- Icon Box Type 4--><span class="icon icon-circle icon-bordered icon-lg icon-default mdi mdi-account-multiple-outline"></span>

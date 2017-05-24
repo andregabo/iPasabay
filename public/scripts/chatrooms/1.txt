@@ -1,0 +1,9 @@
+<message><sender>201401189</sender><body>asdkj </body><time>May, 24 6.43 pm</time></message>
+<message><sender>201401189</sender><body>asd </body><time>May, 24 6.43 pm</time></message>
+<message><sender>201401189</sender><body>asdasd </body><time>May, 24 6.43 pm</time></message>
+<message><sender>201401189</sender><body>asd </body><time>May, 24 6.43 pm</time></message>
+<message><sender>201401189</sender><body>asdasdadas </body><time>May, 24 6.43 pm</time></message>
+<message><sender>201401189</sender><body>Hello </body><time>May, 24 6.44 pm</time></message>
+<message><sender>201401189</sender><body>darkness </body><time>May, 24 6.44 pm</time></message>
+<message><sender>201401189</sender><body>my old </body><time>May, 24 6.44 pm</time></message>
+<message><sender>201401189</sender><body>friend </body><time>May, 24 6.44 pm</time></message>

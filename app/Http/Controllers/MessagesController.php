@@ -9,6 +9,10 @@ use App\TestModel;
 
 class MessagesController extends Controller
 {
+	public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(){
     	$testdb = new TestModel;
 		$testdb->name = 'Andre';

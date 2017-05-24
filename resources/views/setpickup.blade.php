@@ -31,7 +31,6 @@ $routesCount = count($routesarray,0);
 ?>
 <div class="row">
     <div class="col-md-12">
-      <div id="message-area"></div>
       <div class="card">
         <div class="card-header">
           <div class="card-title">Map</div>
@@ -39,6 +38,8 @@ $routesCount = count($routesarray,0);
         </div>
         <div class="card-body">
               <div class="col-md-12">
+      <div id="message-area"></div>
+              
                     <!-- <a href="#" class="thumbnail">
                       <img src="http://placehold.it/900x450" class="img-responsive">
                     </a> -->

@@ -133,7 +133,6 @@ $trueKaBa = false;
     <h1 class="well"><center>No Matches Available</center></h1>
   @endif
 
-
   @foreach($matches as $value)
     <div class="col-lg-4">
       <div class="card card-mini">
@@ -153,10 +152,9 @@ $trueKaBa = false;
                   <div class="card-body">
                     <div class="media social-post">
   <div class="media-left">
-
       <img class="profile-img" src="{{asset('uploads/profile').'/'.$value['profile_image']}}">
-
   </div>
+  
   <div class="media-body">
     <div class="media-heading">
       <h4 class="title">{{$value["firstName"]." ".$value["lastName"]}}</h4>

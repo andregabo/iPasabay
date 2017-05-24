@@ -14,6 +14,10 @@ use Auth;
 use Session;
 class MatchesController extends Controller
 {
+  public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function store(Request $request){
         // select id from matches where user1 = 'me' and user2 = 'you' or user1 = 'you' and user2 = 'me'
         // if count > 0

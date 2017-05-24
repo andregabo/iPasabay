@@ -1,6 +1,92 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="row">
+	<div class="col-xs-12">
+  <div class="flash-message" style="">
+                @foreach(['danger','warning','success','info'] as $message)
+                 @if (Session::has('alert-'. $message))
+                  <strong><p class="alert alert-{{$message}}"><i class='fa fa-lock'></i>&nbsp;{{Session::get('alert-'.$message)}} <a href="#" class="close" data-dismiss="alert" aria-label="close"></a></p></strong>
+                  @endif
+                @endforeach
+            </div>
+		<div class="card">
+
+			<div class="card-header">
+				<p><strong>User {{Auth::User()->studentID}}'s Profile Details</strong></p>
+			</div>
+				<div class="card-body no-padding">
+					<div class="row">
+						<div class="col-md-6">
+						<table class="table">
+							<tr>
+								<td><strong>User ID:</strong></td>
+								<td>{{Auth::User()->studentID}}</td>
+							</tr>
+							<tr>
+								<td><strong>First Name:</strong></td>
+								<td>{{Auth::User()->firstName}}</td>
+							</tr>
+							<tr>
+								<td><strong>Last Name:</strong></td>
+								<td>{{Auth::User()->lastName}}</td>
+							</tr>
+							<tr>
+								<td><strong>Like Vs. Dislike</strong></td>
+							@if((Auth::User()->thumbs_up + Auth::User()->thumbs_down) > 0)
+							<td>
+							<div class="progress">
+							<div class="progress-bar progress-bar-success" role="progressbar" style="width: {{(Auth::User()->thumbs_up/(Auth::User()->thumbs_up+Auth::User()->thumbs_down))*100}}%"><i class="fa fa-thumbs-up"></i> ({{Auth::User()->thumbs_up}})</div>
+							<div class="progress-bar progress-bar-danger" role="progressbar" style="width: {{(Auth::User()->thumbs_down/(Auth::User()->thumbs_up+Auth::User()->thumbs_down))*100}}%"><i class="fa fa-thumbs-down"></i> ({{Auth::User()->thumbs_down}})</div>
+							</div>
+							</td>
+							@else
+							<td>No Data Available.</td>
+							@endif
+							</tr>
+              <tr>
+                <td><button type="button" class="btn btn-sm btn-warning" id="btnModal">Edit Details</button></td>
+                <td><button id="btnModalPassword" class="btn btn-primary">Change Password</button></td>
+              </tr>
+						</table>
+
+
+
+
+						</div>
+						<div class="col-md-6">
+							<ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#pickup" aria-controls="home" role="tab" data-toggle="tab">Pick Up Points</a></li>
+        <li role="presentation"><a id="routeTabClick" href="#route" aria-controls="profile" role="tab" data-toggle="tab">Route</a></li>
+    				</ul>
+
+						<div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="pickup">
+
+					<div id="pickUpMap" style="height:60vh"> </div>
+
+				</div>
+        <div role="tabpanel" class="tab-pane" id="route">
+					<div id="routeMap" style="height:60vh"> </div>
+					</div>
+			</div>
+
+							<!-- Hello, Please display google route using the given variables:<br>
+							$plong = {{$plong}}<br>
+							$plat={{$plat}} -->
+						</div>
+					</div>
+
+			</div>
+
+		</div>
+
+
+
+	</div>
+
+
+</div>
 
 <div class="row">
   <div class="col-xs-12">
@@ -51,87 +137,6 @@
 
 </div>
 </div>
-
-<div class="row">
-	<div class="col-xs-12">
-		<div class="card">
-
-			<div class="card-header">
-				<p><strong>User {{Auth::User()->studentID}}'s Profile Details</strong></p>
-			</div>
-				<div class="card-body no-padding">
-					<div class="row">
-						<div class="col-md-6">
-						<table class="table">
-							<tr>
-								<td><strong>User ID:</strong></td>
-								<td>{{Auth::User()->studentID}}</td>
-							</tr>
-							<tr>
-								<td><strong>First Name:</strong></td>
-								<td>{{Auth::User()->firstName}}</td>
-							</tr>
-							<tr>
-								<td><strong>Last Name:</strong></td>
-								<td>{{Auth::User()->lastName}}</td>
-							</tr>
-							<tr>
-								<td><strong>Like Vs. Dislike</strong></td>
-							@if((Auth::User()->thumbs_up + Auth::User()->thumbs_down) > 0)
-							<td>
-							<div class="progress">
-							<div class="progress-bar progress-bar-success" role="progressbar" style="width: {{(Auth::User()->thumbs_up/(Auth::User()->thumbs_up+Auth::User()->thumbs_down))*100}}%"><i class="fa fa-thumbs-up"></i> ({{Auth::User()->thumbs_up}})</div>
-							<div class="progress-bar progress-bar-danger" role="progressbar" style="width: {{(Auth::User()->thumbs_down/(Auth::User()->thumbs_up+Auth::User()->thumbs_down))*100}}%"><i class="fa fa-thumbs-down"></i> ({{Auth::User()->thumbs_down}})</div>
-							</div>
-							</td>
-							@else
-							<td>No Data Available.</td>
-							@endif
-							</tr>
-              <tr>
-                <td><button type="button" class="btn btn-sm btn-warning" id="btnModal">Edit Details</button></td>
-                <td></td>
-              </tr>
-						</table>
-
-
-
-
-						</div>
-						<div class="col-md-6">
-							<ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#pickup" aria-controls="home" role="tab" data-toggle="tab">Pick Up Points</a></li>
-        <li role="presentation"><a id="routeTabClick" href="#route" aria-controls="profile" role="tab" data-toggle="tab">Route</a></li>
-    				</ul>
-
-						<div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="pickup">
-
-					<div id="pickUpMap" style="height:60vh"> </div>
-
-				</div>
-        <div role="tabpanel" class="tab-pane" id="route">
-					<div id="routeMap" style="height:60vh"> </div>
-					</div>
-			</div>
-
-							<!-- Hello, Please display google route using the given variables:<br>
-							$plong = {{$plong}}<br>
-							$plat={{$plat}} -->
-						</div>
-					</div>
-
-			</div>
-
-		</div>
-
-
-
-	</div>
-
-
-</div>
-
 <div class="row">
 <div class="col-sm-6">
 <div class="card">
@@ -152,7 +157,59 @@
 </div>
 </div>
 </div>
+<!-- Modal -->
+    <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Change Password</h4>
+          </div>
+          <div class="modal-body">
+            <form id="formPassword" action="{{url('changepassword')}}" method="post"><?php // FIXME: Do backend for this ?>
+              {{method_field('PATCH')}}
+              {{ csrf_field() }}
+              <div class="form-group">
+              <div class="row">
+                  <label class="col-md-4 control-label">Old Password:</label>
+                  <div class="col-md-8">
+                    <input type="password" class="form-control" placeholder="Minimum of 6 characters" id="oldPassword" name="oldPassword" min="6">
+                  </div>
+                </div>
+                <div class="row">
+                  <label class="col-md-4 control-label">New Password:</label>
+                  <div class="col-md-8">
+                    <input type="password" class="form-control" placeholder="Minimum of 6 characters" id="newPassword" name="newPassword" min="6">
+                  </div>
+                </div>
+              <div class="row">
+                <label class="col-md-4 control-label">Re-type New Password:</label>
+                <div class="col-md-8">
+                  <input type="password" class="form-control" placeholder="" id="confirmPassword" name="confirmPassword">
+                </div>
+              </div>
+              </div>
+          </form>
 
+          </div>
+          <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button> -->
+            <button type="button" class="btn btn-sm btn-warning" id="btnModify">Modify</button>
+            <button type="submit" class="btn btn-sm btn-success" form="formPassword" value="submit">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+    $('#btnModalPassword').on('click',function(){
+    $('#passwordModal').modal();
+});
+    window.setTimeout(function(){
+    $(".flash-message").fadeTo(500,0).slideUp(500,function(){
+        $(this).remove();
+    });
+   },7000); 
+    </script>
 
 <script>
 $('#btnModal').on('click',function(){
@@ -285,6 +342,7 @@ $('#routeMap').append('<p>No Route Available</p>')
 }//initmap
 
     </script>
+
 		<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAM6qIb6FxMLJMQ2YeiOSvRD3afyUgKQeU&v=3.exp&libraries=geometry&callback=initMap">
 		</script>

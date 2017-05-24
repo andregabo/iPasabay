@@ -52,3 +52,7 @@ Route::put('revivematch', 'MatchesController@reviveMatch')->middleware('auth');
 
 Route::get('unauthorized', function(){
 	return view('unauthorized');});
+
+Route::get('afterRegister', 'HomeController@afterRegister');
+
+Route::patch('changepassword','HomeController@changePassword');

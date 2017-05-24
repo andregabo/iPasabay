@@ -1,2 +1,0 @@
-<message><sender>201401130</sender><body>CHAAATT </body><time>May, 18 1.44 pm</time></message>
-<message><sender>201401130</sender><body>? </body><time>May, 18 1.44 pm</time></message>
