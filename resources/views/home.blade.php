@@ -1,6 +1,65 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+
+.gmap-control-container {
+    margin: 15px;
+
+}
+.gmap-control {
+    cursor: pointer;
+    background-color: -moz-linear-gradient(center top , #FEFEFE, #F3F3F3);
+    background-color: #FEFEFE;
+    border: 1px solid #A9BBDF;
+    border-radius: 2px;
+    padding: 0 6px;
+    padding-top: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 1px;
+    line-height: 160%;
+    font-size: 15px;
+    font-family: Arial,sans-serif;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.35);
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+.gmap-control:hover {
+    border: 1px solid #678AC7;
+}
+.gmap-control-active {
+    background-color: -moz-linear-gradient(center top , #6D8ACC, #7B98D9);
+    background-color: #6D8ACC;
+    color: #fff;
+    font-weight: bold;
+    border: 1px solid #678AC7;
+}
+.gmap-control-legend {
+
+    position: absolute;
+    text-align: left;
+    z-index: -1;
+    top: 30px;
+    right: 0;
+    width: 150px;
+    height: 75px;
+    font-size: 13px;
+    background: #FEFEFE;
+    border: 1px solid #A9BBDF;
+    padding: 8px;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.35);
+}
+.gmap-control-legend ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+</style>
+
 <div class="row">
 <div class="col-xs-12">
   <div class="card">
@@ -11,6 +70,7 @@
           <i class="fa fa-location-arrow" aria-hidden="true"></i></span>
         <input id="searchLocation" type="text" class="form-control" placeholder="Location" aria-describedby="basic-addon1" value="">
       </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
       <div id="map" style="height:70vh"></div>
     </div>
 
@@ -389,10 +449,57 @@
         draggable: false
       });
 
-      var trafficLayer = new google.maps.TrafficLayer({
-         autoRefresh : false
-      });
-      trafficLayer.setMap(map);
+
+//var trafficLayer = new google.maps.TrafficLayer();
+//trafficLayer.setMap(map);
+  var controlDiv = document.createElement('DIV');
+$(controlDiv).addClass('gmap-control-container')
+             .addClass('gmnoprint');
+
+var controlUI = document.createElement('DIV');
+$(controlUI).addClass('gmap-control');
+$(controlUI).text('Traffic');
+$(controlDiv).append(controlUI);
+
+var legend = '<ul>'
+           + '<li><span style="background-color: #30ac3e">&nbsp;&nbsp;</span><span style="color: #30ac3e"> &gt; 80 km per hour</span></li>'
+           + '<li><span style="background-color: #ffcf00">&nbsp;&nbsp;</span><span style="color: #ffcf00"> 40 - 80 km per hour</span></li>'
+           + '<li><span style="background-color: #ff0000">&nbsp;&nbsp;</span><span style="color: #ff0000"> &lt; 40 km per hour</span></li>'
+           + '<li><span style="background-color: #c0c0c0">&nbsp;&nbsp;</span><span style="color: #c0c0c0"> No data available</span></li>'
+           + '</ul>';
+
+var controlLegend = document.createElement('DIV');
+$(controlLegend).addClass('gmap-control-legend');
+$(controlLegend).html(legend);
+$(controlLegend).hide();
+$(controlDiv).append(controlLegend);
+
+// Set hover toggle event
+$(controlUI)
+    .mouseenter(function() {
+        $(controlLegend).show();
+    })
+    .mouseleave(function() {
+        $(controlLegend).hide();
+    });
+
+var trafficLayer = new google.maps.TrafficLayer();
+$(controlUI).addClass('gmap-control-active');
+trafficLayer.setMap(map);
+
+
+google.maps.event.addDomListener(controlUI, 'click', function() {
+    if (typeof trafficLayer.getMap() == 'undefined' || trafficLayer.getMap() === null) {
+        $(controlUI).addClass('gmap-control-active');
+        trafficLayer.setMap(map);
+    } else {
+        trafficLayer.setMap(null);
+        $(controlUI).removeClass('gmap-control-active');
+    }
+});
+
+map.controls[google.maps.ControlPosition.TOP_RIGHT].push(controlDiv);
+
 
       var searchBox = new google.maps.places.SearchBox(document.getElementById('searchLocation'));
       // map.controls[google.maps.ControlPosition.TOP_CENTER].push(document.getElementById('searchLocation')); //to bind it in the map
@@ -405,27 +512,6 @@
         for (i = 0; place = places[i]; i++) {
           (function(place) {
 
-
-            /*if(markerMe){
-              markerMe.setPosition(place.geometry.location);
-            }
-             else{
-               map: map,
-               markerMe = new google.maps.Marker({
-               draggable : true,
-              position: place.geometry.location
-              });
-            }*/
-              //map.setCenter(place.geometry.location);
-              //placeCircle();
-              //markerMe.bindTo("position", circleMe, "center");
-              //alert(markerMe.position);
-            //markerMe.bindTo('map', searchBox, 'map');
-            // google.maps.event.addListener(markerMe, 'map_changed', function() {
-            //   if (!this.getMap()) {
-            //     this.unbindAll();
-            //   }
-            // });
             bounds.extend(place.geometry.location);
 
 
