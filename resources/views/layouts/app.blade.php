@@ -148,7 +148,11 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
                   Setting
                 </a>
               </li> -->
-
+<li>
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" href="{{ url('/logout') }}" onclick="event.preventDefault();
+           document.getElementById('logout-form').submit();">Logout
+  </a>
+</li>
             </ul>
           </div>
         </li>
@@ -190,7 +194,7 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
           </div>
         </li> -->
 
-        <li class="dropdown notification warning">
+        <!-- <li class="dropdown notification warning">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" href="{{ url('/logout') }}" onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();">
             <div class="icon"><i class="fa fa-sign-out" aria-hidden="true"></i></div>
@@ -200,12 +204,12 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
               {{ csrf_field() }}
             </form>
 
-            <div class="dropdown-menu">
+             <div class="dropdown-menu">
               <ul>
                 <li class="dropdown-header">Logout</li>
               </ul>
-            </div>
-        </li>
+            </div> 
+        </li> -->
 
 
       </ul>

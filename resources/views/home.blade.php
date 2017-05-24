@@ -3,6 +3,91 @@
 @section('content')
 <div class="row">
 <div class="col-xs-12">
+  <div class="card">
+    <div class="card-header">Traffic Conditions</div>
+    <div class="card-body">
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">
+          <i class="fa fa-location-arrow" aria-hidden="true"></i></span>
+        <input id="searchLocation" type="text" class="form-control" placeholder="Location" aria-describedby="basic-addon1" value="">
+      </div>
+      <div id="map" style="height:70vh"></div>
+    </div>
+
+
+  <script>
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15,
+        clickableIcons: false,
+        center: {lat: 14.561350, lng: 121.019490}
+      });
+
+      var iacademyMarker = new google.maps.Marker({
+        position: {lat: 14.561350, lng: 121.019490},
+        map: map,
+        title: 'iACADEMY',
+        icon: "images/pubIcons/iacademylogo2.png",
+        draggable: false
+      });
+
+      var trafficLayer = new google.maps.TrafficLayer();
+      trafficLayer.setMap(map);
+
+      var searchBox = new google.maps.places.SearchBox(document.getElementById('searchLocation'));
+      // map.controls[google.maps.ControlPosition.TOP_CENTER].push(document.getElementById('searchLocation')); //to bind it in the map
+      google.maps.event.addListener(searchBox, 'places_changed', function() {
+        searchBox.set('map', null);
+        var places = searchBox.getPlaces();
+
+        var bounds = new google.maps.LatLngBounds();
+        var i, place;
+        for (i = 0; place = places[i]; i++) {
+          (function(place) {
+
+
+            /*if(markerMe){
+              markerMe.setPosition(place.geometry.location);
+            }
+             else{
+               map: map,
+               markerMe = new google.maps.Marker({
+               draggable : true,
+              position: place.geometry.location
+              });
+            }*/
+              //map.setCenter(place.geometry.location);
+              //placeCircle();
+              //markerMe.bindTo("position", circleMe, "center");
+              //alert(markerMe.position);
+            //markerMe.bindTo('map', searchBox, 'map');
+            // google.maps.event.addListener(markerMe, 'map_changed', function() {
+            //   if (!this.getMap()) {
+            //     this.unbindAll();
+            //   }
+            // });
+            bounds.extend(place.geometry.location);
+
+
+          }(place));
+
+        }
+        map.fitBounds(bounds);
+        searchBox.set('map', map);
+        map.setZoom(Math.min(map.getZoom(),15));
+
+      });
+    }
+  </script>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAM6qIb6FxMLJMQ2YeiOSvRD3afyUgKQeU&libraries=places&callback=initMap">
+  </script>
+
+  </div>
+</div>
+</div>
+<!-- <div class="row">
+<div class="col-xs-12">
 <div class="card">
 
 <div class="card-body">
@@ -48,7 +133,7 @@
         </a>
     </li>
 </ul>
-<!-- Tab panes -->
+ Tab panes
 <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="step1-pickup">
       <div class = "row">
@@ -91,7 +176,7 @@
         <div style="float: left;"><img src="{{asset('/uploads/instructions/3a.png')}}"></div>
         </div>
 
-        <!-- <div class="col-lg-3"></div> -->
+
       </div>
       <hr>
       <div class = "row">
@@ -113,7 +198,7 @@
         <div style="float: left;"><img src="{{asset('/uploads/instructions/3d.png')}}"></div>
         </div>
 
-        <!-- <div class="col-lg-3"></div> -->
+
       </div>
       <hr>
       <div class="row">
@@ -190,11 +275,11 @@
 </div>
 </div>
 </div>
-</div>
+</div> -->
 
 <!-- Set route -->
 
-<div class="row">
+<!-- <div class="row">
 <div class="col-xs-12">
 <div class="card">
 
@@ -241,7 +326,7 @@
         </a>
     </li>
 </ul>
-<!-- Tab panes -->
+ Tab panes
 <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="step1-route">
       <div class = "row">
@@ -284,7 +369,7 @@
         <div style="float: left;"><img src="{{asset('/uploads/instructions/3a.png')}}"></div>
         </div>
 
-        <!-- <div class="col-lg-3"></div> -->
+
       </div>
       <hr>
       <div class = "row">
@@ -306,7 +391,7 @@
         <div style="float: left;"><img src="{{asset('/uploads/instructions/10.png')}}"></div>
         </div>
 
-        <!-- <div class="col-lg-3"></div> -->
+
       </div>
       <hr>
       <div class = "row">
@@ -318,7 +403,7 @@
         <div style="float: left;"><img src="{{asset('/uploads/instructions/11.jpg')}}"></div>
         </div>
 
-        <!-- <div class="col-lg-3"></div> -->
+
       </div>
       <hr>
       <div class = "row">
@@ -330,7 +415,7 @@
         <div style="float: left;"><img src="{{asset('/uploads/instructions/3d.png')}}"></div>
         </div>
 
-        <!-- <div class="col-lg-3"></div> -->
+
       </div>
       <hr>
       <div class="row">
@@ -407,7 +492,7 @@
 </div>
 </div>
 </div>
-</div>
+</div> -->
 
 <script>
 $(function(){
