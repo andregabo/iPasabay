@@ -43,7 +43,7 @@ foreach ($matches as $key => $value) {
 // echo '</pre>';
 ?>
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-xs-10 col-xs-offset-1">
 <input type="hidden" class="form-control" placeholder="Room" id="room" value="11138254AND201401130" readonly>
   <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> -->
     <script type="text/javascript" src="{{asset('assets/js/chat.js')}}"></script>

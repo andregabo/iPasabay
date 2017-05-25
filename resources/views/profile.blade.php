@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row">
-	<div class="col-xs-12">
+	<div class="col-xs-10 col-xs-offset-1">
   <div class="flash-message" style="">
                 @foreach(['danger','warning','success','info'] as $message)
                  @if (Session::has('alert-'. $message))
@@ -12,7 +12,7 @@
             </div>
 		<div class="card">
 
-			<div class="card-header">
+			<div class="card-header" style="background-color: #ff4444; color: white; font-weight: bold;">
 				<p><strong>User {{Auth::User()->studentID}}'s Profile Details</strong></p>
 			</div>
 				<div class="card-body no-padding">
@@ -138,6 +138,8 @@
 </div>
 </div>
 <div class="row">
+<div class="col-sm-1">
+</div>
 <div class="col-sm-6">
 <div class="card">
 <div class="card-body">

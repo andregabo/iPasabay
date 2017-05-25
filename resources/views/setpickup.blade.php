@@ -30,9 +30,9 @@
 $routesCount = count($routesarray,0);
 ?>
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-10 col-md-offset-1">
       <div class="card">
-        <div class="card-header">
+        <div class="card-header" style="background-color: #ff4444; color: white; font-weight: bold;">
           <div class="card-title">Map</div>
 
         </div>

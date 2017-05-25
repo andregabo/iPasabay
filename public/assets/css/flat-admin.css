@@ -1778,7 +1778,7 @@ body {
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
-    padding-left: 180px; }
+    }
     body .app-container .content-heading {
       margin-bottom: 30px; }
       body .app-container .content-heading .title {
@@ -5640,7 +5640,7 @@ footer.app-footer {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background-color: #84c1ff;
+    background-color: #015249;
     box-shadow: 0 1px 3px #84c1ff;
     z-index: 101108;
     transition: all 0.3s ease; }
@@ -5684,7 +5684,7 @@ footer.app-footer {
       list-style: none;
       padding: 0;
       margin: 0;
-      background-color: #84C1FF;}
+      background-color: #015249;}
       .btn-floating .toggle-content ul.actions > li {
         padding: 0; }
         .btn-floating .toggle-content ul.actions > li a {

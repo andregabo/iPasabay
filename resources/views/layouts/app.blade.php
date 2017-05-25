@@ -55,52 +55,15 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
 
 
 </head>
-<body>
+<body class="gradientbg">
+<style type="text/css">
+  .gradientbg{
+    background-color:#77d9c4; filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#77d9c4, endColorstr=#57bc90); background-image:-moz-linear-gradient(top, #77d9c4 0%, #57bc90 100%); background-image:-webkit-linear-gradient(top, #77d9c4 0%, #57bc90 100%); background-image:-ms-linear-gradient(top, #77d9c4 0%, #57bc90 100%); background-image:linear-gradient(top, #77d9c4 0%, #57bc90 100%); background-image:-o-linear-gradient(top, #77d9c4 0%, #57bc90 100%); background-image:-webkit-gradient(linear, right top, right bottom, color-stop(0%,#77d9c4), color-stop(100%,#57bc90));
+  }
+</style>
 <div class="app app-daniel-sky">
 
-<aside class="app-sidebar" id="sidebar">
-  <div class="sidebar-header">
-    <a class="sidebar-brand" href="#"><span class="highlight">i</span>Pasabay</a>
-    <button type="button" class="sidebar-toggle">
-      <i class="fa fa-times"></i>
-    </button>
-  </div>
-  <div class="sidebar-menu">
-    <ul class="sidebar-nav">
-      <li id="dashboard" class="active">
-        <a href="{{url('/home')}}">
-          <div class="icon">
-            <i class="fa fa-tasks" aria-hidden="true"></i>
-          </div>
-          <div class="title">Dashboard</div>
-        </a>
-      </li>
-      <li id="messages" class="">
-        <a href="{{url('/messages')}}">
-          <div class="icon">
-            <i class="fa fa-comments" aria-hidden="true"></i>
-          </div>
-          <div class="title">Messaging</div>
-        </a>
-      </li>
 
-
-    </ul>
-  </div>
-  <div class="sidebar-footer">
-    <ul class="menu">
-      <li><span class="flag-icon flag-icon-ph flag-icon-squared"></span></li>
-    </ul>
-  </div>
-</aside>
-
-<script type="text/ng-template" id="sidebar-dropdown.tpl.html">
-  <div class="dropdown-background">
-    <div class="bg"></div>
-  </div>
-  <div class="dropdown-container">
-  </div>
-</script>
 <div class="app-container">
 
   <nav class="navbar navbar-default" id="navbar">
@@ -121,7 +84,27 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
           </button>
         </li>
       </ul>
-
+      <ul class="nav navbar-nav navbar-left">
+        <li class="navbar-title">
+          <a href="{{url('home')}}" style="">IPASABAY</a>
+        </li>
+        <li>
+          <a href="{{url('messages')}}"><i class="fa fa-envelope navcolor"></i>&nbsp;Messaging</a>
+        </li>
+        <li>
+          <a href="{{url('setpickup')}}"><i class="fa fa-map-marker navcolor"></i>&nbsp;Set Pickup</a>
+        </li>
+        <li>
+          <a href="{{url('getroute')}}"><i class="fa fa-car navcolor"></i>&nbsp;Set Route</a>
+        </li>
+        <li>
+          <a href="{{url('help')}}"><i class="fa fa-question navcolor"></i>&nbsp;Help</a>
+        </li>
+      </ul><style type="text/css">
+        .navcolor{
+          color: #015249;
+        }
+      </style>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown profile">
           <a href="/html/pages/profile.html" class="dropdown-toggle"  data-toggle="dropdown">
@@ -160,6 +143,7 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
             </ul>
           </div>
         </li>
+
         <!-- <li class="dropdown notification danger">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <div class="icon"><i class="fa fa-bell" aria-hidden="true"></i></div>
@@ -236,7 +220,6 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
     </ul>
   </div>
 </div>
-<div class="row">
   <div class="col-xs-12">
   <div class="flash-message">
                 @foreach(['danger','warning','success','info'] as $message)
@@ -248,7 +231,6 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
 
 
   </div>
-</div>
     @yield('content')
     </div>
     </div>

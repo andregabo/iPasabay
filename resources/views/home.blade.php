@@ -61,9 +61,9 @@
 </style>
 
 <div class="row">
-<div class="col-xs-12">
+<div class="col-xs-10 col-xs-offset-1">
   <div class="card">
-    <div class="card-header">Traffic Conditions</div>
+    <div class="card-header" style="background-color: #ff4444; color: white; font-weight: bold;">Traffic Conditions</div>
     <div class="card-body">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">
