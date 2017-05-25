@@ -14,10 +14,10 @@
     border: 1px solid #A9BBDF;
     border-radius: 2px;
     padding: 0 6px;
-    padding-top: 1px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 1px;
+    padding-top: 2px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-bottom: 2px;
     line-height: 160%;
     font-size: 15px;
     font-family: Arial,sans-serif;
@@ -43,8 +43,8 @@
     position: absolute;
     text-align: left;
     z-index: -1;
-    top: 30px;
-    right: 0;
+    top: 35px;
+    right: 1;
     width: 150px;
     height: 75px;
     font-size: 13px;
@@ -79,6 +79,11 @@
     function initMap() {
       var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 15,
+          streetViewControl: false,
+        mapTypeControlOptions: {
+
+      mapTypeIds: []
+    },
         clickableIcons: false,
         center: {lat: 14.561350, lng: 121.019490}
         @if(true)
@@ -498,7 +503,7 @@ google.maps.event.addDomListener(controlUI, 'click', function() {
     }
 });
 
-map.controls[google.maps.ControlPosition.TOP_RIGHT].push(controlDiv);
+map.controls[google.maps.ControlPosition.TOP_LEFT].push(controlDiv);
 
 
       var searchBox = new google.maps.places.SearchBox(document.getElementById('searchLocation'));
