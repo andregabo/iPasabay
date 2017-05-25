@@ -154,7 +154,7 @@ $trueKaBa = false;
   <div class="media-left">
       <img class="profile-img" src="{{asset('uploads/profile').'/'.$value['profile_image']}}">
   </div>
-  
+
   <div class="media-body">
     <div class="media-heading">
       <h4 class="title">{{$value["firstName"]." ".$value["lastName"]}}</h4>
@@ -172,14 +172,14 @@ $trueKaBa = false;
         			@endif
       <input type="hidden" class="room-container" value="{{$value['roomId']}}">
     @if($value['rated'] == 0)
-    <button type="button" class="btn btn-success btn-up"><i class="fa fa-thumbs-up"></i></button>
-    <button type="button" class="btn btn-danger btn-down"><i class="fa fa-thumbs-down"></i></button>
+    <button type="button" class="btn btn-success btn-up" title="Send a positive feedback about this user"><i class="fa fa-thumbs-up"></i></button>
+    <button type="button" class="btn btn-danger btn-down"title="Send a negative feedback about this user"><i class="fa fa-thumbs-down"></i></button>
     @else
-    <button type="button" class="btn btn-success btn-up" disabled><i class="fa fa-thumbs-up"></i></button>
-    <button type="button" class="btn btn-danger btn-down" disabled><i class="fa fa-thumbs-down"></i></button>
+    <button type="button" class="btn btn-success btn-up" title="You have already rated this user" disabled><i class="fa fa-thumbs-up"></i></button>
+    <button type="button" class="btn btn-danger btn-down" title="You have already rated this user" disabled><i class="fa fa-thumbs-down"></i></button>
     @endif
-    <button type="button" class="btn btn-warning report" data-toggle="modal" data-target="#modalReport">Report User</button>
-    <button type="button" class="btn btn-info delete-match"><i class="fa fa-trash"></i></button>
+    <button type="button" class="btn btn-warning report" data-toggle="modal" data-target="#modalReport" title="Send a report about this user">Report User</button>
+    <button type="button" class="btn btn-info delete-match" title="Delete this match"><i class="fa fa-trash"></i></button>
     </div>
   </div>
   </div>
