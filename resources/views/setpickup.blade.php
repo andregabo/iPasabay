@@ -39,7 +39,7 @@ $routesCount = count($routesarray,0);
         <div class="card-body">
               <div class="col-md-12">
       <div id="message-area"></div>
-              
+
                     <!-- <a href="#" class="thumbnail">
                       <img src="http://placehold.it/900x450" class="img-responsive">
                     </a> -->
@@ -118,11 +118,14 @@ $routesCount = count($routesarray,0);
     <?php
     // echo "['201401037', 14.555158171027532, 121.03444576287984]";
     foreach ($routesarray as $key => $value) {
-      if($key == ($routesCount-1)){
-      echo "['".$value['userID']."', ".$value['lat'].", ".$value['lng']."]";
-      }
-      else{
+      if($value['userID'] != Auth::User()->studentID)
+      {
+        if($key == ($routesCount-1)){
+          echo "['".$value['userID']."', ".$value['lat'].", ".$value['lng']."]";
+        }
+        else{
         echo "['".$value['userID']."', ".$value['lat'].", ".$value['lng']."],";
+        }
       }
     }
     ?>
@@ -148,7 +151,6 @@ $routesCount = count($routesarray,0);
 
 
     function matchMe(){
-    alert(submitMarkers.length);
       for(var i=0; i < submitMarkers.length; i++ )
       {
         //alert(submitMarkers[i]);
@@ -162,7 +164,15 @@ $routesCount = count($routesarray,0);
 
       }
 
-      $('#message-area').append('<div class="flash-message"><strong><p class="alert alert-info">Pickup Point has been successfully saved!<a href="#" class="close" data-dismiss="alert" aria-label="close"></a></p></strong></div>');
+      var word = "";
+      if(submitMarkers.length == 1){
+        word = "driver";
+      }
+      else{
+        word = "drivers";
+      }
+
+      $('#message-area').append('<div class="flash-message"><strong><p class="alert alert-info">Success! Matched with '+ submitMarkers.length + ' ' + word + '<a href="#" class="close" data-dismiss="alert" aria-label="close"></a></p></strong></div>');
       window.setTimeout(function(){
      $(".flash-message").fadeTo(500,0).slideUp(500,function(){
          $(this).remove();
@@ -546,6 +556,9 @@ function clearBoxes() {
     if(defLatLng != null){
       map.setCenter(defLatLng);
       placeMarker(defLatLng);
+      $('#setPickupConfirm').prop('disabled', true);
+      $('#setPickupSave').prop('disabled', true);
+
     }
     map.setOptions({streetViewControl: false});
    var markerLatLng;
@@ -557,6 +570,12 @@ function clearBoxes() {
       icon: "images/pubIcons/iacademylogo2.png"
     });
     var markerMe;
+
+
+    google.maps.event.addListener(markerMe, 'position_changed', function(){
+
+      $('#setPickupConfirm').prop('disabled', false);
+    });
 
    google.maps.event.addListener(map, 'click', function(event) {
      placeMarker(event.latLng);
@@ -572,7 +591,6 @@ function clearBoxes() {
         //  draggable: true
      // });
      $('#setPickupConfirm').prop('disabled', false);
-     $('#setPickupSave').prop('disabled', false);
       markerLatLng = location;
 
       if ( markerMe) {

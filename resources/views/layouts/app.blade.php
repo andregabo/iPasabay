@@ -108,7 +108,7 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown profile">
           <a href="/html/pages/profile.html" class="dropdown-toggle"  data-toggle="dropdown">
-            <img class="profile-img" src="{{asset('uploads/profile')."/".Auth::User()->profile_image}}">
+            <img class="profile-img" src="{{asset('uploads/profile')."/".Auth::User()->profile_image}}" style="margin-right:20px">
             <div class="title">Profile</div>
           </a>
           <div class="dropdown-menu">
@@ -196,7 +196,7 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
               <ul>
                 <li class="dropdown-header">Logout</li>
               </ul>
-            </div> 
+            </div>
         </li> -->
 
 

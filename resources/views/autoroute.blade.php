@@ -35,13 +35,14 @@ $routesCount = count($routesarray,0);
 
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
-      <div id="message-area"></div>
+
       <div class="card">
         <div class="card-header" style="background-color: #ff4444;">
           <div class="card-title" style="color: white; font-weight: bold;">Map</div>
         </div>
         <div class="card-body">
           <div class="row">
+            <div id="message-area"></div>
               <div class="col-md-6">
                     <!-- <a href="#" class="thumbnail">
                       <img src="http://placehold.it/900x450" class="img-responsive">
@@ -155,11 +156,14 @@ $routesCount = count($routesarray,0);
           <?php
           // echo "['201401037', 14.555158171027532, 121.03444576287984]";
           foreach ($routesarray as $key => $value) {
-            if($key == ($routesCount-1)){
-            echo "['".$value['userID']."', ".$value['lat'].", ".$value['lng']."]";
-            }
-            else{
+            if($value['userID'] != Auth::User()->studentID)
+            {
+              if($key == ($routesCount-1)){
+                echo "['".$value['userID']."', ".$value['lat'].", ".$value['lng']."]";
+                }
+              else{
               echo "['".$value['userID']."', ".$value['lat'].", ".$value['lng']."],";
+                }
             }
           }
           ?>

@@ -20,7 +20,7 @@ while($row = mysqli_fetch_assoc($result)){
         $temp = [];
         $temp["roomId"] = $row['id'];
         $temp["studentID"] = ($row['user1'] == Auth::User()->studentID ? $row['user2'] : $row['user1']);
-        $temp["role"] = ($row['user1'] == Auth::User()->studentID ? "Driver" : "Passenger");
+        $temp["role"] = ($row['user1'] == Auth::User()->studentID ? "Passenger" : "Driver");
         $matches[] = $temp;
     }
 
