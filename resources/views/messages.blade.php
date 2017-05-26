@@ -20,6 +20,7 @@ while($row = mysqli_fetch_assoc($result)){
         $temp = [];
         $temp["roomId"] = $row['id'];
         $temp["studentID"] = ($row['user1'] == Auth::User()->studentID ? $row['user2'] : $row['user1']);
+        $temp["role"] = ($row['user1'] == Auth::User()->studentID ? "Driver" : "Passenger");
         $matches[] = $temp;
     }
 
@@ -167,12 +168,13 @@ foreach ($matches as $key => $value) {
 <div class="app-messaging-container">
 <div class="app-messaging collapse" id="collapseMessaging">
   <div class="chat-group">
-  <div class="heading">Contacts</div>
+  <div class="heading">Matches</div>
   <ul class="group full-height" id="messageLeftPanel">
-    <li class="section">Matches</li>
+    <li class="section">Drivers</li>
 <?php
 // $matches = [["ID" => "11138254", "NAME"=>"DLSU Ralph Bausas"],["ID" => "201401130", "NAME"=>"Ralph Bausas"]];
 foreach($matches as $key => $value){?>
+  @if($value['role'] == "Driver")
             <li class="message">
               <a class="chatIn">
                 <div class="message">
@@ -185,10 +187,28 @@ foreach($matches as $key => $value){?>
                 </div>
               </a>
             </li>
-
+      @endif
     <?php
   }?>
-
+<li class="section">Passengers</li>
+<?php
+foreach($matches as $key => $value){?>
+  @if($value['role'] == "Passenger")
+            <li class="message">
+              <a class="chatIn">
+                <div class="message">
+                  <img class="profile" src="{{asset('uploads/profile').'/'.$value['profile_image']}}">
+                  <div class="content">
+                    <div class="title">{{$value["firstName"]." ".$value["lastName"]}}</div>
+                    <div class="description">{{$value["studentID"]}}</div>
+                    <input type="hidden" class="roomNo" value="{{$value['roomId']}}"></input>
+                  </div>
+                </div>
+              </a>
+            </li>
+      @endif
+    <?php
+  }?>
 </ul>
 </div>
 <!-- /////////////////////////// -->
