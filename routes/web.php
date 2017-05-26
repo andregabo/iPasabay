@@ -56,3 +56,5 @@ Route::get('unauthorized', function(){
 Route::get('afterRegister', 'HomeController@afterRegister');
 
 Route::patch('changepassword','HomeController@changePassword');
+
+Route::get('help','HomeController@helpIndex');

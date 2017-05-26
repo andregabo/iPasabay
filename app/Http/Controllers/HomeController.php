@@ -37,6 +37,9 @@ class HomeController extends Controller
     {
       return view('profile');
     }
+    public function helpIndex(){
+      return view('help');
+    }
     public function editProfile(Request $request){
       $user = User::where('studentID',$request->input('studentID'))->first();
       $user->studentID = $request->input('studentID');

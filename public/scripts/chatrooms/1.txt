@@ -7,3 +7,10 @@
 <message><sender>201401189</sender><body>darkness </body><time>May, 24 6.44 pm</time></message>
 <message><sender>201401189</sender><body>my old </body><time>May, 24 6.44 pm</time></message>
 <message><sender>201401189</sender><body>friend </body><time>May, 24 6.44 pm</time></message>
+<message><sender>201401188</sender><body>ddd  </body><time>May, 26 5.15 pm</time></message>
+<message><sender>201401188</sender><body>asd </body><time>May, 26 5.15 pm</time></message>
+<message><sender>201401188</sender><body>gagasgasg </body><time>May, 26 5.15 pm</time></message>
+<message><sender>201401188</sender><body>Yah </body><time>May, 26 5.15 pm</time></message>
+<message><sender>201401188</sender><body>Yah </body><time>May, 26 5.15 pm</time></message>
+<message><sender>201401188</sender><body>Yah </body><time>May, 26 5.15 pm</time></message>
+<message><sender>201401188</sender><body>Yah </body><time>May, 26 5.15 pm</time></message>

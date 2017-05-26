@@ -55,7 +55,7 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
 
 
 </head>
-<body class="gradientbg">
+<body class="gradientbg" style="margin-top: 110px;">
 <style type="text/css">
   .gradientbg{
     background-color:#77d9c4; filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#77d9c4, endColorstr=#57bc90); background-image:-moz-linear-gradient(top, #77d9c4 0%, #57bc90 100%); background-image:-webkit-linear-gradient(top, #77d9c4 0%, #57bc90 100%); background-image:-ms-linear-gradient(top, #77d9c4 0%, #57bc90 100%); background-image:linear-gradient(top, #77d9c4 0%, #57bc90 100%); background-image:-o-linear-gradient(top, #77d9c4 0%, #57bc90 100%); background-image:-webkit-gradient(linear, right top, right bottom, color-stop(0%,#77d9c4), color-stop(100%,#57bc90));
@@ -66,7 +66,7 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
 
 <div class="app-container">
 
-  <nav class="navbar navbar-default" id="navbar">
+  <nav class="navbar navbar-default navbar-fixed-top" id="navbar">
   <div class="container-fluid">
     <div class="navbar-collapse collapse in">
       <ul class="nav navbar-nav navbar-mobile">
@@ -217,6 +217,8 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
       <li><a href="{{ url('/getroute') }}">Auto Route</a></li>
       <li><a href="{{ url('/messages')}}">Messaging</a></li>
       <li><a href="{{ url('/matches')}}">Matches</a></li>
+      <li><a href="{{ url('/help')}}">Help</a></li>
+
     </ul>
   </div>
 </div>
@@ -249,5 +251,16 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
     });
 
 </script>
+<style type="text/css">
+  ::selection {
+  background: #404040; /* WebKit/Blink Browsers */
+  color:white;
+}
+::-moz-selection {
+  background: #404040; /* WebKit/Blink Browsers */
+  color:white;
+
+}
+</style>
 </body>
 </html>
