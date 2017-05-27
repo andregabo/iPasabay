@@ -130,7 +130,7 @@ $trueKaBa = false;
 <div class="row">
   <div id="message-area"></div>
   @if($trueKaBa)
-    <h1 class="well"><center>No Matches Available</center></h1>
+    <div class="col-xs-12"><h1 class="well"><center>No Matches Available&nbsp;<i class="fa fa-meh-o"></i></center></h1></div>
   @endif
 
   @foreach($matches as $value)
