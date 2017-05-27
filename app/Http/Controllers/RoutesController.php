@@ -49,4 +49,17 @@ class RoutesController extends Controller
 
     	// return redirect('home');
     }
+
+    public function addBan(Request $request){
+      $testdb = Routes::where('userID', Auth::user()->studentID)->push('banList', $request->input('banID'), true);
+      //$testdb->banList=[$request->input('banID')];
+
+    }
+
+    public function removeBan(Request $request)
+    {
+      $testdb = Routes::where('userID', Auth::user()->studentID)->pull('banList', $request->input('banID'));
+      //$testdb->banList=[$request->input('banID')];
+      
+    }
 }

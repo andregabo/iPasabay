@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\TestModel;
+use App\Routes;
+use Auth;
 
 class MessagesController extends Controller
 {
@@ -14,6 +16,8 @@ class MessagesController extends Controller
         $this->middleware('auth');
     }
     public function index(){
-    	return view('messages');
+			return view('messages');
+
+
     }
 }
