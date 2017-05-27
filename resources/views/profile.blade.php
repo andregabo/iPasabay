@@ -1,6 +1,81 @@
 @extends('layouts.app')
 
 @section('content')
+<?php
+
+//dbcon the ancient php lord ways
+$dbcon = mysqli_connect("localhost", "root", "") or die("SERVER IS NOT AVAILABLE~".mysql_error());
+mysqli_select_db($dbcon,"harambetadays") or die ("no data".mysql_error());
+
+$selector = "SELECT * FROM `harambetadays`.`matches` WHERE ";
+$where = "(user1 = '".Auth::User()->studentID."' OR user2='".Auth::User()->studentID."')";
+$sql = $selector.$where;
+//echo $sql;
+$result = mysqli_query($dbcon,$sql);
+$catcher = [];
+$matches = [];
+
+while($row = mysqli_fetch_assoc($result)){
+        $catcher[] = $row;
+        $temp = [];
+        $temp["roomId"] = $row['id'];
+        $temp["studentID"] = ($row['user1'] == Auth::User()->studentID ? $row['user2'] : $row['user1']);
+        $temp["role"] = ($row['user1'] == Auth::User()->studentID ? "Passenger" : "Driver");
+        $temp["isBoth"] = ($row['matched_again'] == 1 ? true : false);
+				$temp["isDeleted"] = $row['isDeleted'];
+
+        if($temp["role"] == "Driver"){
+          if($row['isRatedUser2'] == 1){
+            $temp["rated"] = true;
+          }
+          else{
+            $temp["rated"] = false;
+          }
+        }else if($temp["role"] == "Passenger"){
+          if($row['isRatedUser1'] == 1){
+          $temp["rated"] = true;
+        }
+        else{
+          $temp["rated"] = false;
+          }
+        }
+        //$temp["icon"] = ($row['user1'] == Auth::User()->studentID ? '<i class="fa fa-car"></i>' : '<i class="fa fa-male"></i>');
+        $matches[] = $temp;
+    }
+
+foreach ($matches as $key => $value) {
+  $selector = "SELECT firstName, lastName, profile_image, thumbs_up, thumbs_down FROM `harambetadays`.`users` WHERE ";
+  $where = "studentID='".$value["studentID"]."'";
+  $sql = $selector.$where;
+  //echo $sql."<br>";
+  $result = mysqli_query($dbcon,$sql);
+
+  while($row = mysqli_fetch_assoc($result)){
+          $matches[$key]["firstName"] = $row["firstName"];
+          $matches[$key]["lastName"] = $row["lastName"];
+          $matches[$key]["profile_image"] = $row["profile_image"];
+          $matches[$key]['thumbsUp'] = $row['thumbs_up'];
+          $matches[$key]['thumbsDown'] = $row['thumbs_down'];
+      }
+
+}
+
+// echo '<pre>';
+// echo var_dump($matches);
+// echo '</pre>';
+
+
+$trueKaBa = false;
+  if($matches == null && $matchess == null)
+  {
+    $trueKaBa = true;
+  }
+
+// echo '<pre>';
+// echo var_dump($banList);
+// echo '</pre>';
+
+?>
 <div class="row">
 	<div class="col-xs-10 col-xs-offset-1">
   <div class="flash-message" style="">
@@ -87,7 +162,6 @@
 
 
 </div>
-
 <div class="row">
   <div class="col-xs-12">
     <!-- Modal -->
@@ -138,8 +212,6 @@
 </div>
 </div>
 <div class="row">
-<div class="col-sm-1">
-</div>
 <div class="col-sm-6">
 <div class="card">
 <div class="card-body">
@@ -158,6 +230,66 @@
 </div>
 </div>
 </div>
+
+<div class="col-sm-6">
+<div class="card">
+<div class="card-header">Ban List</div>
+<div class="card-body">
+	<table class="table table-striped datatable table-condensed" cellspacing="0" width="100%">
+			<thead>
+					<tr>
+							<th>#</th>
+							<th>Student ID</th>
+							<th>Name</th>
+							<th>Role</th>
+							<th>Action</th>
+					</tr>
+			</thead>
+			<tbody><?php
+			$counter = 1;
+			?>
+				@if(true)
+				@foreach($matches as $match)
+				@if($match['isDeleted'] > 0)
+					<tr>
+						@else
+						<tr>
+						@endif
+						<th>{{$counter}}</th>
+						<td class="banID">{{$match["studentID"]}}</td>
+						<td>{{$match["firstName"]." ".$match["lastName"]}}</td>
+						<td>@if($match["isBoth"] == true)
+							{{"Driver/Passenger"}}
+							@else
+							{{$match["role"]}}
+							@endif
+						</td>
+						<td class="action-td">
+							@if(in_array($match["studentID"], $banList))
+							<button type="button" class="btn btn-info btn-sm btn-unban" title="Unban User" style="min-width: 80px">Unban</button>
+							@else
+							<button type="button" class="btn btn-danger btn-sm btn-ban" title="Ban User" style="min-width: 80px">Ban</button>
+							@endif
+						</td>
+					</tr>
+
+					<?php
+					$counter++;
+					?>
+				@endforeach
+
+				@else
+				<tr>
+				<td colspan="5"><center><h4 class="label label-primary" style="text-align: center;">No Matches to show.</h4></center>
+				</td>
+				</tr>
+				@endif
+			</tbody>
+		</table>
+</div>
+</div>
+</div>
+
 </div>
 <!-- Modal -->
     <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="">
@@ -202,6 +334,15 @@
         </div>
       </div>
     </div>
+		<form id="banForm" method="post">
+			{{ csrf_field() }}
+			<input type="hidden" id="banUser" name="banID">
+		</form>
+
+		<form id="unbanForm" method="post">
+			{{ csrf_field() }}
+			<input type="hidden" id="unbanUser" name="banID">
+		</form>
     <script type="text/javascript">
     $('#btnModalPassword').on('click',function(){
     $('#passwordModal').modal();
@@ -212,6 +353,49 @@
     });
    },7000);
     </script>
+<script>
+$(function(){
+
+	$(".btn-ban").on('click', function(){
+		$('#banUser').val($(this).closest('tr').find('.banID').text());
+		$('#banForm').submit();
+		//$(this).closest('tr').find('.action-td').empty();
+		//$(this).closest('tr').find('.action-td').append('<button type="button" class="btn btn-danger btn-sm btn-ban" title="Ban User" style="min-width: 80px">Ban</button>');
+
+	});
+	$("#banForm").on('submit', function(e){
+		e.preventDefault();
+		$.ajax({
+			type: "POST",
+      url: "{{url('banuser')}}",
+      data: $('#banForm').serialize(),
+			success: function(){
+        window.location.reload();
+      }
+		});
+	});
+
+	$(".btn-unban").on('click', function(){
+		$('#unbanUser').val($(this).closest('tr').find('.banID').text());
+		$('#unbanForm').submit();
+		//$(this).closest('tr').find('.action-td').empty();
+		//$(this).closest('tr').find('.action-td').append('<button type="button" class="btn btn-danger btn-sm btn-ban" title="Ban User" style="min-width: 80px">Ban</button>');
+
+	});
+	$("#unbanForm").on('submit', function(e){
+		e.preventDefault();
+		$.ajax({
+			type: "POST",
+      url: "{{url('unbanuser')}}",
+      data: $('#unbanForm').serialize(),
+			success: function(){
+        window.location.reload();
+      }
+		});
+	});
+})
+</script>
+
 
 <script>
 $('#btnModal').on('click',function(){

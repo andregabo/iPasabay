@@ -33,10 +33,7 @@ class HomeController extends Controller
     {
         return view('home');
     }
-    public function ProfileIndex()
-    {
-      return view('profile');
-    }
+
     public function helpIndex(){
       return view('help');
     }
@@ -72,8 +69,15 @@ class HomeController extends Controller
           $rlong = 'none';
           $rlat = 'none';
         }
+        $route = Routes::where('userID', Auth::user()->studentID)->where('banList','exists',true)->first();
+        if($route==null){
+          $route=[];
+        }else {
+          $route = $route->banList;
+        }
       //reports
-    	return view('profile')->with('user',$usersSql)->with('plong',$plong)->with('plat',$plat)->with('rlong',$rlong)->with('rlat',$rlat);
+    	return view('profile')->with('user',$usersSql)->with('plong',$plong)->with('plat',$plat)->with('rlong',$rlong)->with('rlat',$rlat)
+      ->with('banList',$route);
     }
 
     public function afterRegister(){

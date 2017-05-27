@@ -52,7 +52,7 @@ class RoutesController extends Controller
 
     public function addBan(Request $request){
       $testdb = Routes::where('userID', Auth::user()->studentID)->push('banList', $request->input('banID'), true);
-      //$testdb->banList=[$request->input('banID')];
+      // $testdb->banList=[$request->input('banID')];
 
     }
 
@@ -60,6 +60,6 @@ class RoutesController extends Controller
     {
       $testdb = Routes::where('userID', Auth::user()->studentID)->pull('banList', $request->input('banID'));
       //$testdb->banList=[$request->input('banID')];
-      
+
     }
 }

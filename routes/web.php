@@ -58,3 +58,7 @@ Route::get('afterRegister', 'HomeController@afterRegister');
 Route::patch('changepassword','HomeController@changePassword');
 
 Route::get('help','HomeController@helpIndex');
+
+Route::post('banuser', 'RoutesController@addBan');
+
+Route::post('unbanuser', 'RoutesController@removeBan');
