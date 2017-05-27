@@ -301,7 +301,10 @@ $(function() {
     $.ajax({
       type: "POST",
       url: "{{url('revivematch')}}",
-      data: $('#reviveMatchForm').serialize()
+      data: $('#reviveMatchForm').serialize(),
+      success: function(){
+        window.location.reload();
+      }
     });
     $('#message-area').append('<div class="flash-message alert-sucess"><strong><p class="alert alert-success">Match Successfully Restored<a href="#" class="close" data-dismiss="alert" aria-label="close"></a></p></strong></div>');
     window.setTimeout(function(){
@@ -316,7 +319,10 @@ $(function() {
     $.ajax({
       type: "POST",
       url: "{{url('removematch')}}",
-      data: $('#deleteMatchForm').serialize()
+      data: $('#deleteMatchForm').serialize(),
+      success: function(){
+        window.location.reload();
+      }
     });
     $('#message-area').append('<div class="flash-message alert-sucess"><strong><p class="alert alert-success">Match Successfully Removed<a href="#" class="close" data-dismiss="alert" aria-label="close"></a></p></strong></div>');
     window.setTimeout(function(){
@@ -368,7 +374,10 @@ $(function() {
     $.ajax({
       type: "POST",
       url: "{{url('updown')}}",//FIXME Backend here
-      data: $("#thumbForm").serialize()
+      data: $("#thumbForm").serialize(),
+      success: function(){
+        window.location.reload();
+      }
     });
 
     $('#message-area').append('<div class="flash-message alert-sucess"><strong><p class="alert alert-info">Rating successfully submitted. Thank you for helping the community be a better place!<a href="#" class="close" data-dismiss="alert" aria-label="close"></a></p></strong></div>');
@@ -390,7 +399,10 @@ $(function() {
     $.ajax({
       type: "POST",
       url: "{{url('updown')}}",//FIXME Backend here
-      data: $("#thumbForm").serialize()
+      data: $("#thumbForm").serialize(),
+      success: function(){
+        window.location.reload();
+      }
     });
 
     $('#message-area').append('<div class="flash-message alert-sucess"><strong><p class="alert alert-info">Rating successfully submitted. Thank you for helping the community be a better place!<a href="#" class="close" data-dismiss="alert" aria-label="close"></a></p></strong></div>');

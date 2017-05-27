@@ -662,6 +662,9 @@ function clearBoxes() {
     //alert("NACLICK");
     matchMe();
     $('#setPickupSave').prop('disabled', true);
+    $('html, body').animate({
+       scrollTop: $(".flash-message").offset().top
+   }, 1000);
     //$('#formMatches').submit();
 
   });

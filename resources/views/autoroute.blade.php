@@ -682,6 +682,10 @@ for (var j=0; j< gmarkers.length; j++) {
         $('#plat').val(markerMe.position.lat);
         $('#plong').val(markerMe.position.lng);
 
+        $('html, body').animate({
+           scrollTop: $(".card").offset().top
+       }, 1000);
+
 
         getRoute();
         var routePoly = new google.maps.Polyline({paths: generatedRoute});
@@ -720,6 +724,9 @@ for (var j=0; j< gmarkers.length; j++) {
        });
       },7000);
 
+      $('html, body').animate({
+         scrollTop: $(".flash-message").offset().top
+     }, 1000);
       });
 
       $('#formRoute').on('submit', function(e){
