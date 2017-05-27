@@ -5,7 +5,8 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use \Illuminate\Session\TokenMismatchException;
 class Handler extends ExceptionHandler
 {
     /**
@@ -44,7 +45,21 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-
+        if ($this->isHttpException($exception))
+        {       
+            if($exception instanceof NotFoundHttpException)
+            {
+                return response()->view('errors.404', [], 404);
+            }
+            else if($exception instanceof TokenMismatchException)
+            {
+                return response()->view('errors.token',[],500);
+            }
+            else if($exception instanceof Exception){
+                return response()->view('errors.404', [], 404);
+            }
+            return $this->renderHttpException($exception);
+        }
         return parent::render($request, $exception);
     }
 
