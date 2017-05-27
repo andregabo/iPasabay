@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+.selected{
+  background-color: rgba(255,68,68,0.7);
+
+}
+.selected .message{
+  color: rgba(255,255,255,1);
+  font-weight: bold;
+}
+</style>
 <?php
 
 //dbcon the ancient php lord ways
@@ -74,6 +84,7 @@ foreach ($matches as $key => $value) {
 
          $('#chatBack').click(function(e){
            e.preventDefault();
+           $('.app-messaging-container').find('*').removeClass('selected');
            $('#collapseMessaging').removeClass('collapsed');
            $('#collapseMessaging').removeClass('in');
 
@@ -84,6 +95,8 @@ foreach ($matches as $key => $value) {
 
          $('.chatIn').on('click', function(e){
            e.preventDefault();
+           $('.app-messaging-container').find('*').removeClass('selected');
+           $(this).closest(".message").addClass('selected');
            $('#collapseMessaging').addClass('collapsed');
            $('#collapseMessaging').addClass('in');
 
