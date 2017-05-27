@@ -115,7 +115,12 @@ class MatchesController extends Controller
 
     public function deleteMatch(Request $request){
       $goodbye = Matches::where('id',$request->input('id'))->first();
-      $goodbye->isDeleted=1;
+      if($goodbye->user1 == Auth::User()->studentID){
+        $goodbye->isDeleted=1;
+      }
+      else if($goodbye->user2 == Auth::User()->studentID){
+        $goodbye->isDeleted=2;
+      }
       $goodbye->save();
     }
     public function reviveMatch(Request $request){

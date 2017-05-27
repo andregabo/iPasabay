@@ -148,7 +148,7 @@
         <div id="image-preview">
           <label for="image-upload" id="image-label">Profile Image</label>
           <input type="hidden" name="studentID" value="{{Auth::User()->studentID}}"/>
-          <input type="file" name="image" id="image-upload" />
+          <input type="file" name="image" id="image-upload" accept=".jpg,.jpeg,.png,.bmp"/>
           <hr>
           <button type="submit" class="btn btn-w-m btn-warning">Change Picture</button>
           <br><br>

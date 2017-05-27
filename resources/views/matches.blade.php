@@ -65,7 +65,7 @@ foreach ($matches as $key => $value) {
 
 /////////////////////deleted matches
 $selector = "SELECT * FROM `harambetadays`.`matches` WHERE ";
-$where = "(user1 = '".Auth::User()->studentID."' OR user2='".Auth::User()->studentID."') AND isDeleted = '1'";
+$where = "(user1 = '".Auth::User()->studentID."' OR user2='".Auth::User()->studentID."') AND isDeleted > '0'";
 $sql = $selector.$where;
 //echo $sql;
 $result = mysqli_query($dbcon,$sql);
@@ -79,6 +79,7 @@ while($row = mysqli_fetch_assoc($result)){
         $temp["studentID"] = ($row['user1'] == Auth::User()->studentID ? $row['user2'] : $row['user1']);
         $temp["role"] = ($row['user1'] == Auth::User()->studentID ? "Driver" : "Passenger");
         $temp["isBoth"] = ($row['matched_again'] == 1 ? true : false);
+        $temp['isDeleted'] = $row['isDeleted'];
 
         if($temp["role"] == "Driver"){
           if($row['isRatedUser2'] == 1){
@@ -112,6 +113,7 @@ foreach ($matchess as $key => $value) {
           $matchess[$key]["profile_image"] = $row["profile_image"];
           $matchess[$key]['thumbsUp'] = $row['thumbs_up'];
           $matchess[$key]['thumbsDown'] = $row['thumbs_down'];
+
       }
 
 }
@@ -191,6 +193,7 @@ $trueKaBa = false;
 </div>
 <div class="row">
 @foreach($matchess as $value)
+@if(($value["role"] == "Passenger" && $value["isDeleted"] == 2) || ($value["role"] == "Driver" && $value["isDeleted"] == 1))
   <div class="col-lg-4">
     <div class="card card-mini">
       @if($value["role"] == "Passenger")
@@ -232,6 +235,7 @@ $trueKaBa = false;
 </div>
 
 </div>
+@endif
 @endforeach
 </div>
 </div>
