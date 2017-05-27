@@ -138,7 +138,7 @@ $trueKaBa = false;
       <div class="card card-mini">
         @if($value['isBoth'])
         <div class="card-header" style="background-color: #9676bb; color: #fff;">
-        <h5><i class="fa fa-car fa-lg"></i> <i class="fa fa-male"></i>  Driver &amp Passenger</h5>
+        <h5><i class="fa fa-car fa-lg"></i> <i class="fa fa-male"></i>  Driver &amp; Passenger</h5>
         @else
         @if($value["role"] == "Passenger")
         <div class="card-header" style="background-color: #39c3da; color: #fff;">

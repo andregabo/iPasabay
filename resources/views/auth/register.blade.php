@@ -18,11 +18,16 @@
     <script src="js/html5shiv.min.js"></script>
         <![endif]-->
   </head>
+    <style type="text/css">
+    .bgmoto{background: #466368;
+      background: linear-gradient(to right bottom, #648880, #293f50);
+    }
+  </style>
   <body>
     <!-- Page-->
     <div class="page text-center">
       <!-- Page Content-->
-      <main class="page-content bg-blue-gray-tilt">
+      <main class="page-content bgmoto">
         <div class="one-page">
           <div class="one-page-header">
             <!--Navbar Brand-->
@@ -101,7 +106,7 @@
             </div>
           </section>
           <div class="one-page-footer">
-            <p style="color: rgba(255,255,255, 0.3)" class="small">iPasabay &copy; <span id="copyright-year"></span> . <a href="privacy.html">Privacy Policy</a></p>
+            <p style="color: rgba(255,255,255, 0.3)" class="small">iPasabay &copy; <span id="copyright-year"></span> . </p>
           </div>
         </div>
       </main>

@@ -247,7 +247,7 @@ foreach($matches as $key => $value){?>
     <div class="footer">
       <form id="send-message-area">
       <div class="message-box">
-        <textarea id="sendie" maxlength = '100' placeholder="Type something..." class="form-control"></textarea>
+        <textarea id="sendie" maxlength = '100' placeholder="Type something..." class="form-control" style="resize: none;"></textarea>
         <button type="button" id="sendButton" class="btn btn-default"><i class="fa fa-paper-plane"></i><span>Send</span></button>
       </div>
     </form>

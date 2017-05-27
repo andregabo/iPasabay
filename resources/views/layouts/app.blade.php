@@ -5,7 +5,7 @@ mysqli_select_db($dbcon,"harambetadays") or die ("no data".mysql_error());
 
 $selector = "SELECT COUNT(id) FROM `harambetadays`.`matches` WHERE ";
 $where = "user1 = '".Auth::User()->studentID."' OR user2='".Auth::User()->studentID."'";
-$sql = $selector.$where;
+$sql = $selector.$where;  
 //echo $sql;
 $result = mysqli_query($dbcon,$sql);
 $countMatches = $result->fetch_assoc()['COUNT(id)'];

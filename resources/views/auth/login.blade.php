@@ -31,7 +31,7 @@
         <div class="one-page">
           <div class="one-page-header">
             <!--Navbar Brand-->
-            <div class="rd-navbar-brand"><a href="index-2.html"><img style='margin-top: -5px;margin-left: -15px;' width='138' height='31' src='images/intense/logo-light.png' alt=''/></a></div>
+            <div class="rd-navbar-brand"><a href="#"><img style='margin-top: -5px;margin-left: -15px;' width='138' height='31' src='images/intense/logo-light.png' alt=''/></a></div>
           </div>
           <!-- Login-->
           <section>
@@ -103,7 +103,7 @@
             </div>
           </section>
           <div class="one-page-footer">
-            <p style="color: rgba(255,255,255, 0.3)" class="small">iPasabay &copy; <span id="copyright-year"></span> . <a href="privacy.html">Privacy Policy</a></p>
+            <p style="color: rgba(255,255,255, 0.3)" class="small">iPasabay &copy; <span id="copyright-year"></span> . </p>
           </div>
         </div>
       </main>

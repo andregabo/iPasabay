@@ -1,0 +1,2 @@
+<message><sender>201401189</sender><body>asdasd </body><time>May, 27 8.47 pm</time></message>
+<message><sender>201401189</sender><body></body><time>May, 27 9.25 pm</time></message>

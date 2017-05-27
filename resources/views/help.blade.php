@@ -5,7 +5,7 @@
 <div class="col-lg-10 col-lg-offset-1" style="">
 <div class="card">
 
-<div class="card-header" id="top-instructions-pickup" style="background-color: #ff4444; color: white; font-weight: bold;">Setting your pick up</div>
+<div class="card-header" id="top-instructions-pickup" style="background-color: #ff4444; color: white; font-weight: bold;">1. Setting your pick up</div>
 <div class="card-body">
   <div class="section">
 
@@ -198,7 +198,7 @@
   <div class="col-lg-10 col-lg-offset-1">
   <div class="card">
 
-    <div class="card-header" id="top-instructions-route" style="background-color: #ff4444; color: white; font-weight: bold;">Setting your route</div>
+    <div class="card-header" id="top-instructions-route" style="background-color: #ff4444; color: white; font-weight: bold;">2. Setting your route</div>
   <div class="card-body">
     <div class="section">
 
@@ -242,7 +242,7 @@
           </a>
       </li>
   </ul>
-   Tab panes
+   <!-- Tab panes -->
   <div class="tab-content">
       <div role="tabpanel" class="tab-pane active" id="step1-route">
         <div class = "row">
@@ -293,8 +293,8 @@
           <div class="col-lg-3">
           <b>Step 4</b> : Click on the map to place a marker, This will be used by the system to match you to a driver.
           </div>
-          <div class="col-lg-3">
-          <div style="float: left"><img src="{{asset('/uploads/instructions/9.jpg')}}"></div>
+          <div class="col-lg-8">
+          <div style="float: left"><img src="{{asset('/uploads/instructions/9.jpg')}}" width="100%"></div>
           </div>
         </div>
         <hr>
@@ -315,8 +315,8 @@
           <div class="col-lg-3">
           <b>Step 6</b> : Confirm that the route generated is accurate.
           </div>
-          <div class="col-lg-3">
-          <div style="float: left;"><img src="{{asset('/uploads/instructions/11.jpg')}}"></div>
+          <div class="col-lg-8">
+          <div style="float: left;"><img src="{{asset('/uploads/instructions/11.jpg')}}" width="100%"></div>
           </div>
 
 
@@ -389,7 +389,7 @@
           <b>Step 9</b> : Choose a user to message. <br>(You may only message users you have been matched with)
           </div>
           <div class="col-lg-6">
-          <div style="float: right"><img src="{{asset('/uploads/instructions/7.png')}}"></div>
+          <div><img src="{{asset('/uploads/instructions/7.png')}}"></div>
           </div>
         </div>
         <hr>
