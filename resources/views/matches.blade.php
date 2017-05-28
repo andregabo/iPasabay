@@ -175,7 +175,7 @@ $trueKaBa = false;
       <input type="hidden" class="room-container" value="{{$value['roomId']}}">
     @if($value['rated'] == 0)
     <button type="button" class="btn btn-success btn-up" title="Send a positive feedback about this user"><i class="fa fa-thumbs-up"></i></button>
-    <button type="button" class="btn btn-danger btn-down"title="Send a negative feedback about this user"><i class="fa fa-thumbs-down"></i></button>
+    <button type="button" class="btn btn-danger btn-down" title="Send a negative feedback about this user"><i class="fa fa-thumbs-down"></i></button>
     @else
     <button type="button" class="btn btn-success btn-up" title="You have already rated this user" disabled><i class="fa fa-thumbs-up"></i></button>
     <button type="button" class="btn btn-danger btn-down" title="You have already rated this user" disabled><i class="fa fa-thumbs-down"></i></button>
@@ -300,6 +300,7 @@ $trueKaBa = false;
 <script>
 $(function() {
 
+stateChange();
   $('.revive-match').on('click', function(){
     $('#matchIDRevive').val($(this).closest(".media-content").closest(".media-body").find('.room-container').val());
     $.ajax({
