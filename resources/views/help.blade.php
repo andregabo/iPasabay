@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+
+<style>
+  img{
+    max-width: 100%;
+    max-height: 100%;
+  }
+</style>
+
 <div class="row">
 <div class="col-lg-10 col-lg-offset-1" style="">
 <div class="card">
@@ -108,7 +116,7 @@
       <div class = "row">
         <div class="col-lg-1"></div>
         <div class="col-lg-3">
-        <b>Step 5</b> : Click "Save" to store your pick up and you're done.
+        <b>Step 5</b> : Click "Save My Pickup" to store your pick up.
         </div>
         <div class="col-lg-3">
         <div style="float: left;"><img src="{{asset('/uploads/instructions/3d.png')}}"></div>
@@ -116,6 +124,19 @@
 
 
       </div>
+      <hr>
+      <div class = "row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-3">
+        <b>Step 6</b> : Click "Match Me" to get matched with drivers and you're done.
+        </div>
+        <div class="col-lg-3">
+        <div style="float: left;"><img src="{{asset('/uploads/instructions/12.png')}}"></div>
+        </div>
+
+
+      </div>
+
       <hr>
       <div class="row">
       <div class="col-lg-3"></div>
@@ -129,7 +150,7 @@
       <div class = "row">
         <div class="col-lg-1"></div>
         <div class="col-lg-3">
-        <b>Step 6</b> : Check here to see your matches.
+        <b>Step 7</b> : Check here to see your matches.
         </div>
         <div class="col-lg-6">
         <div style="float: left"><img src="{{asset('/uploads/instructions/4new.png')}}"></div>
@@ -140,7 +161,7 @@
       <div class = "row">
         <div class="col-lg-1"></div>
         <div class="col-lg-3">
-        <b>Step 7</b> : Here you can see your matched users.
+        <b>Step 8</b> : Here you can see your matched users.
         </div>
         <div class="col-lg-6">
         <div style="float: left"><img src="{{asset('/uploads/instructions/5.png')}}"></div>
@@ -159,7 +180,7 @@
       <div class = "row">
         <div class="col-lg-1"></div>
         <div class="col-lg-3">
-        <b>Step 8</b> : Click "MESSAGING".
+        <b>Step 9</b> : Click "MESSAGING".
         </div>
         <div class="col-lg-6">
         <div style="float: left"><img src="{{asset('/uploads/instructions/6.png')}}"></div>
@@ -169,7 +190,7 @@
       <div class = "row">
         <div class="col-lg-1"></div>
         <div class="col-lg-3">
-        <b>Step 9</b> : Choose a user to message. <br>(You may only message users you have been matched with)
+        <b>Step 10</b> : Choose a user to message. <br>(You may only message users you have been matched with)
         </div>
         <div class="col-lg-6">
         <div style=""><img src="{{asset('/uploads/instructions/7.png')}}"></div>
@@ -325,7 +346,7 @@
         <div class = "row">
           <div class="col-lg-1"></div>
           <div class="col-lg-3">
-          <b>Step 7</b> : Click "Save" to store your route and you're done.
+          <b>Step 7</b> : Click "Save My Route" to store and generate your route.
           </div>
           <div class="col-lg-3">
           <div style="float: left;"><img src="{{asset('/uploads/instructions/3d.png')}}"></div>
@@ -333,6 +354,20 @@
 
 
         </div>
+        <hr>
+        <div class = "row">
+          <div class="col-lg-1"></div>
+          <div class="col-lg-3">
+          <b>Step 8</b> : Click "Match Me" to get matched with passengers and you're done.
+          </div>
+          <div class="col-lg-3">
+          <div style="float: left;"><img src="{{asset('/uploads/instructions/12.png')}}"></div>
+          </div>
+
+
+        </div>
+
+
         <hr>
         <div class="row">
         <div class="col-lg-3"></div>
@@ -346,7 +381,7 @@
         <div class = "row">
           <div class="col-lg-1"></div>
           <div class="col-lg-3">
-          <b>Step 6</b> : Check here to see your matches.
+          <b>Step 9</b> : Check here to see your matches.
           </div>
           <div class="col-lg-6">
           <div style="float: left"><img src="{{asset('/uploads/instructions/4new.png')}}"></div>
@@ -357,7 +392,7 @@
         <div class = "row">
           <div class="col-lg-1"></div>
           <div class="col-lg-3">
-          <b>Step 7</b> : Here you can see your matched users.
+          <b>Step 10</b> : Here you can see your matched users.
           </div>
           <div class="col-lg-6">
           <div style="float: left"><img src="{{asset('/uploads/instructions/5.png')}}"></div>
@@ -376,7 +411,7 @@
         <div class = "row">
           <div class="col-lg-1"></div>
           <div class="col-lg-3">
-          <b>Step 8</b> : Click "MESSAGING".
+          <b>Step 11</b> : Click "MESSAGING".
           </div>
           <div class="col-lg-6">
           <div style="float: left"><img src="{{asset('/uploads/instructions/6.png')}}"></div>
@@ -386,7 +421,7 @@
         <div class = "row">
           <div class="col-lg-1"></div>
           <div class="col-lg-3">
-          <b>Step 9</b> : Choose a user to message. <br>(You may only message users you have been matched with)
+          <b>Step 12</b> : Choose a user to message. <br>(You may only message users you have been matched with)
           </div>
           <div class="col-lg-6">
           <div><img src="{{asset('/uploads/instructions/7.png')}}"></div>
