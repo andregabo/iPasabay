@@ -94,13 +94,36 @@ class RoutesController extends Controller
     }
 
     public function addBan(Request $request){
+      $matches = Matches::where('user1', Auth::user()->studentID)->orWhere('user2', Auth::user()->studentID)->get();
+      foreach ($matches as $key => $value) {
+        echo $value->user1;
+        if( ($value->user1 == Auth::user()->studentID && $value->user2 == $request->input('banID')) || ($value->user2 == Auth::user()->studentID && $value->user1 == $request->input('banID')) ){
+          //Bingo found the match
+          if($value->user1 == Auth::user()->studentID && $value->user2 == $request->input('banID')){
+            //isDeleted = 1
+            $value->isDeleted = 1;
+          }
+          else{
+            //usDeleted = 2
+            $value->isDeleted = 2;
+          }
+          $value->save();
+        }
+      }
       $testdb = Routes::where('userID', Auth::user()->studentID)->push('banList', $request->input('banID'), true);
       // $testdb->banList=[$request->input('banID')];
 
     }
 
-    public function removeBan(Request $request)
-    {
+    public function removeBan(Request $request){
+      $matches = Matches::where('user1', Auth::user()->studentID)->orWhere('user2', Auth::user()->studentID)->get();
+      foreach ($matches as $key => $value) {
+        if( ($value->user1 == Auth::user()->studentID && $value->user2 == $request->input('banID')) || ($value->user2 == Auth::user()->studentID && $value->user1 == $request->input('banID')) ){
+          //Bingo found the match
+          $value->isDeleted = 0;
+          $value->save();
+        }
+      }
       $testdb = Routes::where('userID', Auth::user()->studentID)->pull('banList', $request->input('banID'));
       //$testdb->banList=[$request->input('banID')];
 
