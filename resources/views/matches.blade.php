@@ -299,7 +299,7 @@ $trueKaBa = false;
 </form>
 <script>
 $(function() {
-
+stateChange();
   $('.revive-match').on('click', function(){
     $('#matchIDRevive').val($(this).closest(".media-content").closest(".media-body").find('.room-container').val());
     $.ajax({

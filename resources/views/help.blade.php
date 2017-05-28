@@ -413,6 +413,7 @@
 
 <script>
 $(function(){
+  stateChange();
 
   $('#next1-pickup').on('click', function(){
     $('#step1-li-pickup').removeClass('active');

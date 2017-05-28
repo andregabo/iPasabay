@@ -753,6 +753,7 @@ for (var j=0; j< gmarkers.length; j++) {
         $('#setRouteSave').prop('disabled', false);
 
       }
+      stateChange();
 }//initMap
 
 // google.maps.event.addDomListener(window, 'load', initMap);

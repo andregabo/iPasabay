@@ -71,7 +71,7 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
               }, 3000);
               // nanobar.go(0);
             }
-            stateChange();
+            //stateChange();
             // nanobar.go(95);
             var loadbar = function loadbar(){
             nanobar.go(60);
@@ -81,9 +81,9 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
         <style type="text/css">
           .bar{
             background-image: url('{{asset('/images/backgrounds/rainbow.gif')}}');
-            /*background: #ddd; 
-            background: -webkit-linear-gradient(left, #333 , #808080); 
-            background: -o-linear-gradient(right, #333, #808080); 
+            /*background: #ddd;
+            background: -webkit-linear-gradient(left, #333 , #808080);
+            background: -o-linear-gradient(right, #333, #808080);
             background: -moz-linear-gradient(right, #333, #808080);
             background: linear-gradient(to right, #333 , #808080);*/
 

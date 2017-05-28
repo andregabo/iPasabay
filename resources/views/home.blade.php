@@ -528,6 +528,7 @@ map.controls[google.maps.ControlPosition.TOP_LEFT].push(controlDiv);
         map.setZoom(Math.min(map.getZoom(),15));
 
       });
+      stateChange();
     }
   </script>
   <script async defer

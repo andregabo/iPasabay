@@ -736,7 +736,7 @@ $('#setPickupConfirm').prop('disabled', false);
 
 
   });
-
+stateChange();
 }//initMap
 
 // google.maps.event.addDomListener(window, 'load', initMap);

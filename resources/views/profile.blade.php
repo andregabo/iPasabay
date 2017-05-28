@@ -1121,7 +1121,7 @@ $('#routeMap').append('<p>No Route Available</p>')
 
 
 });
-
+stateChange();
 }//initmap
 
     </script>

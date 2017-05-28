@@ -79,7 +79,7 @@ foreach ($matches as $key => $value) {
         var chat;
 
     	$(function() {
-
+        stateChange();
 
 
          $('#chatBack').click(function(e){

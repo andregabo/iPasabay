@@ -30,7 +30,7 @@
               @endforeach
             </div><br>
         <div class="col-md-8 col-md-offset-2">
-            
+
             <div class="panel panel-default">
                 <div class="panel-heading">Users</div>
 
@@ -125,6 +125,7 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
+    stateChange();
     $('#usertable').dataTable({
       responsive: true,
       "scrollX":true
@@ -140,9 +141,9 @@
         $("#userID").val(studID);
         $("#fName").val(firstName);
         $("#lName").val(lastName);
-        
-        
-    }); 
+
+
+    });
 
 
 } );
