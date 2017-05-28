@@ -180,7 +180,7 @@ $trueKaBa = false;
     <button type="button" class="btn btn-success btn-up" title="You have already rated this user" disabled><i class="fa fa-thumbs-up"></i></button>
     <button type="button" class="btn btn-danger btn-down" title="You have already rated this user" disabled><i class="fa fa-thumbs-down"></i></button>
     @endif
-    <button type="button" class="btn btn-warning report" data-toggle="modal" data-target="#modalReport" title="Send a report about this user">Report User</button>
+    <button type="button" class="btn btn-warning report" data-toggle="modal" data-target="#modalReport" title="Send a report about this user"><i class="fa fa-pencil-square-o"></i></button>
     <button type="button" class="btn btn-info delete-match" title="Delete this match"><i class="fa fa-trash"></i></button>
     </div>
   </div>
@@ -299,7 +299,7 @@ $trueKaBa = false;
 </form>
 <script>
 $(function() {
-stateChange();
+
   $('.revive-match').on('click', function(){
     $('#matchIDRevive').val($(this).closest(".media-content").closest(".media-body").find('.room-container').val());
     $.ajax({
