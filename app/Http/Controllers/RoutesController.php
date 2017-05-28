@@ -17,15 +17,27 @@ class RoutesController extends Controller
     }
     public function setRouteIndex(){
       $routes =Routes::where('pickup','exists',true)->project(['_id'=>0])->get(['userID','pickup']);
+      $route = Routes::where('userID', Auth::user()->studentID)->where('banList','exists',true)->first();
+      if($route==null){
+        $route=[];
+      }else {
+        $route = $route->banList;
+      }
       $myPath = Routes::where('path','exists',true)->where('userID',Auth::User()->studentID)->project(['_id'=>0])->get(['userID','path']);
 
 
-		return view('autoroute')->with('routes',$routes)->with('myPath', $myPath);
+		return view('autoroute')->with('routes',$routes)->with('myPath', $myPath)->with('banList',$route);
     }
     public function setPickupIndex(){
       $routes = Routes::where('path','exists',true)->project(['_id'=>0])->get(['userID','path']);
+      $route = Routes::where('userID', Auth::user()->studentID)->where('banList','exists',true)->first();
+      if($route==null){
+        $route=[];
+      }else {
+        $route = $route->banList;
+      }
       $myPickup = Routes::where('pickup','exists',true)->where('userID',Auth::User()->studentID)->project(['_id'=>0])->get(['userID','pickup']);
-    	return view('setpickup')->with('routes',$routes)->with('myPickup',$myPickup);
+    	return view('setpickup')->with('routes',$routes)->with('myPickup',$myPickup)->with('banList',$route);
     }
     public function storePickUp(Request $request){
       Matches::where('user2', Auth::user()->studentID)->delete();
