@@ -90,20 +90,6 @@ foreach ($matches as $key => $value) {
 
 }
 
-// echo '<pre>';
-// echo var_dump($matches);
-// echo '</pre>';
-
-
-$trueKaBa = false;
-  if($matches == null && $matchess == null)
-  {
-    $trueKaBa = true;
-  }
-
-// echo '<pre>';
-// echo var_dump($banList);
-// echo '</pre>';
 
 ?>
 <div class="row">
