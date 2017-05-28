@@ -491,10 +491,7 @@ $routesCount = count($routesarray,0);
      markerLatLng = event.latLng;
   });
 
-  google.maps.event.addListener(markerMe, 'position_changed', function(){
 
-    $('#setRouteConfirm').prop('disabled', false);
-  });
 
   function placeMarker(location) {
 
@@ -510,6 +507,11 @@ $('#setRouteSave').prop('disabled', true);
         position: location,
         map: map,
         draggable : true
+      });
+
+      google.maps.event.addListener(markerMe, 'position_changed', function(){
+
+        $('#setRouteConfirm').prop('disabled', false);
       });
 
     }
