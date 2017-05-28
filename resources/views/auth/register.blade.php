@@ -24,6 +24,24 @@
     }
   </style>
   <body>
+  <script language="javascript" type="text/javascript" src="{{asset('/js/nanobar.min.js')}}"></script>
+        <script>
+            
+
+            var nanobar = new Nanobar();
+
+            var loadbar = function loadbar(){
+            nanobar.go(100);
+            };
+        </script>
+        <style type="text/css">
+          .bar{
+            background-image: url('{{asset('/images/backgrounds/rainbow.gif')}}');
+            transition: height 1s;
+
+          }
+          
+        </style>
     <!-- Page-->
     <div class="page text-center">
       <!-- Page Content-->
@@ -94,7 +112,7 @@
                           </div>
                         </div>
                         
-                        <button type="submit" class="btn btn-xs btn-icon btn-block btn-malibu offset-top-20">Sign Up <span class="icon mdi mdi-arrow-right-bold-circle-outline"></span></button>
+                        <button type="submit" class="btn btn-xs btn-icon btn-block btn-malibu offset-top-20" onclick="loadbar()">Sign Up <span class="icon mdi mdi-arrow-right-bold-circle-outline"></span></button>
                       </form>
                       <div class="offset-top-30 text-sm-left text-dark text-extra-small">
                         <div class="offset-top-0">Already have an account? <a href="{{url('/login')}}" class="text-picton-blue">Sign in here</a>.</div>

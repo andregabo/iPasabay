@@ -24,6 +24,24 @@
     }
   </style>
   <body>
+  <script language="javascript" type="text/javascript" src="{{asset('/js/nanobar.min.js')}}"></script>
+        <script>
+            
+
+            var nanobar = new Nanobar();
+
+            var loadbar = function loadbar(){
+            nanobar.go(100);
+            };
+        </script>
+        <style type="text/css">
+          .bar{
+            background-image: url('{{asset('/images/backgrounds/rainbow.gif')}}');
+            transition: height 1s;
+
+          }
+          
+        </style>
     <!-- Page-->
     <div class="page text-center">
       <!-- Page Content-->
@@ -91,7 +109,7 @@
                             <input id="login-your-password" placeholder="Your Password" type="password" name="password" data-constraints="@Required" class="form-control">
                           </div>
                         </div>
-                        <button type="submit" class="btn btn-sm btn-icon btn-block btn-malibu offset-top-20">Sign In <span class="icon mdi mdi-arrow-right-bold-circle-outline"></span></button>
+                        <button type="submit" class="btn btn-sm btn-icon btn-block btn-malibu offset-top-20" onclick="loadbar()">Sign In <span class="icon mdi mdi-arrow-right-bold-circle-outline"></span></button>
                       </form>
                       <div class="offset-top-30 text-sm-left text-dark text-extra-small">
                         <div class="offset-top-0">Haven’t an account? <a href="{{url('/register')}}" class="text-picton-blue">Sign up here</a>.</div>
@@ -148,5 +166,6 @@
     <!-- Java script-->
     <script src="js/core.min.js"></script>
     <script src="js/script.js"></script>
+    
   </body><!-- Google Tag Manager --><noscript><iframe src="http://www.googletagmanager.com/ns.html?id=GTM-P9FT69"height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='../../www.googletagmanager.com/gtm5445.html?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P9FT69');</script><!-- End Google Tag Manager -->
 </html>

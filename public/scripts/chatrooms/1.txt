@@ -14,3 +14,6 @@
 <message><sender>201401188</sender><body>Yah </body><time>May, 26 5.15 pm</time></message>
 <message><sender>201401188</sender><body>Yah </body><time>May, 26 5.15 pm</time></message>
 <message><sender>201401188</sender><body>Yah </body><time>May, 26 5.15 pm</time></message>
+<message><sender>201401189</sender><body>asdasd </body><time>May, 28 6.15 pm</time></message>
+<message><sender>201401189</sender><body>dasdad </body><time>May, 28 6.15 pm</time></message>
+<message><sender>201401189</sender><body>asdasd </body><time>May, 28 6.15 pm</time></message>

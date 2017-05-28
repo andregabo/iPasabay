@@ -12,7 +12,7 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
 //echo $countMatches;
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,8 +43,9 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
 
     <!-- <script src="js/app.js"></script> -->
 
-     <script type="text/javascript" src="{{asset('assets/js/vendor.js')}}"></script>
+  <script type="text/javascript" src="{{asset('assets/js/vendor.js')}}"></script>
   <script type="text/javascript" src="{{asset('assets/js/app.js')}}"></script>
+  <script type="text/javascript" src="{{asset('js/nanobar.min.js')}} "></script>
     <script>
          window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
@@ -56,6 +57,50 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
 
 </head>
 <body class="gradientbg" style="margin-top: 110px;">
+<script language="javascript" type="text/javascript" src="{{asset('/js/nanobar.min.js')}}"></script>
+        <script>
+            var options = {
+              // target: document.getElementById('thisbar')
+            };
+            var nanobar = new Nanobar();
+            nanobar.go(96);
+            function stateChange() {
+              setTimeout(function () {
+
+                  nanobar.go(0)
+              }, 3000);
+              // nanobar.go(0);
+            }
+            stateChange();
+            // nanobar.go(95);
+            var loadbar = function loadbar(){
+            nanobar.go(60);
+            };
+
+        </script>
+        <style type="text/css">
+          .bar{
+            background-image: url('{{asset('/images/backgrounds/rainbow.gif')}}');
+            /*background: #ddd; 
+            background: -webkit-linear-gradient(left, #333 , #808080); 
+            background: -o-linear-gradient(right, #333, #808080); 
+            background: -moz-linear-gradient(right, #333, #808080);
+            background: linear-gradient(to right, #333 , #808080);*/
+
+            transition: height 1s;
+            height: 4px;
+
+          }
+           .nanobar .bar {
+            /*background: #38f;*/
+            border-radius: 3px;
+            box-shadow: 0 0 10px #59d;
+            height: 4px;
+            margin: 0 auto;
+            margin-top: 90px;
+          }
+
+        </style>
 <style type="text/css">
   .gradientbg{
     background-color:#77d9c4; filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#77d9c4, endColorstr=#57bc90); background-image:-moz-linear-gradient(top, #77d9c4 0%, #57bc90 100%); background-image:-webkit-linear-gradient(top, #77d9c4 0%, #57bc90 100%); background-image:-ms-linear-gradient(top, #77d9c4 0%, #57bc90 100%); background-image:linear-gradient(top, #77d9c4 0%, #57bc90 100%); background-image:-o-linear-gradient(top, #77d9c4 0%, #57bc90 100%); background-image:-webkit-gradient(linear, right top, right bottom, color-stop(0%,#77d9c4), color-stop(100%,#57bc90));
@@ -76,7 +121,7 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
           </button>
         </li>
         <li class="logo">
-          <a class="navbar-brand" href="#"><span class="highlight">i</span> Pasabay</a>
+          <a class="navbar-brand" href="#">iPasabay</a>
         </li>
         <li>
           <button type="button" class="navbar-toggle">
@@ -86,7 +131,7 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
       </ul>
       <ul class="nav navbar-nav navbar-left">
         <li class="navbar-title">
-          <a href="{{url('home')}}" style="">IPASABAY</a>
+          <a href="{{url('home')}}" style="">iPASABAY</a>
         </li>
         <li>
           <a href="{{url('messages')}}"><i class="fa fa-envelope navcolor"></i>&nbsp;Messaging</a>
@@ -233,6 +278,7 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
 
 
   </div>
+  <div class="my-id"></div>
     @yield('content')
     </div>
     </div>
