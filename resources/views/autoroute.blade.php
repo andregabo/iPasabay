@@ -156,7 +156,7 @@ $routesCount = count($routesarray,0);
           <?php
           // echo "['201401037', 14.555158171027532, 121.03444576287984]";
           foreach ($routesarray as $key => $value) {
-            if($value['userID'] != Auth::User()->studentID)
+            if($value['userID'] != Auth::User()->studentID && !(in_array($value['userID'], $banList)) && !(in_array($value['userID'],$bannedList)))
             {
               if($key == ($routesCount-1)){
                 echo "['".$value['userID']."', ".$value['lat'].", ".$value['lng']."]";
@@ -491,7 +491,10 @@ $routesCount = count($routesarray,0);
      markerLatLng = event.latLng;
   });
 
+  google.maps.event.addListener(markerMe, 'position_changed', function(){
 
+    $('#setRouteConfirm').prop('disabled', false);
+  });
 
   function placeMarker(location) {
 

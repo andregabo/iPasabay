@@ -18,26 +18,57 @@ class RoutesController extends Controller
     public function setRouteIndex(){
       $routes =Routes::where('pickup','exists',true)->project(['_id'=>0])->get(['userID','pickup']);
       $route = Routes::where('userID', Auth::user()->studentID)->where('banList','exists',true)->first();
+      $iAmBanned = Routes::where('banList','exists',true)->where('banList', 'all', [Auth::user()->studentID])->get();
       if($route==null){
         $route=[];
       }else {
         $route = $route->banList;
       }
+
+      $studentIDs = [];
+
+      if($iAmBanned == null){
+        $studentIDs = [];
+      }
+      else {
+        foreach($iAmBanned as $key => $value)
+        {
+          $studentIDs[] = $value->userID;
+        }
+      }
+
+
       $myPath = Routes::where('path','exists',true)->where('userID',Auth::User()->studentID)->project(['_id'=>0])->get(['userID','path']);
 
 
-		return view('autoroute')->with('routes',$routes)->with('myPath', $myPath)->with('banList',$route);
+		return view('autoroute')->with('routes',$routes)->with('myPath', $myPath)->with('banList',$route)->with('bannedList',$studentIDs);
     }
     public function setPickupIndex(){
       $routes = Routes::where('path','exists',true)->project(['_id'=>0])->get(['userID','path']);
       $route = Routes::where('userID', Auth::user()->studentID)->where('banList','exists',true)->first();
+      $iAmBanned = Routes::where('banList','exists',true)->where('banList', 'all', [Auth::user()->studentID])->get();
       if($route==null){
         $route=[];
       }else {
         $route = $route->banList;
       }
+
+      $studentIDs = [];
+
+      if($iAmBanned == null){
+        $studentIDs = [];
+      }
+      else {
+        foreach($iAmBanned as $key => $value)
+        {
+          $studentIDs[] = $value->userID;
+        }
+      }
+
+
+
       $myPickup = Routes::where('pickup','exists',true)->where('userID',Auth::User()->studentID)->project(['_id'=>0])->get(['userID','pickup']);
-    	return view('setpickup')->with('routes',$routes)->with('myPickup',$myPickup)->with('banList',$route);
+    	return view('setpickup')->with('routes',$routes)->with('myPickup',$myPickup)->with('banList',$route)->with('bannedList',$studentIDs);
     }
     public function storePickUp(Request $request){
       Matches::where('user2', Auth::user()->studentID)->delete();

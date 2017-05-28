@@ -2,6 +2,8 @@
 
 @section('content')
 <?php
+use App\Routes;
+
 
 //dbcon the ancient php lord ways
 $dbcon = mysqli_connect("localhost", "root", "") or die("SERVER IS NOT AVAILABLE~".mysql_error());
@@ -42,6 +44,34 @@ while($row = mysqli_fetch_assoc($result)){
         //$temp["icon"] = ($row['user1'] == Auth::User()->studentID ? '<i class="fa fa-car"></i>' : '<i class="fa fa-male"></i>');
         $matches[] = $temp;
     }
+
+
+
+
+
+foreach($banList as $key => $value)
+{
+  $temp = [];
+  $temp['studentID'] = $value;
+  $temp['isDeleted'] = 3;
+  $temp['isBoth'] = 0;
+  $temp['role'] = 'N / A';
+  $success = true;
+  foreach($matches as $key => $match)
+  {
+    if($match['studentID'] == $temp['studentID'])
+    {
+      $success = false;
+    }
+  }
+
+  if($success)
+  {
+      $matches[] = $temp;
+  }
+
+
+}
 
 foreach ($matches as $key => $value) {
   $selector = "SELECT firstName, lastName, profile_image, thumbs_up, thumbs_down FROM `harambetadays`.`users` WHERE ";
@@ -212,7 +242,8 @@ $trueKaBa = false;
 </div>
 </div>
 <div class="row">
-<div class="col-sm-6">
+<div class="col-xs-1"></div>
+<div class="col-sm-4">
 <div class="card">
 <div class="card-body">
 <form enctype="multipart/form-data" action="{{asset('scripts/imageUpload.php')}}" method="post">
