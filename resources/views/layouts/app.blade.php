@@ -117,7 +117,9 @@ $countMatches = $result->fetch_assoc()['COUNT(id)'];
       <ul class="nav navbar-nav navbar-mobile">
         <li>
           <button type="button" class="sidebar-toggle">
-            <i class="fa fa-bars"></i>
+            <span class="dropdown-toggle" data-toggle="dropdown" onclick="event.preventDefault();
+                     document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i>
+            </span>
           </button>
         </li>
         <li class="logo">
