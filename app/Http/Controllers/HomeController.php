@@ -33,10 +33,19 @@ class HomeController extends Controller
     {
         return view('home');
     }
-
+    /**
+     * Show the application link to help page.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function helpIndex(){
       return view('help');
     }
+    /**
+     * Edit profile page
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function editProfile(Request $request){
       $user = User::where('studentID',$request->input('studentID'))->first();
       $user->studentID = $request->input('studentID');
@@ -46,7 +55,11 @@ class HomeController extends Controller
 
       return redirect('profile');
     }
-
+    /**
+     * Show the application profile page.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function details(){
       $id = Auth::User()->studentID;
       $path = NULL;
@@ -79,14 +92,22 @@ class HomeController extends Controller
     	return view('profile')->with('user',$usersSql)->with('plong',$plong)->with('plat',$plat)->with('rlong',$rlong)->with('rlat',$rlat)
       ->with('banList',$route);
     }
-
+    /**
+     * Redirect after registration
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function afterRegister(){
       auth::logout();
       Session::flash('alert-info',"This account is currently disabled for approval. See OSAS for activation.");
 
       return redirect('/');
     }
-
+    /**
+     * Change password
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function changePassword(Request $request){
       $currentUser = User::where('studentID',Auth::user()->studentID)->first();
         if(Hash::check($request->input('oldPassword'),$currentUser->password)){

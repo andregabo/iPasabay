@@ -15,6 +15,10 @@ class MessagesController extends Controller
     {
         $this->middleware('auth');
     }
+    /**
+     * View messages page
+     *
+     */
     public function index(){
 			return view('messages');
 

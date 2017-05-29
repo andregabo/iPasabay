@@ -15,6 +15,10 @@ class RoutesController extends Controller
     {
         $this->middleware('auth');
     }
+    /**
+     * view set route page
+     *
+     */
     public function setRouteIndex(){
       $routes =Routes::where('pickup','exists',true)->project(['_id'=>0])->get(['userID','pickup']);
       $route = Routes::where('userID', Auth::user()->studentID)->where('banList','exists',true)->first();
@@ -43,6 +47,10 @@ class RoutesController extends Controller
 
 		return view('autoroute')->with('routes',$routes)->with('myPath', $myPath)->with('banList',$route)->with('bannedList',$studentIDs);
     }
+    /**
+     * view set pickup page
+     *
+     */
     public function setPickupIndex(){
       $routes = Routes::where('path','exists',true)->project(['_id'=>0])->get(['userID','path']);
       $route = Routes::where('userID', Auth::user()->studentID)->where('banList','exists',true)->first();
@@ -70,6 +78,9 @@ class RoutesController extends Controller
       $myPickup = Routes::where('pickup','exists',true)->where('userID',Auth::User()->studentID)->project(['_id'=>0])->get(['userID','pickup']);
     	return view('setpickup')->with('routes',$routes)->with('myPickup',$myPickup)->with('banList',$route)->with('bannedList',$studentIDs);
     }
+    /**
+     * Store pickup
+     */
     public function storePickUp(Request $request){
       Matches::where('user2', Auth::user()->studentID)->delete();
     	//$name= Auth::user()->studentID;
@@ -81,7 +92,10 @@ class RoutesController extends Controller
 
 		// return redirect('home');
     }
-
+    /**
+     * store route
+     *
+     */
     public function storePath(Request $request){
       Matches::where('user1', Auth::user()->studentID)->delete();
     	//$name= Auth::user()->studentID;
@@ -92,7 +106,10 @@ class RoutesController extends Controller
 
     	// return redirect('home');
     }
-
+    /**
+     * add to ban list
+     *
+     */
     public function addBan(Request $request){
       $matches = Matches::where('user1', Auth::user()->studentID)->orWhere('user2', Auth::user()->studentID)->get();
       foreach ($matches as $key => $value) {
@@ -114,7 +131,10 @@ class RoutesController extends Controller
       // $testdb->banList=[$request->input('banID')];
 
     }
-
+    /**
+     * Remove user from banned list
+     *
+     */
     public function removeBan(Request $request){
       $matches = Matches::where('user1', Auth::user()->studentID)->orWhere('user2', Auth::user()->studentID)->get();
       foreach ($matches as $key => $value) {

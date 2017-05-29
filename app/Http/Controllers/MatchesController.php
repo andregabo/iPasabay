@@ -18,6 +18,10 @@ class MatchesController extends Controller
     {
         $this->middleware('auth');
     }
+    /**
+     * Create new match
+     *
+     */
     public function store(Request $request){
         // select id from matches where user1 = 'me' and user2 = 'you' or user1 = 'you' and user2 = 'me'
         // if count > 0
@@ -61,6 +65,10 @@ class MatchesController extends Controller
                 }
           }
     }
+    /**
+     * Submit report
+     *
+     */
     public function submitreport(Request $request){
         $newReport =  new Reports;
         $newReport->submittedByName = Auth::user()->firstName." ".Auth::user()->lastName;
@@ -72,7 +80,10 @@ class MatchesController extends Controller
         $newReport->save();
         //Session::flash('alert-success',"Report successfully submitted. Thank you for helping the community be a better place!");
     }
-
+/**
+     * Rate User
+     *
+     */
     public function thumbRating(Request $request){
       $user = User::where('studentID',$request->input('userID'))->first();
       $matchCheck = Matches::where([
@@ -112,7 +123,10 @@ class MatchesController extends Controller
       $matchCheck->save();
 
     }
-
+    /**
+     * Delete match
+     *
+     */
     public function deleteMatch(Request $request){
       $goodbye = Matches::where('id',$request->input('id'))->first();
       if($goodbye->user1 == Auth::User()->studentID){
@@ -123,6 +137,10 @@ class MatchesController extends Controller
       }
       $goodbye->save();
     }
+    /**
+     * Restor match
+     *
+     */
     public function reviveMatch(Request $request){
       $longTimeNoSee = Matches::where('id', $request->input('id'))->first();
       $longTimeNoSee->isDeleted=0;
