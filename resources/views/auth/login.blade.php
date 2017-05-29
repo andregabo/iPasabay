@@ -49,13 +49,13 @@
         <div class="one-page">
           <div class="one-page-header">
             <!--Navbar Brand-->
-            <div class="rd-navbar-brand"><a href="#"><img style='margin-top: -5px;margin-left: -15px;' width='138' height='31' src='images/intense/logo-light.png' alt=''/></a></div>
+            <div class="rd-navbar-brand"><a href="#"><img style='margin-top: -5px;margin-left: -15px; width: 50%; border-radius: 60px 60px 60px 60px;' src="{{asset('uploads/error/logomoto.png')}}" alt=''/></a></div>
           </div>
           <!-- Login-->
           <section>
             <div class="shell">
               <div class="range">
-                <div class="section-110 section-cover range range-xs-center range-xs-middle">
+                <div class="section-110 section-cover range range-xs-center range-xs-middle" style="margin-top: 70px;">
 
                   <div class="cell-xs-8 cell-sm-6 cell-md-4">
                     <div class="flash-message">
