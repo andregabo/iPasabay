@@ -112,7 +112,7 @@
                         <button type="submit" class="btn btn-sm btn-icon btn-block btn-malibu offset-top-20" onclick="loadbar()">Sign In <span class="icon mdi mdi-arrow-right-bold-circle-outline"></span></button>
                       </form>
                       <div class="offset-top-30 text-sm-left text-dark text-extra-small">
-                        <div class="offset-top-0">Haven’t an account? <a href="{{url('/register')}}" class="text-picton-blue">Sign up here</a>.</div>
+                        <div class="offset-top-0">Haven’t got an account? <a href="{{url('/register')}}" class="text-picton-blue">Sign up here</a>.</div>
                       </div>
                     </div>
                   </div>
