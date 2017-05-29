@@ -47,9 +47,9 @@
       <!-- Page Content-->
       <main class="page-content bgmoto">
         <div class="one-page">
-          <div class="one-page-header">
+         <div class="one-page-header">
             <!--Navbar Brand-->
-            <div class="rd-navbar-brand"><a href="#"><img style='margin-top: -5px;margin-left: -15px; width: 50%; border-radius: 60px 60px 60px 60px;' src="{{asset('uploads/error/logomoto.png')}}" alt=''/></a></div>
+            <div class="rd-navbar-brand"><a href="#"><img style='margin-top: -5px;margin-left: -5px; width: 50%; border-radius: 50px 50px 50px 50px;' src="{{asset('uploads/error/logomoto.png')}}" alt=''/></a></div>
           </div>
           <!-- Register-->
           <section>
