@@ -1,4 +1,0 @@
-<message><sender>201401030</sender><body>Tngina pre </body><time>May, 22 4.43 pm</time></message>
-<message><sender>201401037</sender><body>pakyu </body><time>May, 22 4.44 pm</time></message>
-<message><sender>201401037</sender><body>hehe </body><time>May, 22 4.44 pm</time></message>
-<message><sender>201401030</sender><body>tngina ulit </body><time>May, 22 4.44 pm</time></message>

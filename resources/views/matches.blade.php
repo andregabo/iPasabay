@@ -227,7 +227,7 @@ $trueKaBa = false;
             <p>No Data Available.</p>
             @endif
     <input type="hidden" class="room-container" value="{{$value['roomId']}}">
-  <button type="button" class="btn btn-warning revive-match"><i class="fa fa-heart"></i></button>
+  <button type="button" class="btn btn-warning revive-match" title="I Forgive This Person"><i class="fa fa-heart"></i></button>
   </div>
 </div>
 </div>

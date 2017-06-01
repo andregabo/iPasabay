@@ -72,7 +72,7 @@ $routesCount = count($routesarray,0);
                     </select>
                     </div> -->
 
-                    <button type="button" class="btn btn-sm btn-success" id="setPickupSave" disabled="true">Match Me!</button>
+                    <button type="button" class="btn btn-sm btn-success" id="setPickupSave" disabled="true">Match Me</button>
                     <button type="button" class="btn btn-sm btn-info" id="setPickupConfirm" disabled="true">Save My Pickup</button>
 
 
@@ -572,11 +572,6 @@ function clearBoxes() {
     var markerMe;
 
 
-    google.maps.event.addListener(markerMe, 'position_changed', function(){
-
-      $('#setPickupConfirm').prop('disabled', false);
-    });
-
    google.maps.event.addListener(map, 'click', function(event) {
      placeMarker(event.latLng);
      markerLatLng = event.latLng;
@@ -602,6 +597,10 @@ function clearBoxes() {
         draggable : true
       });
 
+      google.maps.event.addListener(markerMe, 'position_changed', function(){
+
+        $('#setPickupConfirm').prop('disabled', false);
+      });
     }
     //placeCircle();
     //markerMe.bindTo("position", circleMe, "center");

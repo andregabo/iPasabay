@@ -432,9 +432,7 @@ $('#btnModify').on('click', function(){
 
     });
 
-  $('#item').croppie(opts);
   // call a method via jquery
-  $('#item').croppie(method, args);
 </script>
 
 <script>
@@ -762,6 +760,12 @@ draggable: false
 directionsDisplay.setMap(routeMap);
 
 getRoute();
+
+google.maps.event.addListener(routeMap, 'idle', function() {
+google.maps.event.trigger(routeMap, 'resize');
+routeMap.fitBounds(directionsDisplay.getDirections().routes[0].bounds);
+});
+
 }else{
 $('#routeMap').append('<p>No Route Available</p>')
 }
@@ -1065,6 +1069,13 @@ $('#routeMap').append('<p>No Route Available</p>')
           position: pickup,
           map: map
         });
+
+        google.maps.event.addListener(map, 'idle', function() {
+        google.maps.event.trigger(map, 'resize');
+        map.panTo(pickup);
+        map.setZoom(17);
+        });
+
 			}else{
 				$('#pickUpMap').append("<p>No Pickup Available</p>")
 			}
@@ -1093,20 +1104,15 @@ $('#routeMap').append('<p>No Route Available</p>')
       					//google.maps.event.trigger(routeMap, 'resize');
       			});
 
-      			google.maps.event.addListener(routeMap, 'idle', function() {
-          google.maps.event.trigger(routeMap, 'resize');
-      		routeMap.fitBounds(directionsDisplay.getDirections().routes[0].bounds);
 
 
-      });
-
-      google.maps.event.addListener(map, 'idle', function() {
-    google.maps.event.trigger(map, 'resize');
-    map.panTo(pickup);
-    map.setZoom(17);
 
 
-});
+
+
+
+
+
 stateChange();
 }//initmap
 

@@ -3522,18 +3522,24 @@ ui-view > .app-messaging-container {
       overflow: auto;
       position: relative; }
       .app-messaging .messaging ul.chat > li {
-        width: 100%;
+        min-width: 1%;
+        max-width: 100%;
         padding: 0 20px;
         padding-right: 20%;
-        margin-bottom: 10px; }
+        padding-top: 10px;
+        margin-bottom: 10px;
+        word-wrap: break-word;
+        display: inline-block;}
         .app-messaging .messaging ul.chat > li .message1 {
           background-color: #bff8ac;
           border-radius: 3px;
-          padding: 15px; }
+          padding: 15px;
+          text-align: left; }
         .app-messaging .messaging ul.chat > li .message2 {
             background-color: #9fe4ef;
             border-radius: 3px;
-            padding: 15px; }
+            padding: 15px;
+            text-align: left;}
         .app-messaging .messaging ul.chat > li .info {
           padding: 5px 0;
           font-size: 0.85em;

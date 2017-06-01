@@ -600,7 +600,7 @@ fillOpacity: 0,
 strokeOpacity: 1.0,
 strokeColor: '#000000',
 strokeWeight: 1,
-visible: false,
+visible: true,
 map: map
 });
 for (var j=0; j< gmarkers.length; j++) {

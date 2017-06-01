@@ -1,0 +1,5 @@
+<message><sender>201401188</sender><body>hello </body><time>May, 30 4.01 pm</time></message>
+<message><sender>201401131</sender><body>Hi andre! :) </body><time>May, 30 4.01 pm</time></message>
+<message><sender>201401188</sender><body>live </body><time>May, 30 4.02 pm</time></message>
+<message><sender>201401188</sender><body>sound me </body><time>May, 30 4.02 pm</time></message>
+<message><sender>201401131</sender><body>test </body><time>May, 30 4.02 pm</time></message>
